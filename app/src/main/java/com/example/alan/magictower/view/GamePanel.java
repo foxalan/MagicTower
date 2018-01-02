@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
 
 import java.util.ArrayList;
@@ -25,6 +26,11 @@ import java.util.List;
 public class GamePanel extends View {
 
     private RoleHero role;
+    private List<ObstacleWood> obstacleWoodList;
+
+    public void setObstacleWoodList(List<ObstacleWood> obstacleWoodList) {
+        this.obstacleWoodList = obstacleWoodList;
+    }
 
     public void setRole(RoleHero role) {
         this.role = role;
@@ -39,6 +45,7 @@ public class GamePanel extends View {
     private List<Rect> rectList;
     private Paint paint;
     private Paint paint_hero;
+    private Paint paint_wood;
 
     public GamePanel(Context context) {
         this(context, null);
@@ -70,6 +77,11 @@ public class GamePanel extends View {
         paint_hero.setStyle(Paint.Style.FILL_AND_STROKE);
         paint_hero.setColor(Color.YELLOW);
 
+        paint_wood = new Paint();
+        paint_wood.setAntiAlias(true);
+        paint_wood.setStrokeWidth(5);
+        paint_wood.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint_wood.setColor(Color.BLUE);
     }
 
     private void initRect() {
@@ -96,6 +108,7 @@ public class GamePanel extends View {
         super.onDraw(canvas);
 
         drawRole(canvas);
+        drawWoods(canvas);
 
         for (Rect rect : rectList) {
             canvas.drawRect(rect, paint);
@@ -112,7 +125,21 @@ public class GamePanel extends View {
             rect.set(role.getX()*rect_width,role.getY()*rect_width,(role.getX()+1)*rect_width,(role.getY()+1)*rect_width);
             canvas.drawRect(rect,paint_hero);
         }
-
-
     }
+
+    /**
+     * 画木头
+     * @param canvas
+     */
+    private void drawWoods(Canvas canvas) {
+        if (obstacleWoodList!=null){
+            for (ObstacleWood wood:obstacleWoodList){
+                Rect rect = new Rect();
+                rect.set(wood.getX()*rect_width,wood.getY()*rect_width,
+                        (wood.getX()+1)*rect_width,(wood.getY()+1)*rect_width);
+                canvas.drawRect(rect,paint_wood);
+            }
+        }
+    }
+
 }
