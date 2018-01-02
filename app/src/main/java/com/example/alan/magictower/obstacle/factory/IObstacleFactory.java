@@ -13,5 +13,9 @@ import com.example.alan.magictower.obstacle.Obstacle;
 
 public interface IObstacleFactory {
 
+    /**
+     * 创建Obstacle
+     * @return
+     */
     Obstacle createObstacle();
 }
