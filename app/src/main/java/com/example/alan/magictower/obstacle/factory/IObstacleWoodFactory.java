@@ -5,7 +5,6 @@ import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 /**
  * Function :
  * Modify Date : 2018/1/2
- *
  * @Author : Alan
  * Issue : TODO
  * Whether Solve :

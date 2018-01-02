@@ -6,6 +6,7 @@
     tools:context="com.example.alan.magictower.MainActivity">
 
     <com.example.alan.magictower.view.GamePanel
+        android:id="@+id/gamePanel"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

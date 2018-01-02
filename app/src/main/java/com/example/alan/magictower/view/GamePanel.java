@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.alan.magictower.role.RoleHero;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,27 +24,33 @@ import java.util.List;
 
 public class GamePanel extends View {
 
-    private int mWith = 800;
-    private int mHeight = 800;
+    private RoleHero role;
+
+    public void setRole(RoleHero role) {
+        this.role = role;
+    }
+
+    private int mWith = 880;
+    private int mHeight = 880;
 
     private int rect_width = 80;
-    private int rect_count = 10;
+    private int rect_count = 11;
 
     private List<Rect> rectList;
     private Paint paint;
+    private Paint paint_hero;
 
     public GamePanel(Context context) {
         this(context, null);
     }
 
     public GamePanel(Context context, AttributeSet attrs) {
-
         this(context, attrs, 0);
     }
 
     public GamePanel(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
+        setFocusable(true);
         initRect();
         initPaint();
     }
@@ -55,6 +63,12 @@ public class GamePanel extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.parseColor("#00ff00"));
         paint.setStrokeCap(Paint.Cap.BUTT);
+
+        paint_hero = new Paint();
+        paint_hero.setAntiAlias(true);
+        paint_hero.setStrokeWidth(5);
+        paint_hero.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint_hero.setColor(Color.YELLOW);
 
     }
 
@@ -81,8 +95,24 @@ public class GamePanel extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        drawRole(canvas);
+
         for (Rect rect : rectList) {
             canvas.drawRect(rect, paint);
         }
+    }
+
+    /**
+     * 画主角
+     * @param canvas
+     */
+    private void drawRole(Canvas canvas) {
+        if (role != null){
+            Rect rect = new Rect();
+            rect.set(role.getX()*rect_width,role.getY()*rect_width,(role.getX()+1)*rect_width,(role.getY()+1)*rect_width);
+            canvas.drawRect(rect,paint_hero);
+        }
+
+
     }
 }
