@@ -18,8 +18,11 @@ public abstract class Role {
     private int mAttack;
     private int mDefense;
     private int life;
+    private int x;
+    private int y;
+    private int mSpeed;
 
-    public Role(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life) {
+    public Role(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed) {
         this.mId = mId;
         this.mName = mName;
         this.mDes = mDes;
@@ -27,6 +30,9 @@ public abstract class Role {
         this.mAttack = mAttack;
         this.mDefense = mDefense;
         this.life = life;
+        this.x = x;
+        this.y = y;
+        this.mSpeed = mSpeed;
     }
 
     public int getmId() {
@@ -69,11 +75,11 @@ public abstract class Role {
         this.mAttack = mAttack;
     }
 
-    public int getmDencefence() {
+    public int getmDefense() {
         return mDefense;
     }
 
-    public void setmDencefence(int mDefense) {
+    public void setmDefense(int mDefense) {
         this.mDefense = mDefense;
     }
 
@@ -83,5 +89,29 @@ public abstract class Role {
 
     public void setLife(int life) {
         this.life = life;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getmSpeed() {
+        return mSpeed;
+    }
+
+    public void setmSpeed(int mSpeed) {
+        this.mSpeed = mSpeed;
     }
 }
