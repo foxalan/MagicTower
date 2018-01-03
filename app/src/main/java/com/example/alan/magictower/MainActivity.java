@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         gamePanel.setObstacleWoodList(obstacleWoodList);
         gamePanel.setObstacleDoorList(obstacleDoorList);
         gamePanel.setObstacleJewelList(obstacleJewelList);
-        gamePanel.setiHeroPowerChangeCallBack(this);
+        gamePanel.setHeroPowerChangeCallBack(this);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
     }

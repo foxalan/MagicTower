@@ -40,7 +40,7 @@ public class GamePanel extends View {
     private List<ObstacleJewel> obstacleJewelList;
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
 
-    public void setiHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
+    public void setHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
         this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
     }
 
@@ -295,7 +295,6 @@ public class GamePanel extends View {
         if (iHeroPowerChangeCallBack != null){
             iHeroPowerChangeCallBack.updateHeroPower();
         }
-
     }
 
 }

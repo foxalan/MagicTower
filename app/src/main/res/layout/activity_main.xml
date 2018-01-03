@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/darker_gray"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +16,7 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:padding="2dp"
-        android:text="life:1000"
+        android:text="LIFE:1000"
         android:textSize="15sp"
         android:textColor="@android:color/black"
         android:id="@+id/tv_hero_life"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content" />
     <android.support.v7.widget.AppCompatTextView
         android:padding="2dp"
-        android:text="attack:10"
+        android:text="ATTACK:10"
         android:textSize="15sp"
         android:textColor="@android:color/black"
         android:id="@+id/tv_hero_attack"
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content" />
     <android.support.v7.widget.AppCompatTextView
         android:padding="2dp"
-        android:text="defense:10"
+        android:text="DEFENSE:10"
         android:textSize="15sp"
         android:textColor="@android:color/black"
         android:id="@+id/tv_hero_defense"
@@ -47,12 +48,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.example.alan.magictower.view.GamePanel
+    <android.support.v7.widget.AppCompatTextView
+        android:padding="2dp"
+        android:id="@+id/tv_hero_key_yellow"
+        android:text="YELLOW KEY:1"
+        android:textSize="15sp"
+        android:textColor="@color/yellow"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/tv_hero_life"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
+    <android.support.v7.widget.AppCompatTextView
+        android:padding="2dp"
+        android:id="@+id/tv_hero_key_blue"
+        android:text="BLUE KEY:1"
+        android:textSize="15sp"
+        android:textColor="@color/blue"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/tv_hero_life"
+        android:layout_below="@id/tv_hero_key_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:padding="2dp"
+        android:id="@+id/tv_hero_key_red"
+        android:text="RED KEY:1"
+        android:textSize="15sp"
+        android:textColor="@color/red"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/tv_hero_life"
+        android:layout_below="@id/tv_hero_key_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.example.alan.magictower.view.GamePanel
+        android:visibility="gone"
         android:id="@+id/gamePanel"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
 
 
 
