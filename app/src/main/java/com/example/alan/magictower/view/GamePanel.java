@@ -147,9 +147,6 @@ public class GamePanel extends View  {
         }
     }
 
-
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode){

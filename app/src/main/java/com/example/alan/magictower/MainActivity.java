@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 
 import com.example.alan.magictower.factory.IRoleHeroFactory;
-import com.example.alan.magictower.obstacle.factory.IObstacleWoodFactory;
+import com.example.alan.magictower.factory.ObstacleFactory;
+import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
 import com.example.alan.magictower.view.GamePanel;
@@ -28,7 +29,6 @@ import static com.example.alan.magictower.config.Config.HERO_Y;
 import static com.example.alan.magictower.config.Config.KEY_BLUE;
 import static com.example.alan.magictower.config.Config.KEY_RED;
 import static com.example.alan.magictower.config.Config.KEY_YELLOW;
-import static com.example.alan.magictower.config.ConfigPositon.ROUND_ONE_WOOD_POSITION;
 
 
 /**
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private List<ObstacleWood> obstacleWoodList = new ArrayList<>();
+    private List<ObstacleDoor> obstacleDoorList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initRole();
         initWood();
+        initDoor();
         initEvent();
     }
 
@@ -95,12 +97,13 @@ public class MainActivity extends AppCompatActivity {
      * 初始化木頭
      */
     private void initWood() {
-        for (int i = 0; i < ROUND_ONE_WOOD_POSITION.length; i++) {
-            IObstacleWoodFactory woodFactory = new IObstacleWoodFactory(ROUND_ONE_WOOD_POSITION[i][0], ROUND_ONE_WOOD_POSITION[i][1], true);
-            ObstacleWood wood = woodFactory.createObstacle();
-            obstacleWoodList.add(wood);
-        }
+       obstacleWoodList = ObstacleFactory.getInstance().createWood();
     }
 
-
+    /**
+     * 初始化门
+     */
+    private void initDoor() {
+        obstacleDoorList = ObstacleFactory.getInstance().createDoor();
+    }
 }
