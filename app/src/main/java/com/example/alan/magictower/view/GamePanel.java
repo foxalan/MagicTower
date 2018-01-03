@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
+import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
 
@@ -31,6 +32,11 @@ public class GamePanel extends View {
     private RoleHero roleHero;
     private List<ObstacleWood> obstacleWoodList;
     private List<ObstacleDoor> obstacleDoorList;
+    private List<ObstacleJewel> obstacleJewelList;
+
+    public void setObstacleJewelList(List<ObstacleJewel> obstacleJewelList) {
+        this.obstacleJewelList = obstacleJewelList;
+    }
 
     public void setObstacleDoorList(List<ObstacleDoor> obstacleDoorList) {
         this.obstacleDoorList = obstacleDoorList;
@@ -56,6 +62,7 @@ public class GamePanel extends View {
     private Paint paint_hero;
     private Paint paint_wood;
     private Paint paint_door;
+    private Paint paint_jewel;
 
     public GamePanel(Context context) {
         this(context, null);
@@ -86,7 +93,7 @@ public class GamePanel extends View {
         paint_hero.setAntiAlias(true);
         paint_hero.setStrokeWidth(5);
         paint_hero.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_hero.setColor(Color.YELLOW);
+        paint_hero.setColor(Color.MAGENTA);
 
         paint_wood = new Paint();
         paint_wood.setAntiAlias(true);
@@ -99,6 +106,12 @@ public class GamePanel extends View {
         paint_door.setStrokeWidth(5);
         paint_door.setStyle(Paint.Style.FILL_AND_STROKE);
         paint_door.setColor(Color.BLUE);
+
+        paint_jewel = new Paint();
+        paint_jewel.setAntiAlias(true);
+        paint_jewel.setStrokeWidth(5);
+        paint_jewel.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint_jewel.setColor(Color.RED);
     }
 
     private void initRect() {
@@ -126,6 +139,7 @@ public class GamePanel extends View {
         drawRoleHero(canvas);
         drawWoods(canvas);
         drawDoors(canvas);
+        drawJewel(canvas);
 
         for (Rect rect : rectList) {
             canvas.drawRect(rect, paint);
@@ -213,5 +227,33 @@ public class GamePanel extends View {
             }
         }
     }
+
+    private void drawJewel(Canvas canvas) {
+
+        if (obstacleJewelList != null) {
+            for (ObstacleJewel jewel : obstacleJewelList) {
+                if (jewel.isExist()) {
+                    Rect rect = new Rect();
+                    rect.set(jewel.getX() * rect_width, jewel.getY() * rect_width,
+                            (jewel.getX() + 1) * rect_width, (jewel.getY() + 1) * rect_width);
+                    switch (jewel.getType()) {
+                        case DENFENCE:
+                            paint_jewel.setColor(Color.GREEN);
+                            break;
+                        case ATTACK:
+                            paint_jewel.setColor(Color.RED);
+                            break;
+                        case OVERALL:
+                            paint_jewel.setColor(Color.YELLOW);
+                            break;
+                        default:
+                            break;
+                    }
+                    canvas.drawCircle((rect.left+rect.right)/2,(rect.bottom+rect.top)/2,(rect_width/2-20),paint_jewel);
+                }
+            }
+        }
+    }
+
 
 }

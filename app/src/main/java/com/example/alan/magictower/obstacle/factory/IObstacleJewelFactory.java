@@ -21,6 +21,10 @@ public class IObstacleJewelFactory implements IObstacleFactory {
         jewel.setType(type);
     }
 
+    public void setJewelType(JewelType type){
+        jewel.setType(type);
+    }
+
     @Override
     public ObstacleJewel createObstacle() {
         if (jewel == null) {

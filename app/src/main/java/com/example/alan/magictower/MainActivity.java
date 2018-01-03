@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatTextView;
 import com.example.alan.magictower.factory.IRoleHeroFactory;
 import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
+import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
 import com.example.alan.magictower.view.GamePanel;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<ObstacleWood> obstacleWoodList = new ArrayList<>();
     private List<ObstacleDoor> obstacleDoorList = new ArrayList<>();
+    private List<ObstacleJewel> obstacleJewelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         initRole();
         initWood();
         initDoor();
+        initJewel();
         initEvent();
     }
 
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         gamePanel.setRole(hero);
         gamePanel.setObstacleWoodList(obstacleWoodList);
         gamePanel.setObstacleDoorList(obstacleDoorList);
+        gamePanel.setObstacleJewelList(obstacleJewelList);
     }
 
     /**
@@ -107,4 +111,12 @@ public class MainActivity extends AppCompatActivity {
     private void initDoor() {
         obstacleDoorList = ObstacleFactory.getInstance().createDoor();
     }
+
+    /**
+     * 初始化宝石
+     */
+    private void initJewel() {
+         obstacleJewelList = ObstacleFactory.getInstance().createJewel();
+    }
+
 }

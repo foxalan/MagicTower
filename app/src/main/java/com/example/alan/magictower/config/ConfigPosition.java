@@ -8,7 +8,7 @@ package com.example.alan.magictower.config;
  * Whether Solve :
  */
 
-public class ConfigPositon {
+public class ConfigPosition {
     public static final int[][] ROUND_ONE_WOOD_POSITION = new int[][]{
             {4,0},{4,1},{4,2},{4,3},{4,4},
             {4,6},{4,7},{4,8},{4,9},{4,10},
@@ -22,5 +22,9 @@ public class ConfigPositon {
 
     public static final int[][] ROUND_ONE_DOOR_POSITION = new int[][]{
             {2,4},{2,6},{9,4},{9,6}
+    };
+
+    public static final int[][] ROUND_ONE_JEWEL_POSITION = new int[][]{
+            {0,1},{1,0},{10,9},{9,10},
     };
 }
