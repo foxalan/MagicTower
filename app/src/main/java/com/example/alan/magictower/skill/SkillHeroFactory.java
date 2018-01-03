@@ -46,8 +46,8 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
 
     @Override
     public void addDefense(Role role, int defense, ObstacleJewel jewel) {
-
-
+        role.setmDefense(role.getmDefense() + defense);
+        jewel.setExist(false);
     }
 
 

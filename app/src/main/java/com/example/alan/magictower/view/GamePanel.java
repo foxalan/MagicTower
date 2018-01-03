@@ -187,17 +187,7 @@ public class GamePanel extends View {
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.DOWN)) {
                     ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.DOWN);
                     if (jewel != null) {
-                        switch (jewel.getType()) {
-                            case ATTACK:
-                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
-                                break;
-                            case DEFENSE:
-                                break;
-                            case OVERALL:
-                                break;
-                            default:
-                                break;
-                        }
+                        getJewel(jewel);
                     }
                     roleHero.moveDown();
                 }
@@ -207,17 +197,7 @@ public class GamePanel extends View {
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.UP)) {
                     ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.UP);
                     if (jewel != null) {
-                        switch (jewel.getType()) {
-                            case ATTACK:
-                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
-                                break;
-                            case DEFENSE:
-                                break;
-                            case OVERALL:
-                                break;
-                            default:
-                                break;
-                        }
+                        getJewel(jewel);
                     }
                     roleHero.moveUp();
                 }
@@ -227,17 +207,7 @@ public class GamePanel extends View {
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.LEFT)) {
                     ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.LEFT);
                     if (jewel != null) {
-                        switch (jewel.getType()) {
-                            case ATTACK:
-                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
-                                break;
-                            case DEFENSE:
-                                break;
-                            case OVERALL:
-                                break;
-                            default:
-                                break;
-                        }
+                        getJewel(jewel);
                     }
                     roleHero.moveLeft();
                 }
@@ -247,17 +217,7 @@ public class GamePanel extends View {
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.RIGHT)) {
                     ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.RIGHT);
                     if (jewel != null) {
-                        switch (jewel.getType()) {
-                            case ATTACK:
-                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
-                                break;
-                            case DEFENSE:
-                                break;
-                            case OVERALL:
-                                break;
-                            default:
-                                break;
-                        }
+                       getJewel(jewel);
                     }
                     roleHero.moveRight();
                 }
@@ -325,6 +285,22 @@ public class GamePanel extends View {
                 }
             }
         }
+    }
+
+    private void getJewel(ObstacleJewel jewel){
+        switch (jewel.getType()) {
+            case ATTACK:
+                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
+                break;
+            case DEFENSE:
+                roleHero.addDefense(ConfigObstacle.JEWEL_DEFENCE,jewel);
+                break;
+            case OVERALL:
+                break;
+            default:
+                break;
+        }
+
     }
 
 

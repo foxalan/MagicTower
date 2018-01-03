@@ -100,8 +100,8 @@ public class RoleHero extends Role {
      *
      * @param defense
      */
-    public void addDefense(int defense) {
-
+    public void addDefense(int defense,ObstacleJewel jewel) {
+        skillHeroFactory.addDefense(this,defense,jewel);
     }
 
     /**

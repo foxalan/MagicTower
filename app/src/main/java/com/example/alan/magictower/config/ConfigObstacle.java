@@ -11,4 +11,5 @@ package com.example.alan.magictower.config;
 
 public class ConfigObstacle {
     public static final int JEWEL_ATTACK = 5;
+    public static final int JEWEL_DEFENCE = 5;
 }
