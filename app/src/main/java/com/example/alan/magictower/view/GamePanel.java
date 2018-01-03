@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -13,6 +14,8 @@ import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.util.BudgeUtil;
+import com.example.alan.magictower.util.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,16 +182,28 @@ public class GamePanel extends View {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                roleHero.moveDown();
+                Log.e(TAG, "onKeyDown: ");
+                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.DOWN)) {
+                    roleHero.moveDown();
+                }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                roleHero.moveUp();
+                Log.e(TAG, "onKeyUp: ");
+                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.UP)) {
+                    roleHero.moveUp();
+                }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                roleHero.moveLeft();
+                Log.e(TAG, "onKeyLeft:");
+                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.LEFT)) {
+                    roleHero.moveLeft();
+                }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                roleHero.moveRight();
+                Log.e(TAG, "onKeyRight:");
+                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.RIGHT)) {
+                    roleHero.moveRight();
+                }
                 break;
             default:
                 break;
@@ -210,13 +225,13 @@ public class GamePanel extends View {
                     rect.set(door.getX() * rect_width, door.getY() * rect_width,
                             (door.getX() + 1) * rect_width, (door.getY() + 1) * rect_width);
                     switch (door.getDoorType()) {
-                        case RED:
+                        case REDDOOR:
                             paint_door.setColor(Color.RED);
                             break;
-                        case BLUE:
+                        case BLUEDOOR:
                             paint_door.setColor(Color.BLUE);
                             break;
-                        case YELLOW:
+                        case YELLOWDOOR:
                             paint_door.setColor(Color.YELLOW);
                             break;
                         default:
@@ -237,7 +252,7 @@ public class GamePanel extends View {
                     rect.set(jewel.getX() * rect_width, jewel.getY() * rect_width,
                             (jewel.getX() + 1) * rect_width, (jewel.getY() + 1) * rect_width);
                     switch (jewel.getType()) {
-                        case DENFENCE:
+                        case DEFENSE:
                             paint_jewel.setColor(Color.GREEN);
                             break;
                         case ATTACK:
@@ -249,7 +264,7 @@ public class GamePanel extends View {
                         default:
                             break;
                     }
-                    canvas.drawCircle((rect.left+rect.right)/2,(rect.bottom+rect.top)/2,(rect_width/2-20),paint_jewel);
+                    canvas.drawCircle((rect.left + rect.right) / 2, (rect.bottom + rect.top) / 2, (rect_width / 2 - 20), paint_jewel);
                 }
             }
         }

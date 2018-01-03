@@ -10,7 +10,7 @@ package com.example.alan.magictower.obstacle.door;
  */
 
 public enum DoorType {
-    YELLOW,
-    BLUE,
-    RED,
+    YELLOWDOOR,
+    BLUEDOOR,
+    REDDOOR,
 }

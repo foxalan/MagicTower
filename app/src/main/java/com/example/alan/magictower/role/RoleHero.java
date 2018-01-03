@@ -86,7 +86,6 @@ public class RoleHero extends Role {
      * @param attack
      */
     public void addAttack(int attack) {
-        skillHeroFactory.addAttack(this, attack);
     }
 
 
@@ -96,7 +95,7 @@ public class RoleHero extends Role {
      * @param defense
      */
     public void addDefense(int defense) {
-        skillHeroFactory.addDefense(this, defense);
+
     }
 
     /**

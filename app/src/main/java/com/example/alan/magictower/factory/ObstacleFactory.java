@@ -39,9 +39,9 @@ public class ObstacleFactory {
         obstacleDoorList.clear();
         for (int i = 0; i < ROUND_ONE_DOOR_POSITION.length; i++) {
 
-            IObstacleDoorFactory doorFactory = new IObstacleDoorFactory(ROUND_ONE_DOOR_POSITION[i][0], ROUND_ONE_DOOR_POSITION[i][1], true, DoorType.YELLOW);
+            IObstacleDoorFactory doorFactory = new IObstacleDoorFactory(ROUND_ONE_DOOR_POSITION[i][0], ROUND_ONE_DOOR_POSITION[i][1], true, DoorType.YELLOWDOOR);
             if (i == 0) {
-                doorFactory.setDoorType(DoorType.BLUE);
+                doorFactory.setDoorType(DoorType.BLUEDOOR);
             }
             ObstacleDoor door = doorFactory.createObstacle();
             obstacleDoorList.add(door);
@@ -65,7 +65,7 @@ public class ObstacleFactory {
         for (int i = 0; i < ROUND_ONE_JEWEL_POSITION.length; i++) {
             IObstacleJewelFactory jewelFactory = new IObstacleJewelFactory(ROUND_ONE_JEWEL_POSITION[i][0], ROUND_ONE_JEWEL_POSITION[i][1], true, JewelType.ATTACK);
             if (i % 2 == 0) {
-                jewelFactory.setJewelType(JewelType.DENFENCE);
+                jewelFactory.setJewelType(JewelType.DEFENSE);
             }
             ObstacleJewel jewel = jewelFactory.createObstacle();
             obstacleJewelList.add(jewel);

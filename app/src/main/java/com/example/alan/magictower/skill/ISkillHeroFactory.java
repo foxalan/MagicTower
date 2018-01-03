@@ -1,5 +1,6 @@
 package com.example.alan.magictower.skill;
 
+import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
 
 /**
@@ -11,7 +12,7 @@ import com.example.alan.magictower.role.Role;
  * Whether Solve :
  */
 
-public class ISkillHeroFactory implements ISillFactory,ISkillHero {
+public class ISkillHeroFactory implements ISillFactory, ISkillHero {
 
 
     @Override
@@ -30,12 +31,13 @@ public class ISkillHeroFactory implements ISillFactory,ISkillHero {
     }
 
     @Override
-    public void addAttack(Role role, int attack) {
+    public void addAttack(Role role, int attack, ObstacleJewel jewel) {
 
     }
 
     @Override
-    public void addDefense(Role role, int defense) {
+    public void addDefense(Role role, int defense, ObstacleJewel jewel) {
+
 
     }
 

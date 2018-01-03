@@ -11,6 +11,6 @@ package com.example.alan.magictower.obstacle.jewel;
 
 public enum JewelType {
     ATTACK,
-    DENFENCE,
+    DEFENSE,
     OVERALL,
 }
