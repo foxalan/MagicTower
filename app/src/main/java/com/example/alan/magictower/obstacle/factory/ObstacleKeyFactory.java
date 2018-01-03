@@ -12,11 +12,11 @@ import com.example.alan.magictower.obstacle.key.ObstacleKey;
  * Whether Solve :
  */
 
-public class IObstacleKeyFactory implements IObstacleFactory {
+public class ObstacleKeyFactory implements IObstacleFactory {
 
     private ObstacleKey key;
 
-    public IObstacleKeyFactory(int x, int y, boolean exist, KeyType type){
+    public ObstacleKeyFactory(int x, int y, boolean exist, KeyType type){
         key = new ObstacleKey(x,y,exist);
         key.setType(type);
     }

@@ -10,6 +10,7 @@ package com.example.alan.magictower.role;
  */
 
 public enum  RoleType {
+    HERO,
     SLIME,
 
 }

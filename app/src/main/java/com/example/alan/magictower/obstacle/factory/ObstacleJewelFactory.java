@@ -12,11 +12,11 @@ import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
  * Whether Solve :
  */
 
-public class IObstacleJewelFactory implements IObstacleFactory {
+public class ObstacleJewelFactory implements IObstacleFactory {
 
     private ObstacleJewel jewel;
 
-    public IObstacleJewelFactory(int x, int y, boolean exist, JewelType type) {
+    public ObstacleJewelFactory(int x, int y, boolean exist, JewelType type) {
         jewel = new ObstacleJewel(x, y, exist);
         jewel.setType(type);
     }

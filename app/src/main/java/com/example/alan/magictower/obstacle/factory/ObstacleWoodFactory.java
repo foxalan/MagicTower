@@ -10,11 +10,11 @@ import com.example.alan.magictower.obstacle.wood.ObstacleWood;
  * Whether Solve :
  */
 
-public class IObstacleWoodFactory implements IObstacleFactory {
+public class ObstacleWoodFactory implements IObstacleFactory {
 
     private ObstacleWood wood;
 
-    public IObstacleWoodFactory(int x, int y, boolean exist) {
+    public ObstacleWoodFactory(int x, int y, boolean exist) {
         wood = new ObstacleWood(x, y, exist);
     }
 

@@ -19,10 +19,20 @@ public abstract class Role {
     private int mDefense;
     private int life;
     private int x;
+
+    public RoleType getType() {
+        return type;
+    }
+
+    public void setType(RoleType type) {
+        this.type = type;
+    }
+
     private int y;
     private int mSpeed;
+    private RoleType type;
 
-    public Role(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed) {
+    public Role(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed,RoleType type) {
         this.mId = mId;
         this.mName = mName;
         this.mDes = mDes;
@@ -33,6 +43,7 @@ public abstract class Role {
         this.x = x;
         this.y = y;
         this.mSpeed = mSpeed;
+        this.type = type;
     }
 
     public int getmId() {

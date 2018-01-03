@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 
 import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
-import com.example.alan.magictower.factory.IRoleHeroFactory;
+import com.example.alan.magictower.factory.RoleFactory;
+import com.example.alan.magictower.factory.RoleHeroFactory;
 import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
+import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
 import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.view.GamePanel;
@@ -49,8 +51,11 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private AppCompatTextView tv_hero_blue_key;
     private AppCompatTextView tv_hero_red_key;
 
-    private IRoleHeroFactory roleHeroFactory;
+    private RoleHeroFactory roleHeroFactory;
     private RoleHero hero;
+
+    private List<Role> roleList = new ArrayList<>();
+
     public Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -76,10 +81,15 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
 
         initViews();
         initRole();
+        initRoleMonster();
         initWood();
         initDoor();
         initJewel();
         initEvent();
+    }
+
+    private void initRoleMonster() {
+        roleList = RoleFactory.getInstance().getRole(1);
     }
 
     private void initViews() {
@@ -93,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     }
 
     private void initRole() {
-        roleHeroFactory = new IRoleHeroFactory(HEAR_ID, HERO_NAME, HERO_DES, ALIVE,
+        roleHeroFactory = new RoleHeroFactory(HEAR_ID, HERO_NAME, HERO_DES, ALIVE,
                 HER0_ATTACK, HERO_DEFENCE, HERO_LIFE, HERO_X, HERO_Y, HERO_SPEED);
         hero = roleHeroFactory.createRole();
         hero.setYellowKey(KEY_YELLOW);

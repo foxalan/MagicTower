@@ -31,6 +31,10 @@ public class RoleHero extends Role {
     private int blueKey;
     private int redKey;
 
+    public RoleHero(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
+        super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed, type);
+    }
+
     public int getYellowKey() {
         return yellowKey;
     }
@@ -55,9 +59,6 @@ public class RoleHero extends Role {
         this.redKey = redKey;
     }
 
-    public RoleHero(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed) {
-        super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed);
-    }
 
     public SkillHeroFactory getSkillHeroFactory() {
         return skillHeroFactory;

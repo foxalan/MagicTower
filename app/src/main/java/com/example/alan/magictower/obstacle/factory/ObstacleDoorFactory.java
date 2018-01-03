@@ -12,11 +12,11 @@ import com.example.alan.magictower.obstacle.door.ObstacleDoor;
  * Whether Solve :
  */
 
-public class IObstacleDoorFactory implements IObstacleFactory {
+public class ObstacleDoorFactory implements IObstacleFactory {
 
     private ObstacleDoor door;
 
-    public IObstacleDoorFactory(int x, int y, boolean exist, DoorType doorType) {
+    public ObstacleDoorFactory(int x, int y, boolean exist, DoorType doorType) {
         door = new ObstacleDoor(x, y, exist);
         door.setDoorType(doorType);
     }

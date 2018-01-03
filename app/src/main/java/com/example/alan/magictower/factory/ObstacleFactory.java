@@ -2,9 +2,9 @@ package com.example.alan.magictower.factory;
 
 import com.example.alan.magictower.obstacle.door.DoorType;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
-import com.example.alan.magictower.obstacle.factory.IObstacleDoorFactory;
-import com.example.alan.magictower.obstacle.factory.IObstacleJewelFactory;
-import com.example.alan.magictower.obstacle.factory.IObstacleWoodFactory;
+import com.example.alan.magictower.obstacle.factory.ObstacleDoorFactory;
+import com.example.alan.magictower.obstacle.factory.ObstacleJewelFactory;
+import com.example.alan.magictower.obstacle.factory.ObstacleWoodFactory;
 import com.example.alan.magictower.obstacle.jewel.JewelType;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
@@ -39,7 +39,7 @@ public class ObstacleFactory {
         obstacleDoorList.clear();
         for (int i = 0; i < ROUND_ONE_DOOR_POSITION.length; i++) {
 
-            IObstacleDoorFactory doorFactory = new IObstacleDoorFactory(ROUND_ONE_DOOR_POSITION[i][0], ROUND_ONE_DOOR_POSITION[i][1], true, DoorType.YELLOWDOOR);
+            ObstacleDoorFactory doorFactory = new ObstacleDoorFactory(ROUND_ONE_DOOR_POSITION[i][0], ROUND_ONE_DOOR_POSITION[i][1], true, DoorType.YELLOWDOOR);
             if (i == 0) {
                 doorFactory.setDoorType(DoorType.BLUEDOOR);
             }
@@ -53,7 +53,7 @@ public class ObstacleFactory {
     public List<ObstacleWood> createWood() {
         List<ObstacleWood> obstacleWoodList = new ArrayList<>();
         for (int i = 0; i < ROUND_ONE_WOOD_POSITION.length; i++) {
-            IObstacleWoodFactory woodFactory = new IObstacleWoodFactory(ROUND_ONE_WOOD_POSITION[i][0], ROUND_ONE_WOOD_POSITION[i][1], true);
+            ObstacleWoodFactory woodFactory = new ObstacleWoodFactory(ROUND_ONE_WOOD_POSITION[i][0], ROUND_ONE_WOOD_POSITION[i][1], true);
             ObstacleWood wood = woodFactory.createObstacle();
             obstacleWoodList.add(wood);
         }
@@ -63,7 +63,7 @@ public class ObstacleFactory {
     public List<ObstacleJewel> createJewel() {
         List<ObstacleJewel> obstacleJewelList = new ArrayList<>();
         for (int i = 0; i < ROUND_ONE_JEWEL_POSITION.length; i++) {
-            IObstacleJewelFactory jewelFactory = new IObstacleJewelFactory(ROUND_ONE_JEWEL_POSITION[i][0], ROUND_ONE_JEWEL_POSITION[i][1], true, JewelType.ATTACK);
+            ObstacleJewelFactory jewelFactory = new ObstacleJewelFactory(ROUND_ONE_JEWEL_POSITION[i][0], ROUND_ONE_JEWEL_POSITION[i][1], true, JewelType.ATTACK);
             if (i % 2 == 0) {
                 jewelFactory.setJewelType(JewelType.DEFENSE);
             }

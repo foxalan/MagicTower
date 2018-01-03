@@ -10,14 +10,8 @@ package com.example.alan.magictower.role;
 
 public class RoleSlime extends Role {
 
-    private RoleType type;
 
-    public void setType(RoleType type) {
-        this.type = type;
+    public RoleSlime(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
+        super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed, type);
     }
-
-    public RoleSlime(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed) {
-        super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed);
-    }
-
 }

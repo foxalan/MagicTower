@@ -15,6 +15,7 @@ import com.example.alan.magictower.config.ConfigObstacle;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
+import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
 import com.example.alan.magictower.util.BudgeUtil;
 import com.example.alan.magictower.util.MoveType;
@@ -39,6 +40,12 @@ public class GamePanel extends View {
     private List<ObstacleDoor> obstacleDoorList;
     private List<ObstacleJewel> obstacleJewelList;
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
+
+    private List<Role> roleMonsterList;
+
+    public void setRoleMonsterList(List<Role> roleMonsterList) {
+        this.roleMonsterList = roleMonsterList;
+    }
 
     public void setHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
         this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
@@ -150,11 +157,13 @@ public class GamePanel extends View {
         drawWoods(canvas);
         drawDoors(canvas);
         drawJewel(canvas);
+        drawMonster(canvas);
 
         for (Rect rect : rectList) {
             canvas.drawRect(rect, paint);
         }
     }
+
 
     /**
      * 画主角
@@ -283,6 +292,17 @@ public class GamePanel extends View {
             }
         }
     }
+
+    private void drawMonster(Canvas canvas) {
+        if (roleMonsterList!=null){
+            for (Role role:roleMonsterList){
+                if (role.isAlive()){
+
+                }
+            }
+        }
+    }
+
 
     private void getJewel(ObstacleJewel jewel){
         switch (jewel.getType()) {
