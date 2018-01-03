@@ -71,41 +71,44 @@ public class BudgeUtil {
     public static ObstacleJewel canMoveLeftWithJewel(RoleHero hero, List<ObstacleJewel> obstacleJewels, MoveType type) {
 
         for (ObstacleJewel jewel : obstacleJewels) {
-            switch (type) {
-                case UP:
+            if (jewel.isExist()){
+                switch (type) {
+                    case UP:
 
-                    if (jewel.getX() == hero.getX()) {
-                        if ((hero.getY() - jewel.getY()) == 1) {
-                            return jewel;
+                        if (jewel.getX() == hero.getX()) {
+                            if ((hero.getY() - jewel.getY()) == 1) {
+                                return jewel;
+                            }
                         }
-                    }
-                    break;
-                case DOWN:
+                        break;
+                    case DOWN:
 
-                    if (jewel.getX() == hero.getX()) {
-                        if ((hero.getY() - jewel.getY()) == -1) {
-                            return jewel;
+                        if (jewel.getX() == hero.getX()) {
+                            if ((hero.getY() - jewel.getY()) == -1) {
+                                return jewel;
+                            }
                         }
-                    }
-                    break;
-                case LEFT:
+                        break;
+                    case LEFT:
 
-                    if (jewel.getY() == hero.getY()) {
-                        if ((hero.getX() - jewel.getX()) == 1) {
-                            return jewel;
+                        if (jewel.getY() == hero.getY()) {
+                            if ((hero.getX() - jewel.getX()) == 1) {
+                                return jewel;
+                            }
                         }
-                    }
-                    break;
-                case RIGHT:
+                        break;
+                    case RIGHT:
 
-                    if (jewel.getY() == hero.getY()) {
-                        if ((hero.getX() - jewel.getX()) == -1) {
-                            return jewel;
+                        if (jewel.getY() == hero.getY()) {
+                            if ((hero.getX() - jewel.getX()) == -1) {
+                                return jewel;
+                            }
                         }
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
+
             }
         }
         return null;
