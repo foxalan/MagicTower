@@ -31,7 +31,7 @@ public class ConfigPosition {
     };
 
     public static final int[][] ROUND_ONE_SMILE_POSITION = new int[][]{
-            {0,4},{1,3},{2,2},{3,1},
+            {0,3},{1,2},{2,1},{3,0},
             {7,10},{8,9},{9,8},{10,7}
     };
 }

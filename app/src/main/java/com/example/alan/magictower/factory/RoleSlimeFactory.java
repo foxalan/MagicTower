@@ -16,8 +16,8 @@ public class RoleSlimeFactory implements IRoleFactory {
 
     private RoleSlime roleSlime;
 
-    public RoleSlimeFactory(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed) {
-        roleSlime = new RoleSlime(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed);
+    public RoleSlimeFactory(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed,RoleType type) {
+        roleSlime = new RoleSlime(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed,type);
     }
 
     public void setRoleType(RoleType type) {

@@ -15,6 +15,7 @@ import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.RoleType;
 import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.view.GamePanel;
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
 
     private void initRole() {
         roleHeroFactory = new RoleHeroFactory(HEAR_ID, HERO_NAME, HERO_DES, ALIVE,
-                HER0_ATTACK, HERO_DEFENCE, HERO_LIFE, HERO_X, HERO_Y, HERO_SPEED);
+                HER0_ATTACK, HERO_DEFENCE, HERO_LIFE, HERO_X, HERO_Y, HERO_SPEED, RoleType.HERO);
         hero = roleHeroFactory.createRole();
         hero.setYellowKey(KEY_YELLOW);
         hero.setBlueKey(KEY_BLUE);
@@ -117,8 +118,10 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         gamePanel.setObstacleDoorList(obstacleDoorList);
         gamePanel.setObstacleJewelList(obstacleJewelList);
         gamePanel.setHeroPowerChangeCallBack(this);
+        gamePanel.setRoleMonsterList(roleList);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
+
 
         updateHero();
     }

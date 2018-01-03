@@ -25,7 +25,8 @@ public class ConfigRole {
     public static final int KEY_BLUE = 5;
     public static final int KEY_RED = 2;
 
-    public static final int SILME_ID = 2;
+    public static final int SLIME_ID = 2;
+    public static final String SLIME_DES = "a lowest monster";
     public static final String SLIME_NAME = "slime";
     public static final int SLIME_ATTACK = 15;
     public static final int SLIME_DEFENSE = 3;

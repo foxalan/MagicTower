@@ -219,17 +219,17 @@ public class GamePanel extends View {
         }
 
         if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, moveType)) {
-            ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList,moveType);
+            ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, moveType);
             if (jewel != null) {
                 getJewel(jewel);
             }
-            if (BudgeUtil.canMoveLeftWithDoor(roleHero,obstacleDoorList,moveType)){
+            if (BudgeUtil.canMoveLeftWithDoor(roleHero, obstacleDoorList, moveType)) {
                 roleHero.move(moveType);
             }
         }
 
         invalidate();
-        if (iHeroPowerChangeCallBack != null){
+        if (iHeroPowerChangeCallBack != null) {
             iHeroPowerChangeCallBack.updateHeroPower();
         }
         return true;
@@ -294,23 +294,32 @@ public class GamePanel extends View {
     }
 
     private void drawMonster(Canvas canvas) {
-        if (roleMonsterList!=null){
-            for (Role role:roleMonsterList){
-                if (role.isAlive()){
-
+        if (roleMonsterList != null) {
+            for (Role role : roleMonsterList) {
+                if (role.isAlive()) {
+                    switch (role.getType()) {
+                        case SLIME:
+                            Rect rect = new Rect();
+                            rect.set(role.getX() * rect_width, role.getY() * rect_width,
+                                    (role.getX() + 1) * rect_width, (role.getY() + 1) * rect_width);
+                            canvas.drawRect(rect,paint_jewel);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
     }
 
 
-    private void getJewel(ObstacleJewel jewel){
+    private void getJewel(ObstacleJewel jewel) {
         switch (jewel.getType()) {
             case ATTACK:
-                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
+                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK, jewel);
                 break;
             case DEFENSE:
-                roleHero.addDefense(ConfigObstacle.JEWEL_DEFENCE,jewel);
+                roleHero.addDefense(ConfigObstacle.JEWEL_DEFENCE, jewel);
                 break;
             case OVERALL:
                 break;
@@ -319,5 +328,4 @@ public class GamePanel extends View {
         }
 
     }
-
 }
