@@ -2,6 +2,7 @@ package com.example.alan.magictower.role;
 
 import android.util.Log;
 
+import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.util.MoveType;
@@ -95,7 +96,6 @@ public class RoleHero extends Role {
         skillHeroFactory.addAttack(this, attack, jewel);
     }
 
-
     /**
      * 增加防御力
      *
@@ -103,6 +103,13 @@ public class RoleHero extends Role {
      */
     public void addDefense(int defense, ObstacleJewel jewel) {
         skillHeroFactory.addDefense(this, defense, jewel);
+    }
+
+    /**
+     * 开门
+     */
+    public void openDoor(ObstacleDoor door){
+        skillHeroFactory.openDoor(this,door);
     }
 
     public void move(MoveType type) {
@@ -152,5 +159,7 @@ public class RoleHero extends Role {
     public void moveRight() {
         setX(getX() + 1);
     }
+
+
 
 }

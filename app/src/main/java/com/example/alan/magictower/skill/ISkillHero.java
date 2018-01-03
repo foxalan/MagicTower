@@ -1,7 +1,9 @@
 package com.example.alan.magictower.skill;
 
+import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.RoleHero;
 
 /**
  * Function :
@@ -25,6 +27,7 @@ public interface ISkillHero extends ISkill {
      * 加攻击力
      * @param role
      * @param attack
+     * @param jewel
      */
     void addAttack(Role role,int attack,ObstacleJewel jewel);
 
@@ -32,7 +35,16 @@ public interface ISkillHero extends ISkill {
      * 加防御力
      * @param role
      * @param defense
+     * @param jewel
      */
     void addDefense(Role role, int defense, ObstacleJewel jewel);
+
+    /**
+     * 开门
+     * @param role
+     * @param door
+     */
+    void openDoor(RoleHero role, ObstacleDoor door);
+
 
 }

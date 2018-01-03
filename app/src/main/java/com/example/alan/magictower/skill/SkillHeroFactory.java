@@ -1,7 +1,9 @@
 package com.example.alan.magictower.skill;
 
+import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.RoleHero;
 
 /**
  * Function :
@@ -48,6 +50,24 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
     public void addDefense(Role role, int defense, ObstacleJewel jewel) {
         role.setmDefense(role.getmDefense() + defense);
         jewel.setExist(false);
+    }
+
+    @Override
+    public void openDoor(RoleHero role, ObstacleDoor door) {
+        switch (door.getDoorType()) {
+            case REDDOOR:
+                role.setRedKey(role.getRedKey() - 1);
+                break;
+            case BLUEDOOR:
+                role.setBlueKey(role.getBlueKey() - 1);
+                break;
+            case YELLOWDOOR:
+                role.setYellowKey(role.getYellowKey() - 1);
+                break;
+            default:
+                break;
+        }
+        door.setExist(false);
     }
 
 
