@@ -73,8 +73,9 @@ public class RoleHero extends Role {
      *
      * @param enemy
      */
-    public void attack(Role enemy) {
-        skillHeroFactory.attack(this, enemy);
+    public boolean attack(Role enemy) {
+
+        return skillHeroFactory.attack(this, enemy);
     }
 
     /**

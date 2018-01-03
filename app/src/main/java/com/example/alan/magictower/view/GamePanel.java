@@ -80,6 +80,7 @@ public class GamePanel extends View {
     private Paint paint_wood;
     private Paint paint_door;
     private Paint paint_jewel;
+    private Paint paint_slime;
 
     public GamePanel(Context context) {
         this(context, null);
@@ -129,6 +130,13 @@ public class GamePanel extends View {
         paint_jewel.setStrokeWidth(5);
         paint_jewel.setStyle(Paint.Style.FILL_AND_STROKE);
         paint_jewel.setColor(Color.RED);
+
+        paint_slime = new Paint();
+        paint_slime.setAntiAlias(true);
+        paint_slime.setStrokeWidth(5);
+        paint_slime.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint_slime.setColor(Color.DKGRAY);
+
     }
 
     private void initRect() {
@@ -224,8 +232,12 @@ public class GamePanel extends View {
                 getJewel(jewel);
             }
             if (BudgeUtil.canMoveLeftWithDoor(roleHero, obstacleDoorList, moveType)) {
-                roleHero.move(moveType);
+                if (BudgeUtil.canAttackMonster(roleHero,roleMonsterList,moveType)){
+                    roleHero.move(moveType);
+                }
             }
+
+
         }
 
         invalidate();
@@ -302,7 +314,7 @@ public class GamePanel extends View {
                             Rect rect = new Rect();
                             rect.set(role.getX() * rect_width, role.getY() * rect_width,
                                     (role.getX() + 1) * rect_width, (role.getY() + 1) * rect_width);
-                            canvas.drawRect(rect,paint_jewel);
+                            canvas.drawRect(rect,paint_slime);
                             break;
                         default:
                             break;

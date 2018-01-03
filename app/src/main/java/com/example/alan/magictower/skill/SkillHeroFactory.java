@@ -16,6 +16,28 @@ import com.example.alan.magictower.role.RoleHero;
 
 public class SkillHeroFactory implements ISillFactory, ISkillHero {
 
+    @Override
+    public boolean attack(Role role, Role enemy) {
+
+        if (role.getmAttack() < enemy.getmDefense()) {
+            return false;
+        }
+
+        if (role.getmDefense() > enemy.getmAttack()) {
+            return true;
+        }
+
+        int countKill = enemy.getLife() / role.getmAttack() - enemy.getmDefense();
+        int countByKill = role.getLife() / enemy.getmAttack() - role.getmDefense();
+        if (countByKill > countKill) {
+            enemy.setAlive(false);
+            role.setLife(role.getLife() - countByKill * (enemy.getmAttack() - role.getmDefense()));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private static class HeroHolder {
         private static SkillHeroFactory INSTANCE = new SkillHeroFactory();
     }
@@ -30,10 +52,6 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
         return this;
     }
 
-    @Override
-    public void attack(Role role, Role enemy) {
-
-    }
 
     @Override
     public void restore(Role role, int life) {

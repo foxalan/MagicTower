@@ -4,6 +4,7 @@ import com.example.alan.magictower.obstacle.door.DoorType;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
+import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
 
 import java.util.List;
@@ -204,5 +205,65 @@ public class BudgeUtil {
         }
 
         return false;
+    }
+
+    public static boolean canAttackMonster(RoleHero hero, List<Role> roleListMonster, MoveType type) {
+
+        for (Role role : roleListMonster) {
+            if (role.isAlive()) {
+                switch (type) {
+                    case UP:
+                        if (role.getX() == hero.getX()) {
+                            if ((hero.getY() - role.getY()) == 1) {
+                                if (hero.attack(role)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case DOWN:
+
+                        if (role.getX() == hero.getX()) {
+                            if ((hero.getY() - role.getY()) == -1) {
+                                if (hero.attack(role)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case LEFT:
+
+                        if (role.getY() == hero.getY()) {
+                            if ((hero.getX() - role.getX()) == 1) {
+                                if (hero.attack(role)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case RIGHT:
+
+                        if (role.getY() == hero.getY()) {
+                            if ((hero.getX() - role.getX()) == -1) {
+                                if (hero.attack(role)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return true;
     }
 }

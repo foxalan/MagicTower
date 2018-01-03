@@ -18,5 +18,5 @@ public interface ISkill {
      * @param role
      * @param enemy
      */
-    void attack(Role role,Role enemy);
+    boolean attack(Role role,Role enemy);
 }
