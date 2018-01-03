@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
@@ -23,9 +24,10 @@ import java.util.List;
  * Whether Solve :
  */
 
-public class GamePanel extends View {
+public class GamePanel extends View  {
 
-    private RoleHero role;
+    private static final String TAG = "GamePanel";
+    private RoleHero roleHero;
     private List<ObstacleWood> obstacleWoodList;
 
     public void setObstacleWoodList(List<ObstacleWood> obstacleWoodList) {
@@ -33,13 +35,14 @@ public class GamePanel extends View {
     }
 
     public void setRole(RoleHero role) {
-        this.role = role;
+        this.roleHero = role;
     }
 
     private int mWith = 880;
     private int mHeight = 880;
 
     private int rect_width = 80;
+    private int rect_hero_width = 80;
     private int rect_count = 11;
 
     private List<Rect> rectList;
@@ -58,6 +61,7 @@ public class GamePanel extends View {
     public GamePanel(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setFocusable(true);
+        requestFocus();
         initRect();
         initPaint();
     }
@@ -99,7 +103,6 @@ public class GamePanel extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         setMeasuredDimension(mWith, mHeight);
     }
 
@@ -107,7 +110,7 @@ public class GamePanel extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        drawRole(canvas);
+        drawRoleHero(canvas);
         drawWoods(canvas);
 
         for (Rect rect : rectList) {
@@ -117,29 +120,55 @@ public class GamePanel extends View {
 
     /**
      * 画主角
+     *
      * @param canvas
      */
-    private void drawRole(Canvas canvas) {
-        if (role != null){
+    private void drawRoleHero(Canvas canvas) {
+        if (roleHero != null) {
             Rect rect = new Rect();
-            rect.set(role.getX()*rect_width,role.getY()*rect_width,(role.getX()+1)*rect_width,(role.getY()+1)*rect_width);
-            canvas.drawRect(rect,paint_hero);
+            rect.set(roleHero.getX() * rect_hero_width, roleHero.getY() * rect_hero_width, (roleHero.getX() + 1) * rect_hero_width, (roleHero.getY() + 1) * rect_hero_width);
+            canvas.drawRect(rect, paint_hero);
         }
     }
 
     /**
      * 画木头
+     *
      * @param canvas
      */
     private void drawWoods(Canvas canvas) {
-        if (obstacleWoodList!=null){
-            for (ObstacleWood wood:obstacleWoodList){
+        if (obstacleWoodList != null) {
+            for (ObstacleWood wood : obstacleWoodList) {
                 Rect rect = new Rect();
-                rect.set(wood.getX()*rect_width,wood.getY()*rect_width,
-                        (wood.getX()+1)*rect_width,(wood.getY()+1)*rect_width);
-                canvas.drawRect(rect,paint_wood);
+                rect.set(wood.getX() * rect_width, wood.getY() * rect_width,
+                        (wood.getX() + 1) * rect_width, (wood.getY() + 1) * rect_width);
+                canvas.drawRect(rect, paint_wood);
             }
         }
     }
 
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                roleHero.moveDown();
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                roleHero.moveUp();
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                roleHero.moveLeft();
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                roleHero.moveRight();
+                break;
+            default:
+                break;
+        }
+        invalidate();
+        return super.onKeyDown(keyCode, event);
+    }
 }

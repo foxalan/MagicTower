@@ -63,37 +63,68 @@ public class RoleHero extends Role {
 
     /**
      * 进攻
+     *
      * @param enemy
      */
     public void attack(Role enemy) {
-        skillHeroFactory.attack(this,enemy);
+        skillHeroFactory.attack(this, enemy);
     }
 
     /**
      * 回复生命
+     *
      * @param role
      * @param life
      */
     public void restore(Role role, int life) {
-        skillHeroFactory.restore(this,life);
+        skillHeroFactory.restore(this, life);
     }
 
     /**
-     *增加生命力
-     *@param attack
+     * 增加生命力
+     *
+     * @param attack
      */
     public void addAttack(int attack) {
-        skillHeroFactory.addAttack(this,attack);
+        skillHeroFactory.addAttack(this, attack);
     }
 
 
     /**
      * 增加防御力
+     *
      * @param defense
      */
     public void addDefense(int defense) {
-        skillHeroFactory.addDefense(this,defense);
+        skillHeroFactory.addDefense(this, defense);
     }
 
+    /**
+     * 向上走
+     */
+    public void moveUp() {
+        setY(getY() - 1);
+    }
+
+    /**
+     * 向下
+     */
+    public void moveDown() {
+        setY(getY() + 1);
+    }
+
+    /**
+     * 向左
+     */
+    public void moveLeft() {
+        setX(getX() - 1);
+    }
+
+    /**
+     * 向右
+     */
+    public void moveRight() {
+        setX(getX() + 1);
+    }
 
 }

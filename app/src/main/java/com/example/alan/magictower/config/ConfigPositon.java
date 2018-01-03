@@ -9,7 +9,7 @@ package com.example.alan.magictower.config;
  */
 
 public class ConfigPositon {
-    public static final int[][] ROUND_ONE_WOOE_POSITION = new int[][]{
+    public static final int[][] ROUND_ONE_WOOD_POSITION = new int[][]{
             {4,0},{4,1},{4,2},{4,3},{4,4},
             {4,6},{4,7},{4,8},{4,9},{4,10},
             {6,0},{6,1},{6,2},{6,3},{6,4},

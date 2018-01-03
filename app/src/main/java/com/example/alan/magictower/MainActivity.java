@@ -25,7 +25,8 @@ import static com.example.alan.magictower.config.Config.HERO_Y;
 import static com.example.alan.magictower.config.Config.KEY_BLUE;
 import static com.example.alan.magictower.config.Config.KEY_RED;
 import static com.example.alan.magictower.config.Config.KEY_YELLOW;
-import static com.example.alan.magictower.config.ConfigPositon.ROUND_ONE_WOOE_POSITION;
+import static com.example.alan.magictower.config.ConfigPositon.ROUND_ONE_WOOD_POSITION;
+
 
 /**
  * @author Alan
@@ -73,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
      * 初始化木頭
      */
     private void initWood() {
-        for(int i = 0;i<ROUND_ONE_WOOE_POSITION.length;i++){
-            IObstacleWoodFactory woodFactory = new IObstacleWoodFactory(ROUND_ONE_WOOE_POSITION[i][0],ROUND_ONE_WOOE_POSITION[i][1],true);
+        for(int i = 0;i<ROUND_ONE_WOOD_POSITION.length;i++){
+            IObstacleWoodFactory woodFactory = new IObstacleWoodFactory(ROUND_ONE_WOOD_POSITION[i][0],ROUND_ONE_WOOD_POSITION[i][1],true);
             ObstacleWood wood = woodFactory.createObstacle();
             obstacleWoodList.add(wood);
         }
