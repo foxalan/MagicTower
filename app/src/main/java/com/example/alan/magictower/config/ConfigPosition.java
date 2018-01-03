@@ -29,4 +29,8 @@ public class ConfigPosition {
             {1,5},{9,5},
             {10,9},{9,10},
     };
+
+    public static final int[][] ROUND_ONE_SMILE_POSITION = new int[][]{
+
+    };
 }

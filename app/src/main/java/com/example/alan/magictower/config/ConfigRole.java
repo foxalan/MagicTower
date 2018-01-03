@@ -9,7 +9,7 @@ package com.example.alan.magictower.config;
  * Whether Solve :
  */
 
-public class Config {
+public class ConfigRole {
 
     public static final int HEAR_ID = 1;
     public static final String HERO_NAME = "hero";
@@ -24,4 +24,11 @@ public class Config {
     public static final int KEY_YELLOW = 10;
     public static final int KEY_BLUE = 5;
     public static final int KEY_RED = 2;
+
+    public static final int SILME_ID = 2;
+    public static final String SLIME_NAME = "slime";
+    public static final int SLIME_ATTACK = 15;
+    public static final int SLIME_DEFENSE = 3;
+    public static final int SLIME_LIFE = 50;
+    public static final boolean SLIME_ALIVE = true;
 }

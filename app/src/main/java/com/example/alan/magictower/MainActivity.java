@@ -19,19 +19,19 @@ import com.example.alan.magictower.view.GamePanel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.alan.magictower.config.Config.ALIVE;
-import static com.example.alan.magictower.config.Config.HEAR_ID;
-import static com.example.alan.magictower.config.Config.HER0_ATTACK;
-import static com.example.alan.magictower.config.Config.HERO_DEFENCE;
-import static com.example.alan.magictower.config.Config.HERO_DES;
-import static com.example.alan.magictower.config.Config.HERO_LIFE;
-import static com.example.alan.magictower.config.Config.HERO_NAME;
-import static com.example.alan.magictower.config.Config.HERO_SPEED;
-import static com.example.alan.magictower.config.Config.HERO_X;
-import static com.example.alan.magictower.config.Config.HERO_Y;
-import static com.example.alan.magictower.config.Config.KEY_BLUE;
-import static com.example.alan.magictower.config.Config.KEY_RED;
-import static com.example.alan.magictower.config.Config.KEY_YELLOW;
+import static com.example.alan.magictower.config.ConfigRole.ALIVE;
+import static com.example.alan.magictower.config.ConfigRole.HEAR_ID;
+import static com.example.alan.magictower.config.ConfigRole.HER0_ATTACK;
+import static com.example.alan.magictower.config.ConfigRole.HERO_DEFENCE;
+import static com.example.alan.magictower.config.ConfigRole.HERO_DES;
+import static com.example.alan.magictower.config.ConfigRole.HERO_LIFE;
+import static com.example.alan.magictower.config.ConfigRole.HERO_NAME;
+import static com.example.alan.magictower.config.ConfigRole.HERO_SPEED;
+import static com.example.alan.magictower.config.ConfigRole.HERO_X;
+import static com.example.alan.magictower.config.ConfigRole.HERO_Y;
+import static com.example.alan.magictower.config.ConfigRole.KEY_BLUE;
+import static com.example.alan.magictower.config.ConfigRole.KEY_RED;
+import static com.example.alan.magictower.config.ConfigRole.KEY_YELLOW;
 
 
 /**
