@@ -4,6 +4,7 @@ import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.view.MagicLoader;
 
 /**
  * Function :
@@ -18,7 +19,7 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
     @Override
     public boolean attack(RoleHero role, Role enemy) {
 
-     //   MagicLoader.showDialogDuel(role,enemy);
+
 
         if (role.getmAttack() < enemy.getmDefense()) {
             return false;
@@ -31,6 +32,7 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
         int countKill = enemy.getLife() / role.getmAttack() - enemy.getmDefense();
         int countByKill = role.getLife() / enemy.getmAttack() - role.getmDefense();
         if (countByKill > countKill) {
+            MagicLoader.showDialogDuel(role,enemy);
             enemy.setAlive(false);
             role.setLife(role.getLife() - countKill * (enemy.getmAttack() - role.getmDefense()));
             return true;

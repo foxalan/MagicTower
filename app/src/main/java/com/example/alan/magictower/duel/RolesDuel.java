@@ -1,8 +1,9 @@
 package com.example.alan.magictower.duel;
 
-import android.support.v7.widget.AppCompatTextView;
+import android.os.Message;
 
 import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.view.MagicLoader;
 
 /**
  * @author Alan
@@ -16,10 +17,15 @@ public class RolesDuel {
 	public RolesDuel() {
 	}
 
-	public synchronized void heroAttack(Role monster,int loseLife, AppCompatTextView tv_monster_life) {
+	public synchronized void heroAttack(Role monster,int loseLife) {
 		
 		if(flag) {
-			
+			monster.setLife(monster.getLife()-loseLife);
+			int life = monster.getLife();
+			Message message = new Message();
+			message.what = 0x122;
+			message.obj = life;
+			MagicLoader.mHandler.sendMessage(message);
 			flag = !flag;
 			notifyAll();
 
@@ -32,12 +38,18 @@ public class RolesDuel {
 			}
 		}
 		
-		System.out.println("------"+toString());
 	}
 	
-	public synchronized void MonsterAttack(double money,String name) {
+	public synchronized void monsterAttack(Role hero,int loseLife) {
 		
 		if(!flag) {
+			hero.setLife(hero.getLife()-loseLife);
+
+			int life = hero.getLife();
+			Message message = new Message();
+			message.what = 0x123;
+			message.obj = life;
+			MagicLoader.mHandler.sendMessage(message);
 
 			flag = !flag;
 			notifyAll();
