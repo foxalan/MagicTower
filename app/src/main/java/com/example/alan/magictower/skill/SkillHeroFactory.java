@@ -4,11 +4,11 @@ import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.view.MagicLoader;
 
 /**
  * Function :
  * Modify Date : 2018/1/2
- *
  * @Author : Alan
  * Issue : TODO
  * Whether Solve :
@@ -17,8 +17,9 @@ import com.example.alan.magictower.role.RoleHero;
 public class SkillHeroFactory implements ISillFactory, ISkillHero {
 
     @Override
-    public boolean attack(Role role, Role enemy) {
+    public boolean attack(RoleHero role, Role enemy) {
 
+        MagicLoader.showDialogDuel(role,enemy);
 
         if (role.getmAttack() < enemy.getmDefense()) {
             return false;
@@ -58,6 +59,7 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
     public void restore(Role role, int life) {
 
     }
+
 
     @Override
     public void addAttack(Role role, int attack, ObstacleJewel jewel) {

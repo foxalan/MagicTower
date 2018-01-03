@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="loading_dialog" parent="@android:style/Theme.Dialog">
+    <style name="loading_dialog" parent="Theme.AppCompat.DialogWhenLarge">
         <item name="android:windowNoTitle">true</item>
         <!--无边框-->
         <item name="android:windowFrame">@null</item>

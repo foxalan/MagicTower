@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/bg_circle"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatImageView
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:src="@mipmap/ic_launcher"
         android:layout_centerVertical="true"
         android:id="@+id/iv_hero_icon"
@@ -13,10 +14,9 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:textSize="20sp"
-        android:text="Life:10000"
         android:textColor="@color/blue"
         android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:id="@+id/tv_hero_life"
         android:layout_above="@id/iv_hero_icon"
         android:layout_width="wrap_content"
@@ -27,9 +27,8 @@
         android:id="@+id/tv_hero_attack"
         android:textSize="18sp"
         android:layout_marginTop="5dp"
-        android:text="Attack:100"
         android:textColor="@color/red"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -38,15 +37,14 @@
         android:id="@+id/tv_hero_defense"
         android:textSize="18sp"
         android:layout_marginTop="5dp"
-        android:text="Defense:100"
         android:textColor="@color/cyan"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.AppCompatImageView
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:src="@mipmap/ic_launcher"
         android:layout_centerVertical="true"
         android:id="@+id/iv_monster_icon"
@@ -55,11 +53,10 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:textSize="20sp"
-        android:text="Life:10000"
         android:layout_alignParentEnd="true"
         android:textColor="@color/blue"
         android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:id="@+id/tv_monster_life"
         android:layout_above="@id/iv_hero_icon"
         android:layout_width="wrap_content"
@@ -71,10 +68,9 @@
         android:id="@+id/tv_monster_attack"
         android:textSize="18sp"
         android:layout_marginTop="5dp"
-        android:text="Attack:100"
         android:layout_alignParentEnd="true"
         android:textColor="@color/red"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -84,9 +80,8 @@
         android:layout_alignParentEnd="true"
         android:textSize="18sp"
         android:layout_marginTop="5dp"
-        android:text="Defense:100"
         android:textColor="@color/cyan"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 
 import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
+import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.factory.RoleFactory;
 import com.example.alan.magictower.factory.RoleHeroFactory;
-import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
@@ -18,6 +18,7 @@ import com.example.alan.magictower.role.RoleHero;
 import com.example.alan.magictower.role.RoleType;
 import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.view.GamePanel;
+import com.example.alan.magictower.view.MagicLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,11 +90,18 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         initEvent();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MagicLoader.initDialogDuel(this);
+    }
+
     private void initRoleMonster() {
         roleList = RoleFactory.getInstance().getRole(1);
     }
 
     private void initViews() {
+
         gamePanel = findViewById(R.id.gamePanel);
         tv_hero_life = findViewById(R.id.tv_hero_life);
         tv_hero_attack = findViewById(R.id.tv_hero_attack);
