@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.skill.SkillHeroFactory;
+import com.example.alan.magictower.util.MoveType;
 
 /**
  * Function :
@@ -91,7 +92,7 @@ public class RoleHero extends Role {
      */
     public void addAttack(int attack, ObstacleJewel jewel) {
         Log.e(TAG, "addAttack: ");
-        skillHeroFactory.addAttack(this,attack,jewel);
+        skillHeroFactory.addAttack(this, attack, jewel);
     }
 
 
@@ -100,8 +101,28 @@ public class RoleHero extends Role {
      *
      * @param defense
      */
-    public void addDefense(int defense,ObstacleJewel jewel) {
-        skillHeroFactory.addDefense(this,defense,jewel);
+    public void addDefense(int defense, ObstacleJewel jewel) {
+        skillHeroFactory.addDefense(this, defense, jewel);
+    }
+
+    public void move(MoveType type) {
+        switch (type) {
+            case RIGHT:
+                moveRight();
+                break;
+            case LEFT:
+                moveLeft();
+                break;
+            case DOWN:
+                moveDown();
+                break;
+            case UP:
+                moveUp();
+                break;
+            default:
+                break;
+
+        }
     }
 
     /**

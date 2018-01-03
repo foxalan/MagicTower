@@ -74,7 +74,6 @@ public class BudgeUtil {
             if (jewel.isExist()){
                 switch (type) {
                     case UP:
-
                         if (jewel.getX() == hero.getX()) {
                             if ((hero.getY() - jewel.getY()) == 1) {
                                 return jewel;

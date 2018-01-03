@@ -187,52 +187,38 @@ public class GamePanel extends View {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        MoveType moveType = MoveType.DOWN;
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
+                moveType = MoveType.DOWN;
                 Log.e(TAG, "onKeyDown: ");
-                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.DOWN)) {
-                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.DOWN);
-                    if (jewel != null) {
-                        getJewel(jewel);
-                    }
-                    roleHero.moveDown();
-                }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
+                moveType = MoveType.UP;
                 Log.e(TAG, "onKeyUp: ");
-                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.UP)) {
-                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.UP);
-                    if (jewel != null) {
-                        getJewel(jewel);
-                    }
-                    roleHero.moveUp();
-                }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
+                moveType = MoveType.LEFT;
                 Log.e(TAG, "onKeyLeft:");
-                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.LEFT)) {
-                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.LEFT);
-                    if (jewel != null) {
-                        getJewel(jewel);
-                    }
-                    roleHero.moveLeft();
-                }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
+                moveType = MoveType.RIGHT;
                 Log.e(TAG, "onKeyRight:");
-                if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.RIGHT)) {
-                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.RIGHT);
-                    if (jewel != null) {
-                       getJewel(jewel);
-                    }
-                    roleHero.moveRight();
-                }
                 break;
             default:
                 break;
         }
+
+        if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, moveType)) {
+            ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList,moveType);
+            if (jewel != null) {
+                getJewel(jewel);
+            }
+            roleHero.move(moveType);
+        }
+
         invalidate();
-        return super.onKeyDown(keyCode, event);
+        return true;
     }
 
     /**
@@ -311,6 +297,5 @@ public class GamePanel extends View {
         }
 
     }
-
 
 }
