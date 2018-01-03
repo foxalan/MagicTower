@@ -19,6 +19,7 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
     @Override
     public boolean attack(Role role, Role enemy) {
 
+
         if (role.getmAttack() < enemy.getmDefense()) {
             return false;
         }
