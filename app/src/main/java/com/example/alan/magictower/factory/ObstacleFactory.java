@@ -35,7 +35,11 @@ public class ObstacleFactory {
         List<ObstacleDoor> obstacleDoorList = new ArrayList<>();
         obstacleDoorList.clear();
         for (int i = 0; i < ROUND_ONE_DOOR_POSITION.length; i++) {
+
             IObstacleDoorFactory doorFactory = new IObstacleDoorFactory(ROUND_ONE_DOOR_POSITION[i][0], ROUND_ONE_DOOR_POSITION[i][1], true, DoorType.YELLOW);
+            if (i == 0){
+                doorFactory.setDoorType(DoorType.BLUE);
+            }
             ObstacleDoor door = doorFactory.createObstacle();
             obstacleDoorList.add(door);
         }

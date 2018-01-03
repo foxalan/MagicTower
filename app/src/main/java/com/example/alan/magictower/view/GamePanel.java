@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
 
@@ -24,11 +25,16 @@ import java.util.List;
  * Whether Solve :
  */
 
-public class GamePanel extends View  {
+public class GamePanel extends View {
 
     private static final String TAG = "GamePanel";
     private RoleHero roleHero;
     private List<ObstacleWood> obstacleWoodList;
+    private List<ObstacleDoor> obstacleDoorList;
+
+    public void setObstacleDoorList(List<ObstacleDoor> obstacleDoorList) {
+        this.obstacleDoorList = obstacleDoorList;
+    }
 
     public void setObstacleWoodList(List<ObstacleWood> obstacleWoodList) {
         this.obstacleWoodList = obstacleWoodList;
@@ -49,6 +55,7 @@ public class GamePanel extends View  {
     private Paint paint;
     private Paint paint_hero;
     private Paint paint_wood;
+    private Paint paint_door;
 
     public GamePanel(Context context) {
         this(context, null);
@@ -85,7 +92,13 @@ public class GamePanel extends View  {
         paint_wood.setAntiAlias(true);
         paint_wood.setStrokeWidth(5);
         paint_wood.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_wood.setColor(Color.BLUE);
+        paint_wood.setColor(Color.BLACK);
+
+        paint_door = new Paint();
+        paint_door.setAntiAlias(true);
+        paint_door.setStrokeWidth(5);
+        paint_door.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint_door.setColor(Color.BLUE);
     }
 
     private void initRect() {
@@ -112,6 +125,7 @@ public class GamePanel extends View  {
 
         drawRoleHero(canvas);
         drawWoods(canvas);
+        drawDoors(canvas);
 
         for (Rect rect : rectList) {
             canvas.drawRect(rect, paint);
@@ -149,7 +163,7 @@ public class GamePanel extends View  {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 roleHero.moveDown();
                 break;
@@ -168,4 +182,36 @@ public class GamePanel extends View  {
         invalidate();
         return super.onKeyDown(keyCode, event);
     }
+
+    /**
+     * 画门
+     *
+     * @param canvas
+     */
+    private void drawDoors(Canvas canvas) {
+        if (obstacleDoorList != null) {
+            for (ObstacleDoor door : obstacleDoorList) {
+                if (door.isExist()) {
+                    Rect rect = new Rect();
+                    rect.set(door.getX() * rect_width, door.getY() * rect_width,
+                            (door.getX() + 1) * rect_width, (door.getY() + 1) * rect_width);
+                    switch (door.getDoorType()) {
+                        case RED:
+                            paint_door.setColor(Color.RED);
+                            break;
+                        case BLUE:
+                            paint_door.setColor(Color.BLUE);
+                            break;
+                        case YELLOW:
+                            paint_door.setColor(Color.YELLOW);
+                            break;
+                        default:
+                            break;
+                    }
+                    canvas.drawRect(rect, paint_door);
+                }
+            }
+        }
+    }
+
 }

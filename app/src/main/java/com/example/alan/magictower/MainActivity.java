@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     private void initEvent() {
         gamePanel.setRole(hero);
         gamePanel.setObstacleWoodList(obstacleWoodList);
+        gamePanel.setObstacleDoorList(obstacleDoorList);
     }
 
     /**

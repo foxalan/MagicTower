@@ -21,6 +21,10 @@ public class IObstacleDoorFactory implements IObstacleFactory {
         door.setDoorType(doorType);
     }
 
+    public void setDoorType(DoorType doorType){
+        door.setDoorType(doorType);
+    }
+
     @Override
     public ObstacleDoor createObstacle() {
         if (door == null) {
