@@ -214,10 +214,15 @@ public class GamePanel extends View {
             if (jewel != null) {
                 getJewel(jewel);
             }
-            roleHero.move(moveType);
+            if (BudgeUtil.canMoveLeftWithDoor(roleHero,obstacleDoorList,moveType)){
+                roleHero.move(moveType);
+            }
         }
 
         invalidate();
+        if (iHeroPowerChangeCallBack != null){
+            iHeroPowerChangeCallBack.updateHeroPower();
+        }
         return true;
     }
 
@@ -292,9 +297,7 @@ public class GamePanel extends View {
             default:
                 break;
         }
-        if (iHeroPowerChangeCallBack != null){
-            iHeroPowerChangeCallBack.updateHeroPower();
-        }
+
     }
 
 }

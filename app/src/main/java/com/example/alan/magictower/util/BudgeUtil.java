@@ -1,5 +1,7 @@
 package com.example.alan.magictower.util;
 
+import com.example.alan.magictower.obstacle.door.DoorType;
+import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
@@ -52,7 +54,7 @@ public class BudgeUtil {
                     }
                     break;
                 case RIGHT:
-                    if (hero.getX() == 10){
+                    if (hero.getX() == 10) {
                         return false;
                     }
                     if (wood.getY() == hero.getY()) {
@@ -71,7 +73,7 @@ public class BudgeUtil {
     public static ObstacleJewel canMoveLeftWithJewel(RoleHero hero, List<ObstacleJewel> obstacleJewels, MoveType type) {
 
         for (ObstacleJewel jewel : obstacleJewels) {
-            if (jewel.isExist()){
+            if (jewel.isExist()) {
                 switch (type) {
                     case UP:
                         if (jewel.getX() == hero.getX()) {
@@ -111,5 +113,96 @@ public class BudgeUtil {
             }
         }
         return null;
+    }
+
+    public static boolean canMoveLeftWithDoor(RoleHero hero, List<ObstacleDoor> obstacleDoors, MoveType type) {
+
+        for (ObstacleDoor door : obstacleDoors) {
+            if (door.isExist()) {
+                switch (type) {
+                    case UP:
+                        if (door.getX() == hero.getX()) {
+                            if ((hero.getY() - door.getY()) == 1) {
+                                if (haveKey(door.getDoorType(), hero)) {
+                                    hero.openDoor(door);
+                                    return true;
+                                } else {
+
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case DOWN:
+
+                        if (door.getX() == hero.getX()) {
+                            if ((hero.getY() - door.getY()) == -1) {
+                                if (haveKey(door.getDoorType(), hero)) {
+                                    hero.openDoor(door);
+                                    return true;
+                                } else {
+
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case LEFT:
+
+                        if (door.getY() == hero.getY()) {
+                            if ((hero.getX() - door.getX()) == 1) {
+                                if (haveKey(door.getDoorType(), hero)) {
+                                    hero.openDoor(door);
+                                    return true;
+                                } else {
+
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case RIGHT:
+
+                        if (door.getY() == hero.getY()) {
+                            if ((hero.getX() - door.getX()) == -1) {
+                                if (haveKey(door.getDoorType(), hero)) {
+                                    hero.openDoor(door);
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static boolean haveKey(DoorType doorType, RoleHero hero) {
+        switch (doorType) {
+            case BLUEDOOR:
+                if (hero.getBlueKey() != 0) {
+                    return true;
+                }
+                break;
+            case REDDOOR:
+                if (hero.getRedKey() != 0) {
+                    return true;
+                }
+                break;
+            case YELLOWDOOR:
+                if (hero.getYellowKey() != 0) {
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return false;
     }
 }
