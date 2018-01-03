@@ -5,10 +5,55 @@
     android:layout_height="match_parent"
     tools:context="com.example.alan.magictower.MainActivity">
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_hero_icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:padding="2dp"
+        android:text="life:1000"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_hero_life"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_hero_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.AppCompatTextView
+        android:padding="2dp"
+        android:text="attack:10"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_hero_attack"
+        android:layout_toEndOf="@id/iv_hero_icon"
+        android:layout_below="@id/tv_hero_life"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.AppCompatTextView
+        android:padding="2dp"
+        android:text="defense:10"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_hero_defense"
+        android:layout_toEndOf="@id/iv_hero_icon"
+        android:layout_below="@id/tv_hero_attack"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.example.alan.magictower.view.GamePanel
+
         android:id="@+id/gamePanel"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
 
 </RelativeLayout>

@@ -1,7 +1,10 @@
 package com.example.alan.magictower;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 
 import com.example.alan.magictower.factory.IRoleHeroFactory;
 import com.example.alan.magictower.obstacle.factory.IObstacleWoodFactory;
@@ -35,9 +38,24 @@ import static com.example.alan.magictower.config.ConfigPositon.ROUND_ONE_WOOD_PO
 public class MainActivity extends AppCompatActivity {
 
     private GamePanel gamePanel;
+    private AppCompatTextView tv_hero_life;
+    private AppCompatTextView tv_hero_attack;
+    private AppCompatTextView tv_hero_defense;
 
     private IRoleHeroFactory roleHeroFactory;
     private RoleHero hero;
+    public static Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0x111:
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     private List<ObstacleWood> obstacleWoodList = new ArrayList<>();
 
@@ -54,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         gamePanel = findViewById(R.id.gamePanel);
+        tv_hero_life = findViewById(R.id.tv_hero_defense);
+        tv_hero_attack = findViewById(R.id.tv_hero_attack);
+        tv_hero_defense = findViewById(R.id.tv_hero_defense);
     }
 
     private void initRole() {
@@ -74,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
      * 初始化木頭
      */
     private void initWood() {
-        for(int i = 0;i<ROUND_ONE_WOOD_POSITION.length;i++){
-            IObstacleWoodFactory woodFactory = new IObstacleWoodFactory(ROUND_ONE_WOOD_POSITION[i][0],ROUND_ONE_WOOD_POSITION[i][1],true);
+        for (int i = 0; i < ROUND_ONE_WOOD_POSITION.length; i++) {
+            IObstacleWoodFactory woodFactory = new IObstacleWoodFactory(ROUND_ONE_WOOD_POSITION[i][0], ROUND_ONE_WOOD_POSITION[i][1], true);
             ObstacleWood wood = woodFactory.createObstacle();
             obstacleWoodList.add(wood);
         }
