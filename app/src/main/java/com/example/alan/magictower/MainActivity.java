@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private AppCompatTextView tv_hero_attack;
     private AppCompatTextView tv_hero_defense;
 
+    private AppCompatTextView tv_hero_yellow_key;
+    private AppCompatTextView tv_hero_blue_key;
+    private AppCompatTextView tv_hero_red_key;
+
     private IRoleHeroFactory roleHeroFactory;
     private RoleHero hero;
     public Handler mHandler = new Handler() {
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         tv_hero_life = findViewById(R.id.tv_hero_life);
         tv_hero_attack = findViewById(R.id.tv_hero_attack);
         tv_hero_defense = findViewById(R.id.tv_hero_defense);
+        tv_hero_yellow_key = findViewById(R.id.tv_hero_key_yellow);
+        tv_hero_blue_key = findViewById(R.id.tv_hero_key_blue);
+        tv_hero_red_key = findViewById(R.id.tv_hero_key_red);
     }
 
     private void initRole() {
@@ -102,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         gamePanel.setHeroPowerChangeCallBack(this);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
+
+        updateHero();
     }
 
     /**
@@ -130,9 +139,15 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         mHandler.sendEmptyMessage(0x111);
     }
 
+    /**
+     * 更新数值
+     */
     private void updateHero(){
-        tv_hero_defense.setText("Defence:"+hero.getmDefense());
-        tv_hero_attack.setText("Attack:"+hero.getmAttack());
-        tv_hero_life.setText("Life:"+hero.getLife());
+        tv_hero_defense.setText("DEFENSE:"+hero.getmDefense());
+        tv_hero_attack.setText("ATTACK:"+hero.getmAttack());
+        tv_hero_life.setText("LIFE:"+hero.getLife());
+        tv_hero_yellow_key.setText("YELLOW KEY:"+hero.getYellowKey());
+        tv_hero_blue_key.setText("BLUE KEY:"+hero.getBlueKey());
+        tv_hero_red_key.setText("RED KEY:"+hero.getRedKey());
     }
 }
