@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
 import com.example.alan.magictower.config.ConfigObstacle;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
@@ -37,6 +38,11 @@ public class GamePanel extends View {
     private List<ObstacleWood> obstacleWoodList;
     private List<ObstacleDoor> obstacleDoorList;
     private List<ObstacleJewel> obstacleJewelList;
+    private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
+
+    public void setiHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
+        this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
+    }
 
     public void setObstacleJewelList(List<ObstacleJewel> obstacleJewelList) {
         this.obstacleJewelList = obstacleJewelList;
@@ -299,6 +305,9 @@ public class GamePanel extends View {
                 break;
             default:
                 break;
+        }
+        if (iHeroPowerChangeCallBack != null){
+            iHeroPowerChangeCallBack.updateHeroPower();
         }
 
     }

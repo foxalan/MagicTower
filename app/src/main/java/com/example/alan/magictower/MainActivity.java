@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 
+import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
 import com.example.alan.magictower.factory.IRoleHeroFactory;
 import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
@@ -37,7 +38,7 @@ import static com.example.alan.magictower.config.Config.KEY_YELLOW;
  * @author Alan
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IHeroPowerChangeCallBack{
 
     private GamePanel gamePanel;
     private AppCompatTextView tv_hero_life;
@@ -46,12 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
     private IRoleHeroFactory roleHeroFactory;
     private RoleHero hero;
-    public static Handler mHandler = new Handler() {
+    public Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0x111:
+                    updateHero();
                     break;
                 default:
                     break;
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         gamePanel = findViewById(R.id.gamePanel);
-        tv_hero_life = findViewById(R.id.tv_hero_defense);
+        tv_hero_life = findViewById(R.id.tv_hero_life);
         tv_hero_attack = findViewById(R.id.tv_hero_attack);
         tv_hero_defense = findViewById(R.id.tv_hero_defense);
     }
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         gamePanel.setObstacleWoodList(obstacleWoodList);
         gamePanel.setObstacleDoorList(obstacleDoorList);
         gamePanel.setObstacleJewelList(obstacleJewelList);
+        gamePanel.setiHeroPowerChangeCallBack(this);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
     }
@@ -122,4 +125,14 @@ public class MainActivity extends AppCompatActivity {
          obstacleJewelList = ObstacleFactory.getInstance().createJewel();
     }
 
+    @Override
+    public void updateHeroPower() {
+        mHandler.sendEmptyMessage(0x111);
+    }
+
+    private void updateHero(){
+        tv_hero_defense.setText("Defence:"+hero.getmDefense());
+        tv_hero_attack.setText("Attack:"+hero.getmAttack());
+        tv_hero_life.setText("Life:"+hero.getLife());
+    }
 }
