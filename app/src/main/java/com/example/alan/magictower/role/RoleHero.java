@@ -1,6 +1,9 @@
 package com.example.alan.magictower.role;
 
-import com.example.alan.magictower.skill.ISkillHeroFactory;
+import android.util.Log;
+
+import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
+import com.example.alan.magictower.skill.SkillHeroFactory;
 
 /**
  * Function :
@@ -13,10 +16,11 @@ import com.example.alan.magictower.skill.ISkillHeroFactory;
 
 public class RoleHero extends Role {
 
+    private static final String TAG = "RoleHero";
     /**
      * 技能接口
      */
-    private ISkillHeroFactory skillHeroFactory;
+    private SkillHeroFactory skillHeroFactory;
 
     /**
      * 三种KEY
@@ -53,11 +57,11 @@ public class RoleHero extends Role {
         super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed);
     }
 
-    public ISkillHeroFactory getSkillHeroFactory() {
+    public SkillHeroFactory getSkillHeroFactory() {
         return skillHeroFactory;
     }
 
-    public void setSkillHeroFactory(ISkillHeroFactory skillHeroFactory) {
+    public void setSkillHeroFactory(SkillHeroFactory skillHeroFactory) {
         this.skillHeroFactory = skillHeroFactory;
     }
 
@@ -85,7 +89,9 @@ public class RoleHero extends Role {
      *
      * @param attack
      */
-    public void addAttack(int attack) {
+    public void addAttack(int attack, ObstacleJewel jewel) {
+        Log.e(TAG, "addAttack: ");
+        skillHeroFactory.addAttack(this,attack,jewel);
     }
 
 

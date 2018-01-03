@@ -12,6 +12,7 @@ import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.view.GamePanel;
 
 import java.util.ArrayList;
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         gamePanel.setObstacleWoodList(obstacleWoodList);
         gamePanel.setObstacleDoorList(obstacleDoorList);
         gamePanel.setObstacleJewelList(obstacleJewelList);
+
+        hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
     }
 
     /**

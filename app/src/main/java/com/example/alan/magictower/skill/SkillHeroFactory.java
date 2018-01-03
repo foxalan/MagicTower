@@ -12,7 +12,15 @@ import com.example.alan.magictower.role.Role;
  * Whether Solve :
  */
 
-public class ISkillHeroFactory implements ISillFactory, ISkillHero {
+public class SkillHeroFactory implements ISillFactory, ISkillHero {
+
+    private static class HeroHolder {
+        private static SkillHeroFactory INSTANCE = new SkillHeroFactory();
+    }
+
+    public static SkillHeroFactory getInstance() {
+        return HeroHolder.INSTANCE;
+    }
 
 
     @Override
@@ -32,7 +40,8 @@ public class ISkillHeroFactory implements ISillFactory, ISkillHero {
 
     @Override
     public void addAttack(Role role, int attack, ObstacleJewel jewel) {
-
+        role.setmAttack(role.getmAttack() + attack);
+        jewel.setExist(false);
     }
 
     @Override

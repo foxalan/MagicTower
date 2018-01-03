@@ -1,5 +1,6 @@
 package com.example.alan.magictower.util;
 
+import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.RoleHero;
 
@@ -65,5 +66,48 @@ public class BudgeUtil {
             }
         }
         return true;
+    }
+
+    public static ObstacleJewel canMoveLeftWithJewel(RoleHero hero, List<ObstacleJewel> obstacleJewels, MoveType type) {
+
+        for (ObstacleJewel jewel : obstacleJewels) {
+            switch (type) {
+                case UP:
+
+                    if (jewel.getX() == hero.getX()) {
+                        if ((hero.getY() - jewel.getY()) == 1) {
+                            return jewel;
+                        }
+                    }
+                    break;
+                case DOWN:
+
+                    if (jewel.getX() == hero.getX()) {
+                        if ((hero.getY() - jewel.getY()) == -1) {
+                            return jewel;
+                        }
+                    }
+                    break;
+                case LEFT:
+
+                    if (jewel.getY() == hero.getY()) {
+                        if ((hero.getX() - jewel.getX()) == 1) {
+                            return jewel;
+                        }
+                    }
+                    break;
+                case RIGHT:
+
+                    if (jewel.getY() == hero.getY()) {
+                        if ((hero.getX() - jewel.getX()) == -1) {
+                            return jewel;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return null;
     }
 }

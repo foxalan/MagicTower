@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.example.alan.magictower.config.ConfigObstacle;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.wood.ObstacleWood;
@@ -184,24 +185,80 @@ public class GamePanel extends View {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 Log.e(TAG, "onKeyDown: ");
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.DOWN)) {
+                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.DOWN);
+                    if (jewel != null) {
+                        switch (jewel.getType()) {
+                            case ATTACK:
+                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
+                                break;
+                            case DEFENSE:
+                                break;
+                            case OVERALL:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     roleHero.moveDown();
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 Log.e(TAG, "onKeyUp: ");
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.UP)) {
+                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.UP);
+                    if (jewel != null) {
+                        switch (jewel.getType()) {
+                            case ATTACK:
+                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
+                                break;
+                            case DEFENSE:
+                                break;
+                            case OVERALL:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     roleHero.moveUp();
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 Log.e(TAG, "onKeyLeft:");
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.LEFT)) {
+                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.LEFT);
+                    if (jewel != null) {
+                        switch (jewel.getType()) {
+                            case ATTACK:
+                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
+                                break;
+                            case DEFENSE:
+                                break;
+                            case OVERALL:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     roleHero.moveLeft();
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 Log.e(TAG, "onKeyRight:");
                 if (BudgeUtil.canMoveLeftWithWood(roleHero, obstacleWoodList, MoveType.RIGHT)) {
+                    ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, obstacleJewelList, MoveType.RIGHT);
+                    if (jewel != null) {
+                        switch (jewel.getType()) {
+                            case ATTACK:
+                                roleHero.addAttack(ConfigObstacle.JEWEL_ATTACK,jewel);
+                                break;
+                            case DEFENSE:
+                                break;
+                            case OVERALL:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     roleHero.moveRight();
                 }
                 break;
