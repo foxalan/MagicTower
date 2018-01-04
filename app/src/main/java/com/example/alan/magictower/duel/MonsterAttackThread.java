@@ -6,7 +6,7 @@ import android.util.Log;
 import com.example.alan.magictower.role.Role;
 
 /**
- * @author Alan 
+ * @author Alan
  */
 
 public class MonsterAttackThread extends Thread {
@@ -38,8 +38,6 @@ public class MonsterAttackThread extends Thread {
             if (monster.getLife() == 0){
                 break;
             }
-
-
 
             try {
                 sleep(200);

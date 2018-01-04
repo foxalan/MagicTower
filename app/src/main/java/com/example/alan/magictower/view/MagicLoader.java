@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.alan.magictower.R;
+import com.example.alan.magictower.callback.IDuelOverCallBack;
 import com.example.alan.magictower.duel.HeroAttackThread;
 import com.example.alan.magictower.duel.MonsterAttackThread;
 import com.example.alan.magictower.duel.RolesDuel;
@@ -25,6 +26,12 @@ import com.example.alan.magictower.util.DimenUtil;
  */
 
 public class MagicLoader {
+
+    private static IDuelOverCallBack iDuelOverCallBack;
+
+    public void setiDuelOverCallBack(IDuelOverCallBack DuelOverCallBack) {
+        iDuelOverCallBack = DuelOverCallBack;
+    }
 
     private static final int LOADER_SIZE_SCALE = 2;
     private static AppCompatTextView tv_hero_life;
@@ -105,6 +112,7 @@ public class MagicLoader {
                 if (dialogDuel.isShowing()){
                     //之所以选择cancel()而不是dismiss()是因为cancel()有回调
                     dialogDuel.cancel();
+
                 }
             }
 

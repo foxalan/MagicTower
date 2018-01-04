@@ -12,63 +12,66 @@ import com.example.alan.magictower.view.MagicLoader;
 
 public class RolesDuel {
 
-	private static final String TAG = "RolesDuel";
-	private boolean flag = true;
+    private static final String TAG = "RolesDuel";
+    private boolean flag = true;
 
-	public RolesDuel() {
-	}
+    public RolesDuel() {
+    }
 
-	public synchronized void heroAttack(Role monster,int loseLife) {
-		
-		if(flag) {
-			Log.e(TAG, "heroAttack: "+"====" );
-			if (loseLife>monster.getLife()){
-				monster.setLife(0);
-			}else {
-				monster.setLife(monster.getLife()-loseLife);
-			}
-			int life = monster.getLife();
-			Message message = new Message();
-			message.what = 0x122;
-			message.obj = life;
-			MagicLoader.mHandler.sendMessage(message);
-			flag = !flag;
-			notifyAll();
+    public synchronized void heroAttack(Role monster, int loseLife) {
 
-		}else{
-			Log.e(TAG, "heroWait: "+"====" );
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-	}
-	
-	public synchronized void monsterAttack(Role hero,int loseLife) {
-		
-		if(!flag) {
-			hero.setLife(hero.getLife()-loseLife);
-			Log.e(TAG, "monsterAttack: " + "=====");
-			int life = hero.getLife();
-			Message message = new Message();
-			message.what = 0x123;
-			message.obj = life;
-			MagicLoader.mHandler.sendMessage(message);
+        if (flag) {
+            Log.e(TAG, "heroAttack: " + "====");
+            if (loseLife > monster.getLife()) {
+                monster.setLife(0);
+            } else {
+                monster.setLife(monster.getLife() - loseLife);
+            }
+            int life = monster.getLife();
+            Message message = new Message();
+            message.what = 0x122;
+            message.obj = life;
+            MagicLoader.mHandler.sendMessage(message);
+            flag = !flag;
+            notifyAll();
 
-			flag = !flag;
-			notifyAll();
+        } else {
+            Log.e(TAG, "heroWait: " + "====");
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
-		}else {
-			Log.e(TAG, "monsterWait: " + "=====");
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+    }
+
+    public synchronized void monsterAttack(Role hero, int loseLife) {
+
+        if (!flag) {
+            if (loseLife > 0) {
+
+                hero.setLife(hero.getLife() - loseLife);
+                Log.e(TAG, "monsterAttack: " + "=====");
+                int life = hero.getLife();
+                Message message = new Message();
+                message.what = 0x123;
+                message.obj = life;
+                MagicLoader.mHandler.sendMessage(message);
+            }
+
+            flag = !flag;
+            notifyAll();
+
+        } else {
+            Log.e(TAG, "monsterWait: " + "=====");
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
 }

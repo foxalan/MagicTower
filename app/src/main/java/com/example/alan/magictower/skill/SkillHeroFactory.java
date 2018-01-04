@@ -23,16 +23,11 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
             return false;
         }
 
-        if (role.getmDefense() > enemy.getmAttack()) {
-            return true;
-        }
-
         int countKill = enemy.getLife() / role.getmAttack() - enemy.getmDefense();
         int countByKill = role.getLife() / enemy.getmAttack() - role.getmDefense();
         if (countByKill > countKill) {
             MagicLoader.showDialogDuel(role,enemy);
             enemy.setAlive(false);
-        //    role.setLife(role.getLife() - countKill * (enemy.getmAttack() - role.getmDefense()));
             return true;
         } else {
             return false;
