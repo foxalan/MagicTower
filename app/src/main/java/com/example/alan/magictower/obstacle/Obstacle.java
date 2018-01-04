@@ -1,5 +1,7 @@
 package com.example.alan.magictower.obstacle;
 
+import com.example.alan.magictower.info.ObstaclePosition;
+
 /**
  * Function :障碍物
  * Modify Date : 2018/1/2
@@ -11,30 +13,26 @@ package com.example.alan.magictower.obstacle;
 
 public class Obstacle {
 
-    private int x;
-    private int y;
+    private ObstaclePosition position;
     private boolean exist;
+    private ObstacleType obstacleType;
 
-    public Obstacle(int x, int y, boolean exist) {
-        this.x = x;
-        this.y = y;
+    public Obstacle(ObstaclePosition position, boolean exist, ObstacleType obstacleType) {
+        this.position = position;
         this.exist = exist;
+        this.obstacleType = obstacleType;
     }
 
-    public int getX() {
-        return x;
+    public Obstacle(ObstaclePosition position, ObstacleType type) {
+        this(position,true,type);
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public ObstaclePosition getPosition() {
+        return position;
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+    public void setPosition(ObstaclePosition position) {
+        this.position = position;
     }
 
     public boolean isExist() {
@@ -43,5 +41,13 @@ public class Obstacle {
 
     public void setExist(boolean exist) {
         this.exist = exist;
+    }
+
+    public ObstacleType getObstacleType() {
+        return obstacleType;
+    }
+
+    public void setObstacleType(ObstacleType obstacleType) {
+        this.obstacleType = obstacleType;
     }
 }

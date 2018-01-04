@@ -1,6 +1,8 @@
 package com.example.alan.magictower.obstacle.key;
 
+import com.example.alan.magictower.info.ObstaclePosition;
 import com.example.alan.magictower.obstacle.Obstacle;
+import com.example.alan.magictower.obstacle.ObstacleType;
 
 /**
  * Function :
@@ -13,17 +15,17 @@ import com.example.alan.magictower.obstacle.Obstacle;
 
 public class ObstacleKey extends Obstacle{
 
-    private KeyType type;
+    private KeyType keyType;
 
-    public KeyType getType() {
-        return type;
+    public ObstacleKey(ObstaclePosition position, boolean exist, ObstacleType obstacleType) {
+        super(position, exist, obstacleType);
     }
 
-    public void setType(KeyType type) {
-        this.type = type;
+    public KeyType getKeyType() {
+        return keyType;
     }
 
-    public ObstacleKey(int x, int y, boolean exist) {
-        super(x, y, exist);
+    public void setKeyType(KeyType keyType) {
+        this.keyType = keyType;
     }
 }

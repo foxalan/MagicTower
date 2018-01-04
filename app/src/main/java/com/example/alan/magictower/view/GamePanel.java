@@ -236,8 +236,6 @@ public class GamePanel extends View {
                     roleHero.move(moveType);
                 }
             }
-
-
         }
 
         invalidate();
@@ -323,7 +321,6 @@ public class GamePanel extends View {
             }
         }
     }
-
 
     private void getJewel(ObstacleJewel jewel) {
         switch (jewel.getType()) {

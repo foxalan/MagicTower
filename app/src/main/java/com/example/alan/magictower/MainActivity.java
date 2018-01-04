@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private AppCompatTextView tv_hero_blue_key;
     private AppCompatTextView tv_hero_red_key;
 
+    private AppCompatTextView tv_round;
+    private int currentFloor = 1;
+
     private RoleHeroFactory roleHeroFactory;
     private RoleHero hero;
 
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         tv_hero_yellow_key = findViewById(R.id.tv_hero_key_yellow);
         tv_hero_blue_key = findViewById(R.id.tv_hero_key_blue);
         tv_hero_red_key = findViewById(R.id.tv_hero_key_red);
+        tv_round = findViewById(R.id.tv_round);
     }
 
     private void initRole() {
@@ -174,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         tv_hero_yellow_key.setText("YELLOW KEY:"+hero.getYellowKey());
         tv_hero_blue_key.setText("BLUE KEY:"+hero.getBlueKey());
         tv_hero_red_key.setText("RED KEY:"+hero.getRedKey());
+        tv_round.setText("Floor:"+currentFloor);
     }
 
 

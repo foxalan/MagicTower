@@ -1,6 +1,10 @@
 package com.example.alan.magictower.config;
 
+import com.example.alan.magictower.info.ObstaclePosition;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Function :
@@ -13,13 +17,13 @@ import java.util.HashMap;
 public class ConfigPosition {
 
     private static HashMap<Integer,int[][]> obstacleWoodMap = new HashMap<>();
-
+    private static List<ObstaclePosition> obstaclePositionList = new ArrayList<>();
 
     static {
-
+        for (int i = 0;i<round_one_wood_positon.length;i++)
     }
 
-    public static  int[][] ROUND_ONE_WOOD_POSITION = new int[][]{
+    public static  int[][] round_one_wood_positon = new int[][]{
             {4,0},{4,1},{4,2},{4,3},{4,4},
             {4,6},{4,7},{4,8},{4,9},{4,10},
             {6,0},{6,1},{6,2},{6,3},{6,4},

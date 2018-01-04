@@ -1,6 +1,8 @@
 package com.example.alan.magictower.obstacle.jewel;
 
+import com.example.alan.magictower.info.ObstaclePosition;
 import com.example.alan.magictower.obstacle.Obstacle;
+import com.example.alan.magictower.obstacle.ObstacleType;
 
 /**
  * Function :
@@ -13,19 +15,18 @@ import com.example.alan.magictower.obstacle.Obstacle;
 
 public class ObstacleJewel extends Obstacle{
 
-    private JewelType type;
+    private JewelType jewelType;
 
-    public JewelType getType() {
-        return type;
-    }
-
-    public void setType(JewelType type) {
-        this.type = type;
-    }
-
-    public ObstacleJewel(int x, int y, boolean exist) {
-        super(x, y, exist);
+    public ObstacleJewel(ObstaclePosition position, boolean exist, ObstacleType obstacleType) {
+        super(position, exist, obstacleType);
     }
 
 
+    public JewelType getJewelType() {
+        return jewelType;
+    }
+
+    public void setJewelType(JewelType jewelType) {
+        this.jewelType = jewelType;
+    }
 }

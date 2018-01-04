@@ -1,6 +1,8 @@
 package com.example.alan.magictower.obstacle.door;
 
+import com.example.alan.magictower.info.ObstaclePosition;
 import com.example.alan.magictower.obstacle.Obstacle;
+import com.example.alan.magictower.obstacle.ObstacleType;
 
 /**
  * Function :
@@ -15,9 +17,10 @@ public class ObstacleDoor extends Obstacle {
 
     private DoorType doorType;
 
-    public ObstacleDoor(int x, int y, boolean exist) {
-        super(x, y, exist);
+    public ObstacleDoor(ObstaclePosition position, boolean exist, ObstacleType obstacleType) {
+        super(position, exist, obstacleType);
     }
+
 
     public DoorType getDoorType() {
         return doorType;

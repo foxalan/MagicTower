@@ -1,5 +1,7 @@
 package com.example.alan.magictower.obstacle.factory;
 
+import com.example.alan.magictower.info.ObstaclePosition;
+import com.example.alan.magictower.obstacle.ObstacleType;
 import com.example.alan.magictower.obstacle.key.KeyType;
 import com.example.alan.magictower.obstacle.key.ObstacleKey;
 
@@ -16,9 +18,9 @@ public class ObstacleKeyFactory implements IObstacleFactory {
 
     private ObstacleKey key;
 
-    public ObstacleKeyFactory(int x, int y, boolean exist, KeyType type){
-        key = new ObstacleKey(x,y,exist);
-        key.setType(type);
+    public ObstacleKeyFactory(ObstaclePosition position, boolean exist, KeyType type){
+        key = new ObstacleKey(position,exist, ObstacleType.KEY);
+        key.setKeyType(type);
     }
 
     @Override
