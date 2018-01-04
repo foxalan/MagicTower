@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 
+import com.example.alan.magictower.callback.IDuelOverCallBack;
 import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
 import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.factory.RoleFactory;
@@ -42,7 +43,7 @@ import static com.example.alan.magictower.config.ConfigRole.KEY_YELLOW;
  * @author Alan
  */
 
-public class MainActivity extends AppCompatActivity implements IHeroPowerChangeCallBack{
+public class MainActivity extends AppCompatActivity implements IHeroPowerChangeCallBack,IDuelOverCallBack{
 
     private GamePanel gamePanel;
     private AppCompatTextView tv_hero_life;
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
             switch (msg.what) {
                 case 0x111:
                     updateHero();
+                    break;
+                case 0x120:
+                    tv_hero_life.setText("LIFE:"+hero.getLife());
                     break;
                 default:
                     break;
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     @Override
     protected void onResume() {
         super.onResume();
-        MagicLoader.initDialogDuel(this);
+        MagicLoader.getInstance().initDialogDuel(this);
     }
 
     private void initRoleMonster() {
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         gamePanel.setRoleMonsterList(roleList);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
-
+        MagicLoader.getInstance().setiDuelOverCallBack(this);
 
         updateHero();
     }
@@ -170,5 +174,11 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         tv_hero_yellow_key.setText("YELLOW KEY:"+hero.getYellowKey());
         tv_hero_blue_key.setText("BLUE KEY:"+hero.getBlueKey());
         tv_hero_red_key.setText("RED KEY:"+hero.getRedKey());
+    }
+
+
+    @Override
+    public void updateHeroMessage() {
+        mHandler.sendEmptyMessage(0x120);
     }
 }

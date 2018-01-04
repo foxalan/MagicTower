@@ -33,27 +33,35 @@ public class MagicLoader {
         iDuelOverCallBack = DuelOverCallBack;
     }
 
-    private static final int LOADER_SIZE_SCALE = 2;
-    private static AppCompatTextView tv_hero_life;
-    private static AppCompatTextView tv_hero_attack;
-    private static AppCompatTextView tv_hero_defense;
-    private static AppCompatTextView tv_monster_life;
-    private static AppCompatTextView tv_monster_attack;
-    private static AppCompatTextView tv_monster_defense;
-    private static AppCompatDialog dialogDuel;
+    private static class MagicLoaderHolder {
+        private static final MagicLoader INSTANCE = new MagicLoader();
+    }
 
-    public static android.os.Handler mHandler = new android.os.Handler() {
+    public static MagicLoader getInstance() {
+        return MagicLoaderHolder.INSTANCE;
+    }
+
+    private final int LOADER_SIZE_SCALE = 2;
+    private AppCompatTextView tv_hero_life;
+    private AppCompatTextView tv_hero_attack;
+    private AppCompatTextView tv_hero_defense;
+    private AppCompatTextView tv_monster_life;
+    private AppCompatTextView tv_monster_attack;
+    private AppCompatTextView tv_monster_defense;
+    private AppCompatDialog dialogDuel;
+
+    public android.os.Handler mHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0x123:
                     int hero_life = (int) msg.obj;
-                    tv_hero_life.setText("Life:"+hero_life);
+                    tv_hero_life.setText("Life:" + hero_life);
                     break;
                 case 0x122:
                     int monster_life = (int) msg.obj;
-                    tv_monster_life.setText("Life:"+monster_life);
+                    tv_monster_life.setText("Life:" + monster_life);
                     break;
                 default:
                     break;
@@ -61,7 +69,7 @@ public class MagicLoader {
         }
     };
 
-    public static void initDialogDuel(Context context) {
+    public void initDialogDuel(Context context) {
         if (dialogDuel == null) {
 
             dialogDuel = new AppCompatDialog(context, R.style.loading_dialog);
@@ -87,7 +95,7 @@ public class MagicLoader {
         }
     }
 
-    public static void showDialogDuel(Role hero, Role monster) {
+    public void showDialogDuel(Role hero, Role monster) {
         if (dialogDuel != null) {
 
             tv_hero_life.setText("Life:" + hero.getLife());
@@ -106,15 +114,17 @@ public class MagicLoader {
         }
     }
 
-    public static void stopLoading(){
+    public void stopLoading() {
 
-            if (dialogDuel != null){
-                if (dialogDuel.isShowing()){
-                    //之所以选择cancel()而不是dismiss()是因为cancel()有回调
-                    dialogDuel.cancel();
-
-                }
+        if (dialogDuel != null) {
+            if (dialogDuel.isShowing()) {
+                //之所以选择cancel()而不是dismiss()是因为cancel()有回调
+                dialogDuel.cancel();
             }
+            if (iDuelOverCallBack!=null){
+                iDuelOverCallBack.updateHeroMessage();
+            }
+        }
 
     }
 

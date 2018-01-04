@@ -31,7 +31,7 @@ public class RolesDuel {
             Message message = new Message();
             message.what = 0x122;
             message.obj = life;
-            MagicLoader.mHandler.sendMessage(message);
+            MagicLoader.getInstance().mHandler.sendMessage(message);
             flag = !flag;
             notifyAll();
 
@@ -58,7 +58,7 @@ public class RolesDuel {
                 Message message = new Message();
                 message.what = 0x123;
                 message.obj = life;
-                MagicLoader.mHandler.sendMessage(message);
+                MagicLoader.getInstance().mHandler.sendMessage(message);
             }
 
             flag = !flag;

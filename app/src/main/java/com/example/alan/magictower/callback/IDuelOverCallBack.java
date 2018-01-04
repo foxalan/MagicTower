@@ -10,5 +10,5 @@ package com.example.alan.magictower.callback;
  */
 
 public interface IDuelOverCallBack {
-    void updateHero();
+    void updateHeroMessage();
 }

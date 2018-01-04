@@ -51,7 +51,7 @@ public class HeroAttackThread extends Thread {
 
         try {
             sleep(500);
-            MagicLoader.stopLoading();
+            MagicLoader.getInstance().stopLoading();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
