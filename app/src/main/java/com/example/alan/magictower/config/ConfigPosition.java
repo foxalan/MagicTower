@@ -1,5 +1,7 @@
 package com.example.alan.magictower.config;
 
+import java.util.HashMap;
+
 /**
  * Function :
  * Modify Date : 2018/1/2
@@ -9,7 +11,15 @@ package com.example.alan.magictower.config;
  */
 
 public class ConfigPosition {
-    public static final int[][] ROUND_ONE_WOOD_POSITION = new int[][]{
+
+    private static HashMap<Integer,int[][]> obstacleWoodMap = new HashMap<>();
+
+
+    static {
+
+    }
+
+    public static  int[][] ROUND_ONE_WOOD_POSITION = new int[][]{
             {4,0},{4,1},{4,2},{4,3},{4,4},
             {4,6},{4,7},{4,8},{4,9},{4,10},
             {6,0},{6,1},{6,2},{6,3},{6,4},

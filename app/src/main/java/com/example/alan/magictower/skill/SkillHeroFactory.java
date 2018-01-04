@@ -19,8 +19,6 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
     @Override
     public boolean attack(RoleHero role, Role enemy) {
 
-
-
         if (role.getmAttack() < enemy.getmDefense()) {
             return false;
         }
@@ -34,7 +32,7 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
         if (countByKill > countKill) {
             MagicLoader.showDialogDuel(role,enemy);
             enemy.setAlive(false);
-            role.setLife(role.getLife() - countKill * (enemy.getmAttack() - role.getmDefense()));
+        //    role.setLife(role.getLife() - countKill * (enemy.getmAttack() - role.getmDefense()));
             return true;
         } else {
             return false;
@@ -49,18 +47,14 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
         return HeroHolder.INSTANCE;
     }
 
-
     @Override
     public ISkillHero createSkill() {
         return this;
     }
 
-
     @Override
     public void restore(Role role, int life) {
-
     }
-
 
     @Override
     public void addAttack(Role role, int attack, ObstacleJewel jewel) {

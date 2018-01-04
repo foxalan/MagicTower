@@ -1,6 +1,7 @@
 package com.example.alan.magictower.duel;
 
 import android.os.Message;
+import android.util.Log;
 
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.view.MagicLoader;
@@ -10,8 +11,8 @@ import com.example.alan.magictower.view.MagicLoader;
  */
 
 public class RolesDuel {
-	
 
+	private static final String TAG = "RolesDuel";
 	private boolean flag = true;
 
 	public RolesDuel() {
@@ -20,7 +21,12 @@ public class RolesDuel {
 	public synchronized void heroAttack(Role monster,int loseLife) {
 		
 		if(flag) {
-			monster.setLife(monster.getLife()-loseLife);
+			Log.e(TAG, "heroAttack: "+"====" );
+			if (loseLife>monster.getLife()){
+				monster.setLife(0);
+			}else {
+				monster.setLife(monster.getLife()-loseLife);
+			}
 			int life = monster.getLife();
 			Message message = new Message();
 			message.what = 0x122;
@@ -30,6 +36,7 @@ public class RolesDuel {
 			notifyAll();
 
 		}else{
+			Log.e(TAG, "heroWait: "+"====" );
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -44,7 +51,7 @@ public class RolesDuel {
 		
 		if(!flag) {
 			hero.setLife(hero.getLife()-loseLife);
-
+			Log.e(TAG, "monsterAttack: " + "=====");
 			int life = hero.getLife();
 			Message message = new Message();
 			message.what = 0x123;
@@ -55,6 +62,7 @@ public class RolesDuel {
 			notifyAll();
 
 		}else {
+			Log.e(TAG, "monsterWait: " + "=====");
 			try {
 				wait();
 			} catch (InterruptedException e) {
