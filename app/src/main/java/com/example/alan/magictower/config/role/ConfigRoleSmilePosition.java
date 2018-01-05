@@ -15,4 +15,9 @@ public class ConfigRoleSmilePosition {
             {0, 3}, {1, 2}, {2, 1}, {3, 0},
             {7, 10}, {8, 9}, {9, 8}, {10, 7}
     };
+
+    public static int[][] round_two_smile_position = new int[][]{
+            {0, 3}, {1, 2}, {2, 1}, {3, 0},
+            {7, 10}, {8, 9}, {9, 8}, {10, 7}
+    };
 }

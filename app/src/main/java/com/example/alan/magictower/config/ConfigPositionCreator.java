@@ -20,6 +20,7 @@ import static com.example.alan.magictower.config.obstacle.ConfigJewelPosition.ro
 import static com.example.alan.magictower.config.obstacle.ConfigWoodPosition.round_one_wood_position;
 import static com.example.alan.magictower.config.obstacle.ConfigWoodPosition.round_two_wood_position;
 import static com.example.alan.magictower.config.role.ConfigRoleSmilePosition.round_one_smile_position;
+import static com.example.alan.magictower.config.role.ConfigRoleSmilePosition.round_two_smile_position;
 
 /**
  * Function :
@@ -46,10 +47,13 @@ public class ConfigPositionCreator {
 
     private void setObstacleMap() {
         obstacleMap.put(1,getRoundOneObstacle());
+        obstacleMap.put(2,getRoundTwoObstacle());
     }
 
     private void setRoleMap(){
         roleMap.put(1,getRoundOneRole());
+        roleMap.put(2,getRoundTwoRole());
+
         Log.e(TAG, "setRoleMap:round "+getRoundOneRole().size() );
         Log.e(TAG, "setRoleMap: "+roleMap.size() );
     }
@@ -139,6 +143,19 @@ public class ConfigPositionCreator {
         List<RolePosition> roleSlimePositionList = new ArrayList<>();
         for (int i = 0; i < round_one_smile_position.length; i++) {
             RolePosition position = new RolePosition(round_one_smile_position[i][0], round_one_smile_position[i][1]);
+            roleSlimePositionList.add(position);
+        }
+        roleListHashMap.put(RoleType.SLIME,roleSlimePositionList);
+
+        return roleListHashMap;
+    }
+
+    public HashMap<RoleType,List<RolePosition>> getRoundTwoRole() {
+
+        HashMap<RoleType, List<RolePosition>> roleListHashMap = new HashMap<>(16);
+        List<RolePosition> roleSlimePositionList = new ArrayList<>();
+        for (int i = 0; i < round_two_smile_position.length; i++) {
+            RolePosition position = new RolePosition(round_two_smile_position[i][0], round_two_smile_position[i][1]);
             roleSlimePositionList.add(position);
         }
         roleListHashMap.put(RoleType.SLIME,roleSlimePositionList);
