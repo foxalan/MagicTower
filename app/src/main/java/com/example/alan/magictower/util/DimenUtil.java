@@ -4,6 +4,10 @@ package com.example.alan.magictower.util;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
+/**
+ * @author Alan
+ * 测量屏幕宽高工具
+ */
 
 public class DimenUtil {
 

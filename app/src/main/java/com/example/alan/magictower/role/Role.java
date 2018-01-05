@@ -58,10 +58,6 @@ public abstract class Role {
         this.type = type;
     }
 
-
-
-
-
     public int getmId() {
         return mId;
     }

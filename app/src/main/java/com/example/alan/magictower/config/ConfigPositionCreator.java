@@ -1,7 +1,5 @@
 package com.example.alan.magictower.config;
 
-import android.util.Log;
-
 import com.example.alan.magictower.info.ObstaclePosition;
 import com.example.alan.magictower.info.RolePosition;
 import com.example.alan.magictower.obstacle.ObstacleType;
@@ -54,9 +52,6 @@ public class ConfigPositionCreator {
     private void setRoleMap() {
         roleMap.put(1, getRoundOneRole());
         roleMap.put(2, getRoundTwoRole());
-
-        Log.e(TAG, "setRoleMap:round " + getRoundOneRole().size());
-        Log.e(TAG, "setRoleMap: " + roleMap.size());
     }
 
     private static class PositionCreatorHolder {

@@ -18,8 +18,4 @@ public class RoleSlime extends Role {
     public RoleSlime(boolean alive, int mAttack, int mDefense, int life, RolePosition position, RoleType type) {
         super(alive, mAttack, mDefense, life, position, type);
     }
-
-
-
-
 }

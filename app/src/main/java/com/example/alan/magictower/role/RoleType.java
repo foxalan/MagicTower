@@ -1,7 +1,7 @@
 package com.example.alan.magictower.role;
 
 /**
- * Function :
+ * Function : 怪的类
  * Modify Date : 2018/1/3
  *
  * @Author : Alan

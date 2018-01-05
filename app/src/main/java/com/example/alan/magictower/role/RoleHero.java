@@ -8,9 +8,8 @@ import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.util.MoveType;
 
 /**
- * Function :
+ * Function : 主角类
  * Modify Date : 2018/1/2
- *
  * @Author : Alan
  * Issue : TODO
  * Whether Solve :
@@ -57,11 +56,6 @@ public class RoleHero extends Role {
 
     public void setRedKey(int redKey) {
         this.redKey = redKey;
-    }
-
-
-    public SkillHeroFactory getSkillHeroFactory() {
-        return skillHeroFactory;
     }
 
     public void setSkillHeroFactory(SkillHeroFactory skillHeroFactory) {
@@ -161,7 +155,4 @@ public class RoleHero extends Role {
     public void moveRight() {
         setX(getX() + 1);
     }
-
-
-
 }
