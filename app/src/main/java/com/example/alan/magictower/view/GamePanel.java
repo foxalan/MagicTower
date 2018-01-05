@@ -41,7 +41,6 @@ public class GamePanel extends View {
     private RoleHero roleHero;
 
 
-
     private HashMap<Integer, List<Obstacle>> listHashMap;
     private HashMap<Integer, List<Role>> roleHashMap;
 
@@ -212,7 +211,7 @@ public class GamePanel extends View {
                                 paint_jewel.setColor(Color.GREEN);
                                 break;
                             case ATTACK:
-                                paint_jewel.setColor(Color.GREEN);
+                                paint_jewel.setColor(Color.RED);
                                 break;
                             case OVERALL:
                                 paint_jewel.setColor(Color.YELLOW);
@@ -320,9 +319,10 @@ public class GamePanel extends View {
                         ObstacleFloor floor = (ObstacleFloor) obstacle;
                         switch (floor.getFloorType()) {
                             case UP:
-                                setRound(getRound()+1);
+                                setRound(getRound() + 1);
                                 break;
                             case DOWN:
+                                setRound(getRound() - 1);
                                 break;
                             default:
                                 break;

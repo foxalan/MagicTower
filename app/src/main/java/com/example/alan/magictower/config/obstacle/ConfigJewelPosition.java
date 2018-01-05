@@ -19,7 +19,7 @@ public class ConfigJewelPosition {
 
 
     public static int[][] round_two_jewel_position = new int[][]{
-            {6, 6}
+            {6, 6}, {4, 6}, {4, 4}, {6, 4}
     };
 
 }

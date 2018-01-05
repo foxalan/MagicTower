@@ -57,10 +57,9 @@ public class ObstacleFactory {
         obstacles.clear();
 
         HashMap<ObstacleType, List<ObstaclePosition>> typeListHashMap = ConfigPositionCreator.getInstance().getObstacleMap().get(round);
-        Log.e(TAG, "getObstacle: "+typeListHashMap.size() );
+        Log.e(TAG, "getObstacle: " + typeListHashMap.size());
 
         if (round > typeListHashMap.size()) {
-
             return null;
         }
 
@@ -74,10 +73,12 @@ public class ObstacleFactory {
                     }
                     break;
                 case DOOR:
+
                     for (ObstaclePosition position : typeListHashMap.get(type)) {
                         ObstacleDoorFactory doorFactory = new ObstacleDoorFactory(position, true, DoorType.YELLOWDOOR);
                         ObstacleDoor door = doorFactory.createObstacle();
                         obstacles.add(door);
+
                     }
                     break;
                 case WOOD:
@@ -88,9 +89,17 @@ public class ObstacleFactory {
                     }
                     break;
                 case FLOOR:
-                    for (ObstaclePosition position : typeListHashMap.get(type)) {
-                        ObstacleFloorFactory floorFactory = new ObstacleFloorFactory(position,true, FloorType.UP);
+                    for (int i = 0; i < typeListHashMap.get(type).size(); i++) {
+                        ObstaclePosition position = typeListHashMap.get(type).get(i);
+                        ObstacleFloorFactory floorFactory = new ObstacleFloorFactory(position, true, FloorType.UP);
                         ObstacleFloor floor = floorFactory.createObstacle();
+
+                        if (i == 0) {
+                            floor.setFloorType(FloorType.UP);
+                        } else {
+                            floor.setFloorType(FloorType.DOWN);
+                        }
+
                         obstacles.add(floor);
                     }
                     break;
