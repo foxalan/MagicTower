@@ -1,6 +1,8 @@
 package com.example.alan.magictower.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.example.alan.magictower.R;
 import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
 import com.example.alan.magictower.config.ConfigObstacle;
 import com.example.alan.magictower.obstacle.Obstacle;
@@ -93,6 +96,10 @@ public class GamePanel extends View {
     private Paint paint_jewel;
     private Paint paint_slime;
 
+    private Bitmap bitmapFloorUp;
+    private Bitmap bitmapFloorDown;
+    private Bitmap bitmapWood;
+
     public GamePanel(Context context) {
         this(context, null);
     }
@@ -107,6 +114,13 @@ public class GamePanel extends View {
         requestFocus();
         initRect();
         initPaint();
+        initBitmap();
+    }
+
+    private void initBitmap() {
+        bitmapFloorUp = BitmapFactory.decodeResource(getResources(), R.drawable.up_floor);
+        bitmapFloorDown = BitmapFactory.decodeResource(getResources(),R.drawable.down_floor);
+        bitmapWood = BitmapFactory.decodeResource(getResources(),R.drawable.terrain);
     }
 
     private void initPaint() {
@@ -196,7 +210,7 @@ public class GamePanel extends View {
                     Rect rect = new Rect();
                     rect.set(obstacle.getPosition().getX() * rect_width, obstacle.getPosition().getY() * rect_width,
                             (obstacle.getPosition().getX() + 1) * rect_width, (obstacle.getPosition().getY() + 1) * rect_width);
-                    canvas.drawRect(rect, paint_wood);
+                    canvas.drawBitmap(bitmapWood,null,rect,paint_wood);
                     break;
                 case JEWEL:
 
@@ -247,20 +261,21 @@ public class GamePanel extends View {
                 case FLOOR:
                     ObstacleFloor floor = (ObstacleFloor) obstacle;
 
-                    Rect rect_door = new Rect();
-                    rect_door.set(floor.getPosition().getX() * rect_width, floor.getPosition().getY() * rect_width,
+                    Rect rect_floor = new Rect();
+                    rect_floor.set(floor.getPosition().getX() * rect_width, floor.getPosition().getY() * rect_width,
                             (floor.getPosition().getX() + 1) * rect_width, (floor.getPosition().getY() + 1) * rect_width);
                     switch (floor.getFloorType()) {
                         case UP:
                             paint_door.setColor(Color.RED);
+                            canvas.drawBitmap(bitmapFloorUp,null,rect_floor,paint_slime);
                             break;
                         case DOWN:
                             paint_door.setColor(Color.BLUE);
+                            canvas.drawBitmap(bitmapFloorDown,null,rect_floor,paint_slime);
                             break;
                         default:
                             break;
                     }
-                    canvas.drawRect(rect_door, paint_door);
                     break;
                 default:
                     break;
