@@ -302,9 +302,30 @@ public class GamePanel extends View {
         }
 
         if (BudgeUtil.canMoveLeftWithWood(roleHero, currentObstacle, moveType)) {
-            ObstacleJewel jewel = BudgeUtil.canMoveLeftWithJewel(roleHero, currentObstacle, moveType);
-            if (jewel != null) {
-                getJewel(jewel);
+            Obstacle obstacle = BudgeUtil.canMoveLeftWithJewel(roleHero, currentObstacle, moveType);
+            if (obstacle != null) {
+                switch (obstacle.getObstacleType()) {
+                    case JEWEL:
+                        ObstacleJewel jewel = (ObstacleJewel) obstacle;
+                        getJewel(jewel);
+                        break;
+                    case FLOOR:
+                        ObstacleFloor floor = (ObstacleFloor) obstacle;
+                        switch (floor.getFloorType()) {
+                            case UP:
+
+                                break;
+                            case DOWN:
+                                break;
+                            default:
+                                break;
+
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
             }
             if (BudgeUtil.canMoveLeftWithDoor(roleHero, currentObstacle, moveType)) {
                 if (BudgeUtil.canAttackMonster(roleHero, currentRole, moveType)) {

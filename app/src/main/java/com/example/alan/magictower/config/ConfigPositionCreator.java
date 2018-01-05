@@ -12,9 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.example.alan.magictower.config.obstacle.ConfigDoorPosition.round_one_door_position;
+import static com.example.alan.magictower.config.obstacle.ConfigDoorPosition.round_two_door_position;
 import static com.example.alan.magictower.config.obstacle.ConfigFloorPosition.round_one_floor_position;
+import static com.example.alan.magictower.config.obstacle.ConfigFloorPosition.round_two_floor_position;
 import static com.example.alan.magictower.config.obstacle.ConfigJewelPosition.round_one_jewel_position;
+import static com.example.alan.magictower.config.obstacle.ConfigJewelPosition.round_two_jewel_position;
 import static com.example.alan.magictower.config.obstacle.ConfigWoodPosition.round_one_wood_position;
+import static com.example.alan.magictower.config.obstacle.ConfigWoodPosition.round_two_wood_position;
 import static com.example.alan.magictower.config.role.ConfigRoleSmilePosition.round_one_smile_position;
 
 /**
@@ -86,6 +90,41 @@ public class ConfigPositionCreator {
 
         for (int i = 0; i < round_one_floor_position.length; i++) {
             ObstaclePosition position = new ObstaclePosition(round_one_floor_position[i][0], round_one_floor_position[i][1]);
+            obstacleJewelPositionList.add(position);
+        }
+        obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleJewelPositionList);
+
+
+        return obstacleTypeListHashMap;
+    }
+
+    public HashMap<ObstacleType,List<ObstaclePosition>> getRoundTwoObstacle() {
+
+        HashMap<ObstacleType, List<ObstaclePosition>> obstacleTypeListHashMap = new HashMap<>(16);
+        List<ObstaclePosition> obstacleWoodPositionList = new ArrayList<>();
+        for (int i = 0; i < round_two_wood_position.length; i++) {
+            ObstaclePosition position = new ObstaclePosition(round_two_wood_position[i][0], round_one_wood_position[i][1]);
+            obstacleWoodPositionList.add(position);
+        }
+        obstacleTypeListHashMap.put(ObstacleType.WOOD, obstacleWoodPositionList);
+
+        List<ObstaclePosition> obstacleDoorPositionList = new ArrayList<>();
+        for (int i = 0; i < round_two_door_position.length; i++) {
+            ObstaclePosition position = new ObstaclePosition(round_two_door_position[i][0], round_two_door_position[i][1]);
+            obstacleDoorPositionList.add(position);
+        }
+        obstacleTypeListHashMap.put(ObstacleType.DOOR, obstacleDoorPositionList);
+
+        List<ObstaclePosition> obstacleJewelPositionList = new ArrayList<>();
+
+        for (int i = 0; i <round_two_jewel_position.length; i++) {
+            ObstaclePosition position = new ObstaclePosition(round_two_jewel_position[i][0], round_two_jewel_position[i][1]);
+            obstacleJewelPositionList.add(position);
+        }
+        obstacleTypeListHashMap.put(ObstacleType.JEWEL, obstacleJewelPositionList);
+
+        for (int i = 0; i < round_two_floor_position.length; i++) {
+            ObstaclePosition position = new ObstaclePosition(round_two_floor_position[i][0], round_two_floor_position[i][1]);
             obstacleJewelPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleJewelPositionList);

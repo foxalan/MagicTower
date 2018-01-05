@@ -75,7 +75,7 @@ public class BudgeUtil {
         return true;
     }
 
-    public static ObstacleJewel canMoveLeftWithJewel(RoleHero hero, List<Obstacle> obstacleJewels, MoveType type) {
+    public static Obstacle canMoveLeftWithJewel(RoleHero hero, List<Obstacle> obstacleJewels, MoveType type) {
 
         for (Obstacle jewel : obstacleJewels) {
 
@@ -278,4 +278,6 @@ public class BudgeUtil {
         }
         return true;
     }
+
+
 }

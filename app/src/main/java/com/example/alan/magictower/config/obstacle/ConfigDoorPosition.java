@@ -14,4 +14,10 @@ public class ConfigDoorPosition {
     public static int[][] round_one_door_position = new int[][]{
             {2, 4}, {2, 6}, {8, 4}, {8, 6}
     };
+
+    public static int[][] round_two_door_position = new int[][]{
+            {2, 4}, {2, 6}, {8, 4}, {8, 6}
+    };
+
 }
+

@@ -16,4 +16,10 @@ public class ConfigJewelPosition {
             {1, 5}, {9, 5},
             {10, 9}, {9, 10},
     };
+
+
+    public static int[][] round_two_jewel_position = new int[][]{
+            {6, 6}, {6, 7}, {6, 8}, {6, 9}, {6, 10},
+    };
+
 }
