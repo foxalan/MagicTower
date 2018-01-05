@@ -225,8 +225,8 @@ public class BudgeUtil {
             if (role.isAlive()) {
                 switch (type) {
                     case UP:
-                        if (role.getX() == hero.getX()) {
-                            if ((hero.getY() - role.getY()) == 1) {
+                        if (role.getRolePosition().getX() == hero.getX()) {
+                            if ((hero.getY() - role.getRolePosition().getY()) == 1) {
                                 if (hero.attack(role)) {
                                     return true;
                                 } else {
@@ -237,8 +237,8 @@ public class BudgeUtil {
                         break;
                     case DOWN:
 
-                        if (role.getX() == hero.getX()) {
-                            if ((hero.getY() - role.getY()) == -1) {
+                        if (role.getRolePosition().getX() == hero.getX()) {
+                            if ((hero.getY() - role.getRolePosition().getY()) == -1) {
                                 if (hero.attack(role)) {
                                     return true;
                                 } else {
@@ -249,8 +249,8 @@ public class BudgeUtil {
                         break;
                     case LEFT:
 
-                        if (role.getY() == hero.getY()) {
-                            if ((hero.getX() - role.getX()) == 1) {
+                        if (role.getRolePosition().getY() == hero.getY()) {
+                            if ((hero.getX() - role.getRolePosition().getX()) == 1) {
                                 if (hero.attack(role)) {
                                     return true;
                                 } else {
@@ -261,8 +261,8 @@ public class BudgeUtil {
                         break;
                     case RIGHT:
 
-                        if (role.getY() == hero.getY()) {
-                            if ((hero.getX() - role.getX()) == -1) {
+                        if (role.getRolePosition().getY() == hero.getY()) {
+                            if ((hero.getX() - role.getRolePosition().getX()) == -1) {
                                 if (hero.attack(role)) {
                                     return true;
                                 } else {

@@ -39,12 +39,19 @@ public class GamePanel extends View {
     private RoleHero roleHero;
 
     private HashMap<Integer, List<Obstacle>> listHashMap;
+    private HashMap<Integer, List<Role>> roleHashMap;
+
+    public void setRoleHashMap(HashMap<Integer, List<Role>> roleHashMap) {
+        this.roleHashMap = roleHashMap;
+    }
+
     private List<Obstacle> currentObstacle;
-    private int round;
+    private List<Role> currentRole;
+
 
     public void setRound(int round) {
-        this.round = round;
         currentObstacle = listHashMap.get(round);
+        currentRole = roleHashMap.get(round);
     }
 
     public void setListHashMap(HashMap<Integer, List<Obstacle>> listHashMap) {
@@ -53,11 +60,7 @@ public class GamePanel extends View {
 
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
 
-    private List<Role> roleMonsterList;
 
-    public void setRoleMonsterList(List<Role> roleMonsterList) {
-        this.roleMonsterList = roleMonsterList;
-    }
 
     public void setHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
         this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
@@ -285,7 +288,7 @@ public class GamePanel extends View {
                 getJewel(jewel);
             }
             if (BudgeUtil.canMoveLeftWithDoor(roleHero, currentObstacle, moveType)) {
-                if (BudgeUtil.canAttackMonster(roleHero, roleMonsterList, moveType)) {
+                if (BudgeUtil.canAttackMonster(roleHero, currentRole, moveType)) {
                     roleHero.move(moveType);
                 }
             }
@@ -299,14 +302,15 @@ public class GamePanel extends View {
     }
 
     private void drawMonster(Canvas canvas) {
-        if (roleMonsterList != null) {
-            for (Role role : roleMonsterList) {
+
+        if (currentRole != null) {
+            for (Role role : currentRole) {
                 if (role.isAlive()) {
                     switch (role.getType()) {
                         case SLIME:
                             Rect rect = new Rect();
-                            rect.set(role.getX() * rect_width, role.getY() * rect_width,
-                                    (role.getX() + 1) * rect_width, (role.getY() + 1) * rect_width);
+                            rect.set(role.getRolePosition().getX() * rect_width, role.getRolePosition().getY() * rect_width,
+                                    (role.getRolePosition().getX() + 1) * rect_width, (role.getRolePosition().getY() + 1) * rect_width);
                             canvas.drawRect(rect, paint_slime);
                             break;
                         default:

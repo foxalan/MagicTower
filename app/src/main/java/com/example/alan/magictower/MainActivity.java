@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private List<Role> roleList = new ArrayList<>();
 
     private HashMap<Integer, List<Obstacle>> obstacleMap = new HashMap<>();
+    private HashMap<Integer, List<Role>> roleMap = new HashMap<>();
 
     public Handler mHandler = new Handler() {
         @Override
@@ -102,13 +103,16 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private void initObstacle() {
         int round = ObstacleFactory.getInstance().getRound();
         for (int i = 0; i < round; i++) {
-            obstacleMap.put(i+1, ObstacleFactory.getInstance().getObstacle(i+1));
+            obstacleMap.put(i + 1, ObstacleFactory.getInstance().getObstacle(i + 1));
         }
     }
 
 
     private void initRoleMonster() {
-        roleList = RoleFactory.getInstance().getRole(1);
+        int round = RoleFactory.getInstance().getRound();
+        for (int i = 0; i < round; i++) {
+            roleMap.put(i + 1, RoleFactory.getInstance().getRole(i + 1));
+        }
     }
 
     private void initViews() {
@@ -135,9 +139,9 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private void initEvent() {
         gamePanel.setRole(hero);
         gamePanel.setListHashMap(obstacleMap);
+        gamePanel.setRoleHashMap(roleMap);
         gamePanel.setRound(currentFloor);
         gamePanel.setHeroPowerChangeCallBack(this);
-        gamePanel.setRoleMonsterList(roleList);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
         MagicLoader.getInstance().setiDuelOverCallBack(this);

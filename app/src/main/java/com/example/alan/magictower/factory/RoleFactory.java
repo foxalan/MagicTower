@@ -22,6 +22,10 @@ import java.util.List;
 
 public class RoleFactory {
 
+    public int getRound() {
+        return ConfigPositionCreator.getInstance().getRoleMap().size();
+    }
+
     private static class RoleHolder {
         private static RoleFactory INSTANCE = new RoleFactory();
     }
@@ -36,7 +40,6 @@ public class RoleFactory {
         roleList.clear();
 
         HashMap<RoleType, List<RolePosition>> typeListHashMap = ConfigPositionCreator.getInstance().getRoleMap().get(round);
-
 
         if (round > typeListHashMap.size()) {
 
@@ -55,10 +58,7 @@ public class RoleFactory {
                     default:
                         break;
             }
-
         }
-
-
 
         return roleList;
     }
