@@ -61,15 +61,6 @@ public class ObstacleFactory {
             return null;
         }
 
-//        Map map = new HashMap();
-//        Iterator iter = map.entrySet().iterator();
-//        while (iter.hasNext()) {
-//            Map.Entry entry = (Map.Entry) iter.next();
-//            Object key = entry.getKey();
-//            Object val = entry.getValue();
-//        }
-
-
         for (ObstacleType type : typeListHashMap.keySet()) {
             switch (type) {
                 case KEY:

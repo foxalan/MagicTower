@@ -1,8 +1,14 @@
 package com.example.alan.magictower.factory;
 
+import com.example.alan.magictower.config.ConfigPositionCreator;
+import com.example.alan.magictower.config.ConfigRole;
+import com.example.alan.magictower.info.RolePosition;
 import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.RoleSlime;
+import com.example.alan.magictower.role.RoleType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -28,6 +34,29 @@ public class RoleFactory {
 
         List<Role> roleList = new ArrayList<>();
         roleList.clear();
+
+        HashMap<RoleType, List<RolePosition>> typeListHashMap = ConfigPositionCreator.getInstance().getRoleMap().get(round);
+
+
+        if (round > typeListHashMap.size()) {
+
+            return null;
+        }
+
+        for (RoleType type : typeListHashMap.keySet()) {
+            switch (type) {
+                case SLIME:
+                    for (RolePosition position : typeListHashMap.get(type)) {
+                        RoleSlimeFactory roleFactory = new RoleSlimeFactory(true, ConfigRole.SLIME_ATTACK,ConfigRole.SLIME_DEFENSE,ConfigRole.SLIME_LIFE ,position, RoleType.SLIME);
+                        RoleSlime slime = roleFactory.createRole();
+                        roleList.add(slime);
+                    }
+                    break;
+                    default:
+                        break;
+            }
+
+        }
 
 
 

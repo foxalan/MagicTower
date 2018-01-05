@@ -1,4 +1,4 @@
-package com.example.alan.magictower.config;
+package com.example.alan.magictower.config.role;
 
 /**
  * Function :

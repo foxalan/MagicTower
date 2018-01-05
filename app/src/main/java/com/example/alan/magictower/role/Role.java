@@ -1,5 +1,7 @@
 package com.example.alan.magictower.role;
 
+import com.example.alan.magictower.info.RolePosition;
+
 /**
  * Function : 角色类
  * Modify Date : 2018/1/2
@@ -19,18 +21,19 @@ public abstract class Role {
     private int mDefense;
     private int life;
     private int x;
-
-    public RoleType getType() {
-        return type;
-    }
-
-    public void setType(RoleType type) {
-        this.type = type;
-    }
-
     private int y;
     private int mSpeed;
     private RoleType type;
+
+    public RolePosition getRolePosition() {
+        return rolePosition;
+    }
+
+    public void setRolePosition(RolePosition rolePosition) {
+        this.rolePosition = rolePosition;
+    }
+
+    private RolePosition rolePosition;
 
     public Role(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed,RoleType type) {
         this.mId = mId;
@@ -45,6 +48,19 @@ public abstract class Role {
         this.mSpeed = mSpeed;
         this.type = type;
     }
+
+    public Role(boolean alive, int mAttack, int mDefense, int life,RolePosition position,RoleType type) {
+        this.rolePosition = position;
+        this.alive = alive;
+        this.mAttack = mAttack;
+        this.mDefense = mDefense;
+        this.life = life;
+        this.type = type;
+    }
+
+
+
+
 
     public int getmId() {
         return mId;
@@ -124,5 +140,13 @@ public abstract class Role {
 
     public void setmSpeed(int mSpeed) {
         this.mSpeed = mSpeed;
+    }
+
+    public RoleType getType() {
+        return type;
+    }
+
+    public void setType(RoleType type) {
+        this.type = type;
     }
 }
