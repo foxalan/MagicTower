@@ -9,9 +9,12 @@ import com.example.alan.magictower.obstacle.ObstacleType;
 import com.example.alan.magictower.obstacle.door.DoorType;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.factory.ObstacleDoorFactory;
+import com.example.alan.magictower.obstacle.factory.ObstacleFloorFactory;
 import com.example.alan.magictower.obstacle.factory.ObstacleJewelFactory;
 import com.example.alan.magictower.obstacle.factory.ObstacleKeyFactory;
 import com.example.alan.magictower.obstacle.factory.ObstacleWoodFactory;
+import com.example.alan.magictower.obstacle.floor.FloorType;
+import com.example.alan.magictower.obstacle.floor.ObstacleFloor;
 import com.example.alan.magictower.obstacle.jewel.JewelType;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.obstacle.key.KeyType;
@@ -85,6 +88,11 @@ public class ObstacleFactory {
                     }
                     break;
                 case FLOOR:
+                    for (ObstaclePosition position : typeListHashMap.get(type)) {
+                        ObstacleFloorFactory floorFactory = new ObstacleFloorFactory(position,true, FloorType.UP);
+                        ObstacleFloor floor = floorFactory.createObstacle();
+                        obstacles.add(floor);
+                    }
                     break;
 
                 case JEWEL:

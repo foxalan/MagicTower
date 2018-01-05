@@ -14,6 +14,7 @@ import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
 import com.example.alan.magictower.config.ConfigObstacle;
 import com.example.alan.magictower.obstacle.Obstacle;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
+import com.example.alan.magictower.obstacle.floor.ObstacleFloor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
@@ -59,9 +60,7 @@ public class GamePanel extends View {
     }
 
 
-
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
-
 
 
     public void setHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
@@ -182,7 +181,7 @@ public class GamePanel extends View {
      * @param canvas
      */
     private void drawObstacle(Canvas canvas) {
-        if (currentObstacle == null){
+        if (currentObstacle == null) {
             return;
         }
         for (Obstacle obstacle : currentObstacle) {
@@ -239,6 +238,24 @@ public class GamePanel extends View {
                         canvas.drawRect(rect_door, paint_door);
                     }
                     break;
+                case FLOOR:
+                    ObstacleFloor floor = (ObstacleFloor) obstacle;
+
+                    Rect rect_door = new Rect();
+                    rect_door.set(floor.getPosition().getX() * rect_width, floor.getPosition().getY() * rect_width,
+                            (floor.getPosition().getX() + 1) * rect_width, (floor.getPosition().getY() + 1) * rect_width);
+                    switch (floor.getFloorType()) {
+                        case UP:
+                            paint_door.setColor(Color.RED);
+                            break;
+                        case DOWN:
+                            paint_door.setColor(Color.BLUE);
+                            break;
+                        default:
+                            break;
+                    }
+                    canvas.drawRect(rect_door, paint_door);
+
                 default:
                     break;
             }
@@ -304,7 +321,7 @@ public class GamePanel extends View {
     }
 
     private void drawMonster(Canvas canvas) {
-        Log.e(TAG, "drawMonster: "+currentRole.size() );
+        Log.e(TAG, "drawMonster: " + currentRole.size());
         if (currentRole != null) {
             for (Role role : currentRole) {
                 if (role.isAlive()) {

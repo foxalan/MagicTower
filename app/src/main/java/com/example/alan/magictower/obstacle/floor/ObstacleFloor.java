@@ -15,6 +15,16 @@ import com.example.alan.magictower.obstacle.ObstacleType;
 
 public class ObstacleFloor extends Obstacle {
 
+    private FloorType floorType;
+
+    public FloorType getFloorType() {
+        return floorType;
+    }
+
+    public void setFloorType(FloorType floorType) {
+        this.floorType = floorType;
+    }
+
     public ObstacleFloor(ObstaclePosition position, ObstacleType type) {
         super(position, type);
     }
