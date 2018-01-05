@@ -69,14 +69,27 @@ public class ObstacleFactory {
                     for (ObstaclePosition position : typeListHashMap.get(type)) {
                         ObstacleKeyFactory keyFactory = new ObstacleKeyFactory(position, true, KeyType.BLUE);
                         ObstacleKey key = keyFactory.createObstacle();
+                        if (position.getType() == 0){
+                            key.setKeyType(KeyType.YELLOW);
+                        }else if (position.getType() == 1){
+                            key.setKeyType(KeyType.BLUE);
+                        }else {
+                            key.setKeyType(KeyType.RED);
+                        }
                         obstacles.add(key);
                     }
                     break;
                 case DOOR:
-
                     for (ObstaclePosition position : typeListHashMap.get(type)) {
                         ObstacleDoorFactory doorFactory = new ObstacleDoorFactory(position, true, DoorType.YELLOWDOOR);
                         ObstacleDoor door = doorFactory.createObstacle();
+                        if (position.getType() == 0){
+                            door.setDoorType(DoorType.YELLOWDOOR);
+                        }else if(position.getType() == 1){
+                            door.setDoorType(DoorType.BLUEDOOR);
+                        }else {
+                            door.setDoorType(DoorType.REDDOOR);
+                        }
                         obstacles.add(door);
 
                     }
@@ -89,17 +102,15 @@ public class ObstacleFactory {
                     }
                     break;
                 case FLOOR:
-                    for (int i = 0; i < typeListHashMap.get(type).size(); i++) {
-                        ObstaclePosition position = typeListHashMap.get(type).get(i);
+                    for (ObstaclePosition position:typeListHashMap.get(type)) {
+
                         ObstacleFloorFactory floorFactory = new ObstacleFloorFactory(position, true, FloorType.UP);
                         ObstacleFloor floor = floorFactory.createObstacle();
-
-                        if (i == 0) {
+                        if (position.getType() == 0){
                             floor.setFloorType(FloorType.UP);
-                        } else {
+                        }else {
                             floor.setFloorType(FloorType.DOWN);
                         }
-
                         obstacles.add(floor);
                     }
                     break;
@@ -108,6 +119,11 @@ public class ObstacleFactory {
                     for (ObstaclePosition position : typeListHashMap.get(type)) {
                         ObstacleJewelFactory jewelFactory = new ObstacleJewelFactory(position, true, JewelType.ATTACK);
                         ObstacleJewel jewel = jewelFactory.createObstacle();
+                        if (position.getType() == 0){
+                            jewel.setJewelType(JewelType.ATTACK);
+                        }else if(position.getType() == 1){
+                            jewel.setJewelType(JewelType.DEFENSE);
+                        }
                         obstacles.add(jewel);
                     }
                     break;

@@ -80,7 +80,7 @@ public class ConfigPositionCreator {
 
         List<ObstaclePosition> obstacleDoorPositionList = new ArrayList<>();
         for (int i = 0; i < round_one_door_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_one_door_position[i][0], round_one_door_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_one_door_position[i][0], round_one_door_position[i][1],round_one_door_position[i][2]);
             obstacleDoorPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.DOOR, obstacleDoorPositionList);
@@ -88,14 +88,14 @@ public class ConfigPositionCreator {
         List<ObstaclePosition> obstacleJewelPositionList = new ArrayList<>();
 
         for (int i = 0; i < round_one_jewel_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_one_jewel_position[i][0], round_one_jewel_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_one_jewel_position[i][0], round_one_jewel_position[i][1],round_one_jewel_position[i][2]);
             obstacleJewelPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.JEWEL, obstacleJewelPositionList);
 
         List<ObstaclePosition> obstacleFloorPositionList = new ArrayList<>();
         for (int i = 0; i < round_one_floor_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_one_floor_position[i][0], round_one_floor_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_one_floor_position[i][0], round_one_floor_position[i][1],round_one_door_position[i][2]);
             obstacleFloorPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleFloorPositionList);
@@ -116,7 +116,7 @@ public class ConfigPositionCreator {
 
         List<ObstaclePosition> obstacleDoorPositionList = new ArrayList<>();
         for (int i = 0; i < round_two_door_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_two_door_position[i][0], round_two_door_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_two_door_position[i][0], round_two_door_position[i][1],round_two_door_position[i][2]);
             obstacleDoorPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.DOOR, obstacleDoorPositionList);
@@ -124,14 +124,14 @@ public class ConfigPositionCreator {
         List<ObstaclePosition> obstacleJewelPositionList = new ArrayList<>();
 
         for (int i = 0; i < round_two_jewel_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_two_jewel_position[i][0], round_two_jewel_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_two_jewel_position[i][0], round_two_jewel_position[i][1],round_two_jewel_position[i][2]);
             obstacleJewelPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.JEWEL, obstacleJewelPositionList);
 
         List<ObstaclePosition> obstacleFloorPositionList = new ArrayList<>();
         for (int i = 0; i < round_two_floor_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_two_floor_position[i][0], round_two_floor_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_two_floor_position[i][0], round_two_floor_position[i][1],round_two_floor_position[i][2]);
             obstacleFloorPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleFloorPositionList);

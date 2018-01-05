@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -40,9 +39,7 @@ import java.util.List;
 public class GamePanel extends View {
 
     private int round;
-    private static final String TAG = "GamePanel";
     private RoleHero roleHero;
-
 
     private HashMap<Integer, List<Obstacle>> listHashMap;
     private HashMap<Integer, List<Role>> roleHashMap;
@@ -74,7 +71,6 @@ public class GamePanel extends View {
         this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
     }
 
-
     public void setRole(RoleHero role) {
         this.roleHero = role;
     }
@@ -82,17 +78,11 @@ public class GamePanel extends View {
     private int mWith = 880;
     private int mHeight = 880;
 
-    private int rect_width = 80;
-    private int rect_hero_width = 80;
-    private int rect_count = 11;
+    private int rectWidth = 80;
+    private int rectCount = 11;
 
     private List<Rect> rectList;
     private Paint paint;
-    private Paint paint_hero;
-    private Paint paint_wood;
-    private Paint paint_door;
-    private Paint paint_jewel;
-    private Paint paint_slime;
 
     private Bitmap bitmapFloorUp;
     private Bitmap bitmapFloorDown;
@@ -125,8 +115,8 @@ public class GamePanel extends View {
         bitmapWood = BitmapFactory.decodeResource(getResources(), R.drawable.terrain);
         bitmapBackground = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         bitmapYellowDoor = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_door);
-        bitmapRedJewel = BitmapFactory.decodeResource(getResources(),R.drawable.jewel_red);
-        bitmapRoleSlime = BitmapFactory.decodeResource(getResources(),R.drawable.role_slime);
+        bitmapRedJewel = BitmapFactory.decodeResource(getResources(), R.drawable.jewel_red);
+        bitmapRoleSlime = BitmapFactory.decodeResource(getResources(), R.drawable.role_slime);
     }
 
     private void initPaint() {
@@ -137,46 +127,15 @@ public class GamePanel extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.parseColor("#00ff00"));
         paint.setStrokeCap(Paint.Cap.BUTT);
-
-        paint_hero = new Paint();
-        paint_hero.setAntiAlias(true);
-        paint_hero.setStrokeWidth(5);
-        paint_hero.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_hero.setColor(Color.MAGENTA);
-
-        paint_wood = new Paint();
-        paint_wood.setAntiAlias(true);
-        paint_wood.setStrokeWidth(5);
-        paint_wood.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_wood.setColor(Color.BLACK);
-
-        paint_door = new Paint();
-        paint_door.setAntiAlias(true);
-        paint_door.setStrokeWidth(5);
-        paint_door.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_door.setColor(Color.BLUE);
-
-        paint_jewel = new Paint();
-        paint_jewel.setAntiAlias(true);
-        paint_jewel.setStrokeWidth(5);
-        paint_jewel.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_jewel.setColor(Color.RED);
-
-        paint_slime = new Paint();
-        paint_slime.setAntiAlias(true);
-        paint_slime.setStrokeWidth(5);
-        paint_slime.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint_slime.setColor(Color.DKGRAY);
-
     }
 
     private void initRect() {
         rectList = new ArrayList<>();
         rectList.clear();
-        for (int i = 0; i < rect_count; i++) {
-            for (int j = 0; j < rect_count; j++) {
+        for (int i = 0; i < rectCount; i++) {
+            for (int j = 0; j < rectCount; j++) {
                 Rect rect = new Rect();
-                rect.set(rect_width * i, j * rect_width, rect_width * (i + 1), rect_width * (j + 1));
+                rect.set(rectWidth * i, j * rectWidth, rectWidth * (i + 1), rectWidth * (j + 1));
                 rectList.add(rect);
             }
         }
@@ -217,8 +176,8 @@ public class GamePanel extends View {
             switch (obstacle.getObstacleType()) {
                 case WOOD:
                     Rect rect = new Rect();
-                    rect.set(obstacle.getPosition().getX() * rect_width, obstacle.getPosition().getY() * rect_width,
-                            (obstacle.getPosition().getX() + 1) * rect_width, (obstacle.getPosition().getY() + 1) * rect_width);
+                    rect.set(obstacle.getPosition().getX() * rectWidth, obstacle.getPosition().getY() * rectWidth,
+                            (obstacle.getPosition().getX() + 1) * rectWidth, (obstacle.getPosition().getY() + 1) * rectWidth);
                     canvas.drawBitmap(bitmapWood, null, rect, paint);
                     break;
                 case JEWEL:
@@ -226,19 +185,16 @@ public class GamePanel extends View {
                     ObstacleJewel jewel = (ObstacleJewel) obstacle;
                     if (obstacle.isExist()) {
 
-                        Rect rect_jewel = new Rect();
-                        rect_jewel.set(jewel.getPosition().getX() * rect_width, jewel.getPosition().getY() * rect_width,
-                                (jewel.getPosition().getX() + 1) * rect_width, (jewel.getPosition().getY() + 1) * rect_width);
+                        Rect rectJewel = new Rect();
+                        rectJewel.set(jewel.getPosition().getX() * rectWidth, jewel.getPosition().getY() * rectWidth,
+                                (jewel.getPosition().getX() + 1) * rectWidth, (jewel.getPosition().getY() + 1) * rectWidth);
                         switch (jewel.getJewelType()) {
                             case DEFENSE:
-                                paint_jewel.setColor(Color.GREEN);
                                 break;
                             case ATTACK:
-                                paint_jewel.setColor(Color.RED);
-                                canvas.drawBitmap(bitmapRedJewel,null,rect_jewel,paint);
+                                canvas.drawBitmap(bitmapRedJewel, null, rectJewel, paint);
                                 break;
                             case OVERALL:
-                                paint_jewel.setColor(Color.YELLOW);
                                 break;
                             default:
                                 break;
@@ -249,19 +205,16 @@ public class GamePanel extends View {
                 case DOOR:
                     ObstacleDoor door = (ObstacleDoor) obstacle;
                     if (obstacle.isExist()) {
-                        Rect rect_door = new Rect();
-                        rect_door.set(door.getPosition().getX() * rect_width, door.getPosition().getY() * rect_width,
-                                (door.getPosition().getX() + 1) * rect_width, (door.getPosition().getY() + 1) * rect_width);
+                        Rect rectDoor = new Rect();
+                        rectDoor.set(door.getPosition().getX() * rectWidth, door.getPosition().getY() * rectWidth,
+                                (door.getPosition().getX() + 1) * rectWidth, (door.getPosition().getY() + 1) * rectWidth);
                         switch (door.getDoorType()) {
                             case REDDOOR:
-                                paint_door.setColor(Color.RED);
                                 break;
                             case BLUEDOOR:
-                                paint_door.setColor(Color.BLUE);
                                 break;
                             case YELLOWDOOR:
-                                paint_door.setColor(Color.YELLOW);
-                                canvas.drawBitmap(bitmapYellowDoor, null, rect_door, paint);
+                                canvas.drawBitmap(bitmapYellowDoor, null, rectDoor, paint);
                                 break;
                             default:
                                 break;
@@ -270,18 +223,15 @@ public class GamePanel extends View {
                     break;
                 case FLOOR:
                     ObstacleFloor floor = (ObstacleFloor) obstacle;
-
-                    Rect rect_floor = new Rect();
-                    rect_floor.set(floor.getPosition().getX() * rect_width, floor.getPosition().getY() * rect_width,
-                            (floor.getPosition().getX() + 1) * rect_width, (floor.getPosition().getY() + 1) * rect_width);
+                    Rect rectFloor = new Rect();
+                    rectFloor.set(floor.getPosition().getX() * rectWidth, floor.getPosition().getY() * rectWidth,
+                            (floor.getPosition().getX() + 1) * rectWidth, (floor.getPosition().getY() + 1) * rectWidth);
                     switch (floor.getFloorType()) {
                         case UP:
-                            paint_door.setColor(Color.RED);
-                            canvas.drawBitmap(bitmapFloorUp, null, rect_floor, paint);
+                            canvas.drawBitmap(bitmapFloorUp, null, rectFloor, paint);
                             break;
                         case DOWN:
-                            paint_door.setColor(Color.BLUE);
-                            canvas.drawBitmap(bitmapFloorDown, null, rect_floor, paint);
+                            canvas.drawBitmap(bitmapFloorDown, null, rectFloor, paint);
                             break;
                         default:
                             break;
@@ -294,16 +244,15 @@ public class GamePanel extends View {
     }
 
     private void drawMonster(Canvas canvas) {
-        Log.e(TAG, "drawMonster: " + currentRole.size());
         if (currentRole != null) {
             for (Role role : currentRole) {
                 if (role.isAlive()) {
                     switch (role.getType()) {
                         case SLIME:
                             Rect rect = new Rect();
-                            rect.set(role.getRolePosition().getX() * rect_width, role.getRolePosition().getY() * rect_width,
-                                    (role.getRolePosition().getX() + 1) * rect_width, (role.getRolePosition().getY() + 1) * rect_width);
-                            canvas.drawBitmap(bitmapRoleSlime,null,rect,paint);
+                            rect.set(role.getRolePosition().getX() * rectWidth, role.getRolePosition().getY() * rectWidth,
+                                    (role.getRolePosition().getX() + 1) * rectWidth, (role.getRolePosition().getY() + 1) * rectWidth);
+                            canvas.drawBitmap(bitmapRoleSlime, null, rect, paint);
                             break;
                         default:
                             break;
@@ -313,7 +262,6 @@ public class GamePanel extends View {
         }
     }
 
-
     /**
      * 画主角
      *
@@ -322,8 +270,8 @@ public class GamePanel extends View {
     private void drawRoleHero(Canvas canvas) {
         if (roleHero != null) {
             Rect rect = new Rect();
-            rect.set(roleHero.getX() * rect_hero_width, roleHero.getY() * rect_hero_width, (roleHero.getX() + 1) * rect_hero_width, (roleHero.getY() + 1) * rect_hero_width);
-            canvas.drawRect(rect, paint_hero);
+            rect.set(roleHero.getX() * rectWidth, roleHero.getY() * rectWidth, (roleHero.getX() + 1) * rectWidth, (roleHero.getY() + 1) * rectWidth);
+            canvas.drawRect(rect, paint);
         }
     }
 
@@ -333,19 +281,15 @@ public class GamePanel extends View {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 moveType = MoveType.DOWN;
-                Log.e(TAG, "onKeyDown: ");
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 moveType = MoveType.UP;
-                Log.e(TAG, "onKeyUp: ");
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 moveType = MoveType.LEFT;
-                Log.e(TAG, "onKeyLeft:");
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 moveType = MoveType.RIGHT;
-                Log.e(TAG, "onKeyRight:");
                 break;
             default:
                 break;
@@ -370,12 +314,10 @@ public class GamePanel extends View {
                                 break;
                             default:
                                 break;
-
                         }
                         break;
                     default:
                         break;
-
                 }
             }
             if (BudgeUtil.canMoveLeftWithDoor(roleHero, currentObstacle, moveType)) {
@@ -391,7 +333,6 @@ public class GamePanel extends View {
         }
         return true;
     }
-
 
     private void getJewel(ObstacleJewel jewel) {
         switch (jewel.getJewelType()) {

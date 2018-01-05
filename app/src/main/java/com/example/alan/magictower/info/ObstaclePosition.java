@@ -13,7 +13,21 @@ public class ObstaclePosition {
 
     private int x;
     private int y;
+    private int type;
 
+    public ObstaclePosition(int x, int y, int type) {
+        this.x = x;
+        this.y = y;
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public ObstaclePosition(int x, int y) {
         this.x = x;

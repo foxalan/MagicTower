@@ -11,13 +11,19 @@ package com.example.alan.magictower.config.obstacle;
 
 public class ConfigDoorPosition {
 
+    /**
+     * 0:黄门
+     * 1.蓝门
+     * 2.红门
+     */
+
     public static int[][] round_one_door_position = new int[][]{
-            {2, 4}, {2, 6}, {8, 4}, {8, 6}
+            {2, 4, 0}, {2, 6, 1}, {8, 4, 2}, {8, 6, 1}
     };
 
     public static int[][] round_two_door_position = new int[][]{
-//            {2, 4}, {2, 6}, {8, 4}, {8, 6}
-            {2, 5},{8, 5},{5, 2},{5, 8},
+
+            {2, 5, 0}, {8, 5, 1}, {5, 2, 0}, {5, 8, 1},
     };
 
 }
