@@ -45,6 +45,10 @@ public class GamePanel extends View {
         this.roleHashMap = roleHashMap;
     }
 
+    public void setListHashMap(HashMap<Integer, List<Obstacle>> listHashMap) {
+        this.listHashMap = listHashMap;
+    }
+
     private List<Obstacle> currentObstacle;
     private List<Role> currentRole;
 
@@ -54,9 +58,7 @@ public class GamePanel extends View {
         currentRole = roleHashMap.get(round);
     }
 
-    public void setListHashMap(HashMap<Integer, List<Obstacle>> listHashMap) {
-        this.listHashMap = listHashMap;
-    }
+
 
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
 
@@ -175,7 +177,7 @@ public class GamePanel extends View {
     }
 
     /**
-     * 画障碍我
+     * 画障碍
      *
      * @param canvas
      */
@@ -302,7 +304,7 @@ public class GamePanel extends View {
     }
 
     private void drawMonster(Canvas canvas) {
-
+        Log.e(TAG, "drawMonster: "+currentRole.size() );
         if (currentRole != null) {
             for (Role role : currentRole) {
                 if (role.isAlive()) {

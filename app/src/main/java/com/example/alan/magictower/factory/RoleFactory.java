@@ -1,5 +1,7 @@
 package com.example.alan.magictower.factory;
 
+import android.util.Log;
+
 import com.example.alan.magictower.config.ConfigPositionCreator;
 import com.example.alan.magictower.config.ConfigRole;
 import com.example.alan.magictower.info.RolePosition;
@@ -22,6 +24,8 @@ import java.util.List;
 
 public class RoleFactory {
 
+    private static final String TAG = "RoleFactory";
+
     public int getRound() {
         return ConfigPositionCreator.getInstance().getRoleMap().size();
     }
@@ -41,10 +45,11 @@ public class RoleFactory {
 
         HashMap<RoleType, List<RolePosition>> typeListHashMap = ConfigPositionCreator.getInstance().getRoleMap().get(round);
 
-        if (round > typeListHashMap.size()) {
-
-            return null;
-        }
+        Log.e(TAG, "getRole: " +typeListHashMap.size());
+//        if (round > typeListHashMap.size()) {
+//
+//            return null;
+//        }
 
         for (RoleType type : typeListHashMap.keySet()) {
             switch (type) {

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 
 import com.example.alan.magictower.callback.IDuelOverCallBack;
 import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
@@ -44,6 +45,7 @@ import static com.example.alan.magictower.config.ConfigRole.KEY_YELLOW;
 
 public class MainActivity extends AppCompatActivity implements IHeroPowerChangeCallBack, IDuelOverCallBack {
 
+    private static final String TAG = "MainActivity";
     private GamePanel gamePanel;
     private AppCompatTextView tv_hero_life;
     private AppCompatTextView tv_hero_attack;
@@ -113,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         for (int i = 0; i < round; i++) {
             roleMap.put(i + 1, RoleFactory.getInstance().getRole(i + 1));
         }
+        Log.e(TAG, "initRoleMonster: "+roleMap.size());
     }
 
     private void initViews() {
@@ -141,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         gamePanel.setListHashMap(obstacleMap);
         gamePanel.setRoleHashMap(roleMap);
         gamePanel.setRound(currentFloor);
+
         gamePanel.setHeroPowerChangeCallBack(this);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());

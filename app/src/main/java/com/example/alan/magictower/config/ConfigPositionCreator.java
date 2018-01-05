@@ -1,5 +1,7 @@
 package com.example.alan.magictower.config;
 
+import android.util.Log;
+
 import com.example.alan.magictower.info.ObstaclePosition;
 import com.example.alan.magictower.info.RolePosition;
 import com.example.alan.magictower.obstacle.ObstacleType;
@@ -23,7 +25,7 @@ import static com.example.alan.magictower.config.role.ConfigRoleSmilePosition.ro
  */
 
 public class ConfigPositionCreator {
-
+    private static final String TAG = "ConfigPositionCreator";
     private HashMap<Integer, HashMap<ObstacleType, List<ObstaclePosition>>> obstacleMap = new HashMap<>(16);
     private HashMap<Integer, HashMap<RoleType , List<RolePosition>>> roleMap = new HashMap<>(16);
 
@@ -43,6 +45,8 @@ public class ConfigPositionCreator {
 
     private void setRoleMap(){
         roleMap.put(1,getRoundOneRole());
+        Log.e(TAG, "setRoleMap:round "+getRoundOneRole().size() );
+        Log.e(TAG, "setRoleMap: "+roleMap.size() );
     }
 
     private static class PositionCreatorHolder {
@@ -93,6 +97,7 @@ public class ConfigPositionCreator {
             RolePosition position = new RolePosition(round_one_smile_position[i][0], round_one_smile_position[i][1]);
             roleSlimePositionList.add(position);
         }
+        roleListHashMap.put(RoleType.SLIME,roleSlimePositionList);
 
         return roleListHashMap;
     }
