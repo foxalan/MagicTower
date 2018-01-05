@@ -26,6 +26,7 @@ public class ConfigPositionCreator {
 
 
     public HashMap<Integer, HashMap<ObstacleType, List<ObstaclePosition>>> getObstacleMap() {
+        setObstacleMap();
         return obstacleMap;
     }
 
@@ -38,6 +39,7 @@ public class ConfigPositionCreator {
     }
 
     public static ConfigPositionCreator getInstance() {
+
         return PositionCreatorHolder.INSTANCE;
     }
 

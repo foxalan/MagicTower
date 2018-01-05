@@ -11,9 +11,7 @@ import com.example.alan.magictower.callback.IHeroPowerChangeCallBack;
 import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.factory.RoleFactory;
 import com.example.alan.magictower.factory.RoleHeroFactory;
-import com.example.alan.magictower.obstacle.door.ObstacleDoor;
-import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
-import com.example.alan.magictower.obstacle.wood.ObstacleWood;
+import com.example.alan.magictower.obstacle.Obstacle;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
 import com.example.alan.magictower.role.RoleType;
@@ -22,6 +20,7 @@ import com.example.alan.magictower.view.GamePanel;
 import com.example.alan.magictower.view.MagicLoader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.example.alan.magictower.config.ConfigRole.ALIVE;
@@ -43,7 +42,7 @@ import static com.example.alan.magictower.config.ConfigRole.KEY_YELLOW;
  * @author Alan
  */
 
-public class MainActivity extends AppCompatActivity implements IHeroPowerChangeCallBack,IDuelOverCallBack{
+public class MainActivity extends AppCompatActivity implements IHeroPowerChangeCallBack, IDuelOverCallBack {
 
     private GamePanel gamePanel;
     private AppCompatTextView tv_hero_life;
@@ -62,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
 
     private List<Role> roleList = new ArrayList<>();
 
+    private HashMap<Integer, List<Obstacle>> obstacleMap = new HashMap<>();
+
     public Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -71,17 +72,13 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
                     updateHero();
                     break;
                 case 0x120:
-                    tv_hero_life.setText("LIFE:"+hero.getLife());
+                    tv_hero_life.setText("LIFE:" + hero.getLife());
                     break;
                 default:
                     break;
             }
         }
     };
-
-    private List<ObstacleWood> obstacleWoodList = new ArrayList<>();
-    private List<ObstacleDoor> obstacleDoorList = new ArrayList<>();
-    private List<ObstacleJewel> obstacleJewelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,17 +88,24 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         initViews();
         initRole();
         initRoleMonster();
-        initWood();
-        initDoor();
-        initJewel();
+        initObstacle();
         initEvent();
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
         MagicLoader.getInstance().initDialogDuel(this);
     }
+
+    private void initObstacle() {
+        int round = ObstacleFactory.getInstance().getRound();
+        for (int i = 0; i < round; i++) {
+            obstacleMap.put(i, ObstacleFactory.getInstance().getObstacle(i));
+        }
+    }
+
 
     private void initRoleMonster() {
         roleList = RoleFactory.getInstance().getRole(1);
@@ -130,9 +134,8 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
 
     private void initEvent() {
         gamePanel.setRole(hero);
-        gamePanel.setObstacleWoodList(obstacleWoodList);
-        gamePanel.setObstacleDoorList(obstacleDoorList);
-        gamePanel.setObstacleJewelList(obstacleJewelList);
+        gamePanel.setListHashMap(obstacleMap);
+        gamePanel.setRound(currentFloor);
         gamePanel.setHeroPowerChangeCallBack(this);
         gamePanel.setRoleMonsterList(roleList);
 
@@ -142,26 +145,6 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         updateHero();
     }
 
-    /**
-     * 初始化木頭
-     */
-    private void initWood() {
-       obstacleWoodList = ObstacleFactory.getInstance().createWood();
-    }
-
-    /**
-     * 初始化门
-     */
-    private void initDoor() {
-        obstacleDoorList = ObstacleFactory.getInstance().createDoor();
-    }
-
-    /**
-     * 初始化宝石
-     */
-    private void initJewel() {
-         obstacleJewelList = ObstacleFactory.getInstance().createJewel();
-    }
 
     @Override
     public void updateHeroPower() {
@@ -171,14 +154,14 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     /**
      * 更新数值
      */
-    private void updateHero(){
-        tv_hero_defense.setText("DEFENSE:"+hero.getmDefense());
-        tv_hero_attack.setText("ATTACK:"+hero.getmAttack());
-        tv_hero_life.setText("LIFE:"+hero.getLife());
-        tv_hero_yellow_key.setText("YELLOW KEY:"+hero.getYellowKey());
-        tv_hero_blue_key.setText("BLUE KEY:"+hero.getBlueKey());
-        tv_hero_red_key.setText("RED KEY:"+hero.getRedKey());
-        tv_round.setText("Floor:"+currentFloor);
+    private void updateHero() {
+        tv_hero_defense.setText("DEFENSE:" + hero.getmDefense());
+        tv_hero_attack.setText("ATTACK:" + hero.getmAttack());
+        tv_hero_life.setText("LIFE:" + hero.getLife());
+        tv_hero_yellow_key.setText("YELLOW KEY:" + hero.getYellowKey());
+        tv_hero_blue_key.setText("BLUE KEY:" + hero.getBlueKey());
+        tv_hero_red_key.setText("RED KEY:" + hero.getRedKey());
+        tv_round.setText("Floor:" + currentFloor);
     }
 
 

@@ -1,9 +1,10 @@
 package com.example.alan.magictower.util;
 
+import com.example.alan.magictower.obstacle.Obstacle;
+import com.example.alan.magictower.obstacle.ObstacleType;
 import com.example.alan.magictower.obstacle.door.DoorType;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
-import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
 
@@ -20,163 +21,174 @@ import java.util.List;
 
 public class BudgeUtil {
 
-    public static boolean canMoveLeftWithWood(RoleHero hero, List<ObstacleWood> obstacleWoods, MoveType type) {
+    public static boolean canMoveLeftWithWood(RoleHero hero, List<Obstacle> obstacle, MoveType type) {
 
-        for (ObstacleWood wood : obstacleWoods) {
-            switch (type) {
-                case UP:
-                    if (hero.getY() == 0) {
-                        return false;
-                    }
-                    if (wood.getX() == hero.getX()) {
-                        if ((hero.getY() - wood.getY()) == 1) {
-                            return false;
-                        }
-                    }
-                    break;
-                case DOWN:
-                    if (hero.getY() == 10) {
-                        return false;
-                    }
-                    if (wood.getX() == hero.getX()) {
-                        if ((hero.getY() - wood.getY()) == -1) {
-                            return false;
-                        }
-                    }
-                    break;
-                case LEFT:
-                    if (hero.getX() == 0) {
-                        return false;
-                    }
-                    if (wood.getY() == hero.getY()) {
-                        if ((hero.getX() - wood.getX()) == 1) {
-                            return false;
-                        }
-                    }
-                    break;
-                case RIGHT:
-                    if (hero.getX() == 10) {
-                        return false;
-                    }
-                    if (wood.getY() == hero.getY()) {
-                        if ((hero.getX() - wood.getX()) == -1) {
-                            return false;
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        return true;
-    }
+        for (Obstacle wood : obstacle) {
+            if (wood.getObstacleType() == ObstacleType.WOOD){
 
-    public static ObstacleJewel canMoveLeftWithJewel(RoleHero hero, List<ObstacleJewel> obstacleJewels, MoveType type) {
-
-        for (ObstacleJewel jewel : obstacleJewels) {
-            if (jewel.isExist()) {
                 switch (type) {
                     case UP:
-                        if (jewel.getX() == hero.getX()) {
-                            if ((hero.getY() - jewel.getY()) == 1) {
-                                return jewel;
+                        if (hero.getY() == 0) {
+                            return false;
+                        }
+                        if (wood.getPosition().getX() == hero.getX()) {
+                            if ((hero.getY() - wood.getPosition().getY()) == 1) {
+                                return false;
                             }
                         }
                         break;
                     case DOWN:
-
-                        if (jewel.getX() == hero.getX()) {
-                            if ((hero.getY() - jewel.getY()) == -1) {
-                                return jewel;
+                        if (hero.getY() == 10) {
+                            return false;
+                        }
+                        if (wood.getPosition().getX() == hero.getX()) {
+                            if ((hero.getY() - wood.getPosition().getY()) == -1) {
+                                return false;
                             }
                         }
                         break;
                     case LEFT:
-
-                        if (jewel.getY() == hero.getY()) {
-                            if ((hero.getX() - jewel.getX()) == 1) {
-                                return jewel;
+                        if (hero.getX() == 0) {
+                            return false;
+                        }
+                        if (wood.getPosition().getY() == hero.getY()) {
+                            if ((hero.getX() - wood.getPosition().getX()) == 1) {
+                                return false;
                             }
                         }
                         break;
                     case RIGHT:
-
-                        if (jewel.getY() == hero.getY()) {
-                            if ((hero.getX() - jewel.getX()) == -1) {
-                                return jewel;
+                        if (hero.getX() == 10) {
+                            return false;
+                        }
+                        if (wood.getPosition().getY() == hero.getY()) {
+                            if ((hero.getX() - wood.getPosition().getX()) == -1) {
+                                return false;
                             }
                         }
                         break;
                     default:
                         break;
                 }
+            }
+        }
+        return true;
+    }
 
+    public static ObstacleJewel canMoveLeftWithJewel(RoleHero hero, List<Obstacle> obstacleJewels, MoveType type) {
+
+        for (Obstacle jewel : obstacleJewels) {
+
+            if (jewel.getObstacleType() == ObstacleType.JEWEL){
+
+                ObstacleJewel obstacleJewel = (ObstacleJewel) jewel;
+                if (jewel.isExist()) {
+                    switch (type) {
+                        case UP:
+                            if (jewel.getPosition().getX() == hero.getX()) {
+                                if ((hero.getY() - jewel.getPosition().getY()) == 1) {
+                                    return obstacleJewel;
+                                }
+                            }
+                            break;
+                        case DOWN:
+
+                            if (jewel.getPosition().getX() == hero.getX()) {
+                                if ((hero.getY() - jewel.getPosition().getY()) == -1) {
+                                    return obstacleJewel;
+                                }
+                            }
+                            break;
+                        case LEFT:
+
+                            if (jewel.getPosition().getY() == hero.getY()) {
+                                if ((hero.getX() - jewel.getPosition().getX()) == 1) {
+                                    return obstacleJewel;
+                                }
+                            }
+                            break;
+                        case RIGHT:
+
+                            if (jewel.getPosition().getY() == hero.getY()) {
+                                if ((hero.getX() - jewel.getPosition().getX()) == -1) {
+                                    return obstacleJewel;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
             }
         }
         return null;
     }
 
-    public static boolean canMoveLeftWithDoor(RoleHero hero, List<ObstacleDoor> obstacleDoors, MoveType type) {
+    public static boolean canMoveLeftWithDoor(RoleHero hero, List<Obstacle> obstacleDoors, MoveType type) {
 
-        for (ObstacleDoor door : obstacleDoors) {
+        for (Obstacle door : obstacleDoors) {
             if (door.isExist()) {
-                switch (type) {
-                    case UP:
-                        if (door.getX() == hero.getX()) {
-                            if ((hero.getY() - door.getY()) == 1) {
-                                if (haveKey(door.getDoorType(), hero)) {
-                                    hero.openDoor(door);
-                                    return true;
-                                } else {
+                if (door.getObstacleType() == ObstacleType.DOOR){
 
-                                    return false;
+                    ObstacleDoor obstacleDoor = (ObstacleDoor) door;
+                    switch (type) {
+                        case UP:
+                            if (door.getPosition().getX() == hero.getX()) {
+                                if ((hero.getY() - door.getPosition().getY()) == 1) {
+                                    if (haveKey(obstacleDoor.getDoorType(), hero)) {
+                                        hero.openDoor(obstacleDoor);
+                                        return true;
+                                    } else {
+
+                                        return false;
+                                    }
                                 }
                             }
-                        }
-                        break;
-                    case DOWN:
+                            break;
+                        case DOWN:
 
-                        if (door.getX() == hero.getX()) {
-                            if ((hero.getY() - door.getY()) == -1) {
-                                if (haveKey(door.getDoorType(), hero)) {
-                                    hero.openDoor(door);
-                                    return true;
-                                } else {
+                            if (door.getPosition().getX() == hero.getX()) {
+                                if ((hero.getY() - door.getPosition().getY()) == -1) {
+                                    if (haveKey(obstacleDoor.getDoorType(), hero)) {
+                                        hero.openDoor(obstacleDoor);
+                                        return true;
+                                    } else {
 
-                                    return false;
+                                        return false;
+                                    }
                                 }
                             }
-                        }
-                        break;
-                    case LEFT:
+                            break;
+                        case LEFT:
 
-                        if (door.getY() == hero.getY()) {
-                            if ((hero.getX() - door.getX()) == 1) {
-                                if (haveKey(door.getDoorType(), hero)) {
-                                    hero.openDoor(door);
-                                    return true;
-                                } else {
+                            if (door.getPosition().getY() == hero.getY()) {
+                                if ((hero.getX() - door.getPosition().getX()) == 1) {
+                                    if (haveKey(obstacleDoor.getDoorType(), hero)) {
+                                        hero.openDoor(obstacleDoor);
+                                        return true;
+                                    } else {
 
-                                    return false;
+                                        return false;
+                                    }
                                 }
                             }
-                        }
-                        break;
-                    case RIGHT:
-
-                        if (door.getY() == hero.getY()) {
-                            if ((hero.getX() - door.getX()) == -1) {
-                                if (haveKey(door.getDoorType(), hero)) {
-                                    hero.openDoor(door);
-                                    return true;
-                                } else {
-                                    return false;
+                            break;
+                        case RIGHT:
+                            if (door.getPosition().getY() == hero.getY()) {
+                                if ((hero.getX() - door.getPosition().getX()) == -1) {
+                                    if (haveKey(obstacleDoor.getDoorType(), hero)) {
+                                        hero.openDoor(obstacleDoor);
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
                                 }
                             }
-                        }
-                        break;
-                    default:
-                        break;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
