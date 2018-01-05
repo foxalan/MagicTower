@@ -36,8 +36,11 @@ import java.util.List;
 
 public class GamePanel extends View {
 
+    private int round;
     private static final String TAG = "GamePanel";
     private RoleHero roleHero;
+
+
 
     private HashMap<Integer, List<Obstacle>> listHashMap;
     private HashMap<Integer, List<Role>> roleHashMap;
@@ -53,8 +56,12 @@ public class GamePanel extends View {
     private List<Obstacle> currentObstacle;
     private List<Role> currentRole;
 
+    public int getRound() {
+        return round;
+    }
 
     public void setRound(int round) {
+        this.round = round;
         currentObstacle = listHashMap.get(round);
         currentRole = roleHashMap.get(round);
     }
@@ -205,7 +212,7 @@ public class GamePanel extends View {
                                 paint_jewel.setColor(Color.GREEN);
                                 break;
                             case ATTACK:
-                                paint_jewel.setColor(Color.RED);
+                                paint_jewel.setColor(Color.GREEN);
                                 break;
                             case OVERALL:
                                 paint_jewel.setColor(Color.YELLOW);
@@ -255,7 +262,7 @@ public class GamePanel extends View {
                             break;
                     }
                     canvas.drawRect(rect_door, paint_door);
-
+                    break;
                 default:
                     break;
             }
@@ -313,7 +320,7 @@ public class GamePanel extends View {
                         ObstacleFloor floor = (ObstacleFloor) obstacle;
                         switch (floor.getFloorType()) {
                             case UP:
-
+                                setRound(getRound()+1);
                                 break;
                             case DOWN:
                                 break;

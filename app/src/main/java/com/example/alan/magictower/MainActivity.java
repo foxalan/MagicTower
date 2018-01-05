@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
         tv_hero_yellow_key.setText("YELLOW KEY:" + hero.getYellowKey());
         tv_hero_blue_key.setText("BLUE KEY:" + hero.getBlueKey());
         tv_hero_red_key.setText("RED KEY:" + hero.getRedKey());
-        tv_round.setText("Floor:" + currentFloor);
+        tv_round.setText("Floor:" + gamePanel.getRound());
     }
 
 

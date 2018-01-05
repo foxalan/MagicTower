@@ -4,7 +4,6 @@ import com.example.alan.magictower.obstacle.Obstacle;
 import com.example.alan.magictower.obstacle.ObstacleType;
 import com.example.alan.magictower.obstacle.door.DoorType;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
-import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
 import com.example.alan.magictower.role.Role;
 import com.example.alan.magictower.role.RoleHero;
 
@@ -79,9 +78,9 @@ public class BudgeUtil {
 
         for (Obstacle jewel : obstacleJewels) {
 
-            if (jewel.getObstacleType() == ObstacleType.JEWEL){
+            if (jewel.getObstacleType() == ObstacleType.JEWEL||jewel.getObstacleType() == ObstacleType.FLOOR){
 
-                ObstacleJewel obstacleJewel = (ObstacleJewel) jewel;
+                Obstacle obstacleJewel = jewel;
                 if (jewel.isExist()) {
                     switch (type) {
                         case UP:

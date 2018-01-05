@@ -92,11 +92,12 @@ public class ConfigPositionCreator {
         }
         obstacleTypeListHashMap.put(ObstacleType.JEWEL, obstacleJewelPositionList);
 
+        List<ObstaclePosition> obstacleFloorPositionList = new ArrayList<>();
         for (int i = 0; i < round_one_floor_position.length; i++) {
             ObstaclePosition position = new ObstaclePosition(round_one_floor_position[i][0], round_one_floor_position[i][1]);
-            obstacleJewelPositionList.add(position);
+            obstacleFloorPositionList.add(position);
         }
-        obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleJewelPositionList);
+        obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleFloorPositionList);
 
 
         return obstacleTypeListHashMap;
@@ -107,7 +108,7 @@ public class ConfigPositionCreator {
         HashMap<ObstacleType, List<ObstaclePosition>> obstacleTypeListHashMap = new HashMap<>(16);
         List<ObstaclePosition> obstacleWoodPositionList = new ArrayList<>();
         for (int i = 0; i < round_two_wood_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_two_wood_position[i][0], round_one_wood_position[i][1]);
+            ObstaclePosition position = new ObstaclePosition(round_two_wood_position[i][0], round_two_wood_position[i][1]);
             obstacleWoodPositionList.add(position);
         }
         obstacleTypeListHashMap.put(ObstacleType.WOOD, obstacleWoodPositionList);
@@ -127,12 +128,12 @@ public class ConfigPositionCreator {
         }
         obstacleTypeListHashMap.put(ObstacleType.JEWEL, obstacleJewelPositionList);
 
+        List<ObstaclePosition> obstacleFloorPositionList = new ArrayList<>();
         for (int i = 0; i < round_two_floor_position.length; i++) {
-            ObstaclePosition position = new ObstaclePosition(round_two_floor_position[i][0], round_two_floor_position[i][1]);
-            obstacleJewelPositionList.add(position);
+            ObstaclePosition position = new ObstaclePosition(round_two_floor_position[i][0], round_one_floor_position[i][1]);
+            obstacleFloorPositionList.add(position);
         }
-        obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleJewelPositionList);
-
+        obstacleTypeListHashMap.put(ObstacleType.FLOOR, obstacleFloorPositionList);
 
         return obstacleTypeListHashMap;
     }
