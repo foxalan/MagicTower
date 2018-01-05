@@ -12,9 +12,9 @@ import com.example.alan.magictower.obstacle.wood.ObstacleWood;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.alan.magictower.config.ConfigPosition.ROUND_ONE_DOOR_POSITION;
-import static com.example.alan.magictower.config.ConfigPosition.ROUND_ONE_JEWEL_POSITION;
-import static com.example.alan.magictower.config.ConfigPosition.ROUND_ONE_WOOD_POSITION;
+import static com.example.alan.magictower.config.ConfigPositionCreator.ROUND_ONE_DOOR_POSITION;
+import static com.example.alan.magictower.config.ConfigPositionCreator.ROUND_ONE_JEWEL_POSITION;
+import static com.example.alan.magictower.config.ConfigPositionCreator.ROUND_ONE_WOOD_POSITION;
 
 /**
  * Function :
@@ -33,6 +33,8 @@ public class ObstacleFactory {
     public static ObstacleFactory getInstance() {
         return ObstacleHolder.INSTANCE;
     }
+
+
 
     public List<ObstacleDoor> createDoor() {
         List<ObstacleDoor> obstacleDoorList = new ArrayList<>();

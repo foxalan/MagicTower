@@ -7,7 +7,7 @@ import com.example.alan.magictower.role.RoleType;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.alan.magictower.config.ConfigPosition.ROUND_ONE_SMILE_POSITION;
+import static com.example.alan.magictower.config.ConfigPositionCreator.ROUND_ONE_SMILE_POSITION;
 import static com.example.alan.magictower.config.ConfigRole.SLIME_ALIVE;
 import static com.example.alan.magictower.config.ConfigRole.SLIME_ATTACK;
 import static com.example.alan.magictower.config.ConfigRole.SLIME_DEFENSE;
