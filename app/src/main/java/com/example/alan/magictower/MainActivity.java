@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private void initObstacle() {
         int round = ObstacleFactory.getInstance().getRound();
         for (int i = 0; i < round; i++) {
-            obstacleMap.put(i, ObstacleFactory.getInstance().getObstacle(i));
+            obstacleMap.put(i+1, ObstacleFactory.getInstance().getObstacle(i+1));
         }
     }
 

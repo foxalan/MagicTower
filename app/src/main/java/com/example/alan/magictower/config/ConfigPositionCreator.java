@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.example.alan.magictower.config.ConfigDoorPosition.round_one_door_position;
-import static com.example.alan.magictower.config.ConfigJewelPosition.round_one_jewel_position;
-import static com.example.alan.magictower.config.ConfigWoodPosition.round_one_wood_position;
+import static com.example.alan.magictower.config.obstacle.ConfigDoorPosition.round_one_door_position;
+import static com.example.alan.magictower.config.obstacle.ConfigJewelPosition.round_one_jewel_position;
+import static com.example.alan.magictower.config.obstacle.ConfigWoodPosition.round_one_wood_position;
 
 /**
  * Function :
