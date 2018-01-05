@@ -68,9 +68,7 @@ public class GamePanel extends View {
         currentRole = roleHashMap.get(round);
     }
 
-
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
-
 
     public void setHeroPowerChangeCallBack(IHeroPowerChangeCallBack iHeroPowerChangeCallBack) {
         this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
@@ -99,6 +97,10 @@ public class GamePanel extends View {
     private Bitmap bitmapFloorUp;
     private Bitmap bitmapFloorDown;
     private Bitmap bitmapWood;
+    private Bitmap bitmapBackground;
+    private Bitmap bitmapYellowDoor;
+    private Bitmap bitmapRedJewel;
+    private Bitmap bitmapRoleSlime;
 
     public GamePanel(Context context) {
         this(context, null);
@@ -119,8 +121,12 @@ public class GamePanel extends View {
 
     private void initBitmap() {
         bitmapFloorUp = BitmapFactory.decodeResource(getResources(), R.drawable.up_floor);
-        bitmapFloorDown = BitmapFactory.decodeResource(getResources(),R.drawable.down_floor);
-        bitmapWood = BitmapFactory.decodeResource(getResources(),R.drawable.terrain);
+        bitmapFloorDown = BitmapFactory.decodeResource(getResources(), R.drawable.down_floor);
+        bitmapWood = BitmapFactory.decodeResource(getResources(), R.drawable.terrain);
+        bitmapBackground = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        bitmapYellowDoor = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_door);
+        bitmapRedJewel = BitmapFactory.decodeResource(getResources(),R.drawable.jewel_red);
+        bitmapRoleSlime = BitmapFactory.decodeResource(getResources(),R.drawable.role_slime);
     }
 
     private void initPaint() {
@@ -186,12 +192,15 @@ public class GamePanel extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        drawRoleHero(canvas);
+        drawBackground(canvas);
         drawObstacle(canvas);
         drawMonster(canvas);
+        drawRoleHero(canvas);
+    }
 
+    private void drawBackground(Canvas canvas) {
         for (Rect rect : rectList) {
-            canvas.drawRect(rect, paint);
+            canvas.drawBitmap(bitmapBackground, null, rect, paint);
         }
     }
 
@@ -210,7 +219,7 @@ public class GamePanel extends View {
                     Rect rect = new Rect();
                     rect.set(obstacle.getPosition().getX() * rect_width, obstacle.getPosition().getY() * rect_width,
                             (obstacle.getPosition().getX() + 1) * rect_width, (obstacle.getPosition().getY() + 1) * rect_width);
-                    canvas.drawBitmap(bitmapWood,null,rect,paint_wood);
+                    canvas.drawBitmap(bitmapWood, null, rect, paint);
                     break;
                 case JEWEL:
 
@@ -226,6 +235,7 @@ public class GamePanel extends View {
                                 break;
                             case ATTACK:
                                 paint_jewel.setColor(Color.RED);
+                                canvas.drawBitmap(bitmapRedJewel,null,rect_jewel,paint);
                                 break;
                             case OVERALL:
                                 paint_jewel.setColor(Color.YELLOW);
@@ -233,7 +243,7 @@ public class GamePanel extends View {
                             default:
                                 break;
                         }
-                        canvas.drawCircle((rect_jewel.left + rect_jewel.right) / 2, (rect_jewel.bottom + rect_jewel.top) / 2, (rect_width / 2 - 20), paint_jewel);
+
                     }
                     break;
                 case DOOR:
@@ -251,11 +261,11 @@ public class GamePanel extends View {
                                 break;
                             case YELLOWDOOR:
                                 paint_door.setColor(Color.YELLOW);
+                                canvas.drawBitmap(bitmapYellowDoor, null, rect_door, paint);
                                 break;
                             default:
                                 break;
                         }
-                        canvas.drawRect(rect_door, paint_door);
                     }
                     break;
                 case FLOOR:
@@ -267,11 +277,11 @@ public class GamePanel extends View {
                     switch (floor.getFloorType()) {
                         case UP:
                             paint_door.setColor(Color.RED);
-                            canvas.drawBitmap(bitmapFloorUp,null,rect_floor,paint_slime);
+                            canvas.drawBitmap(bitmapFloorUp, null, rect_floor, paint);
                             break;
                         case DOWN:
                             paint_door.setColor(Color.BLUE);
-                            canvas.drawBitmap(bitmapFloorDown,null,rect_floor,paint_slime);
+                            canvas.drawBitmap(bitmapFloorDown, null, rect_floor, paint);
                             break;
                         default:
                             break;
@@ -279,6 +289,26 @@ public class GamePanel extends View {
                     break;
                 default:
                     break;
+            }
+        }
+    }
+
+    private void drawMonster(Canvas canvas) {
+        Log.e(TAG, "drawMonster: " + currentRole.size());
+        if (currentRole != null) {
+            for (Role role : currentRole) {
+                if (role.isAlive()) {
+                    switch (role.getType()) {
+                        case SLIME:
+                            Rect rect = new Rect();
+                            rect.set(role.getRolePosition().getX() * rect_width, role.getRolePosition().getY() * rect_width,
+                                    (role.getRolePosition().getX() + 1) * rect_width, (role.getRolePosition().getY() + 1) * rect_width);
+                            canvas.drawBitmap(bitmapRoleSlime,null,rect,paint);
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
     }
@@ -296,7 +326,6 @@ public class GamePanel extends View {
             canvas.drawRect(rect, paint_hero);
         }
     }
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -363,25 +392,6 @@ public class GamePanel extends View {
         return true;
     }
 
-    private void drawMonster(Canvas canvas) {
-        Log.e(TAG, "drawMonster: " + currentRole.size());
-        if (currentRole != null) {
-            for (Role role : currentRole) {
-                if (role.isAlive()) {
-                    switch (role.getType()) {
-                        case SLIME:
-                            Rect rect = new Rect();
-                            rect.set(role.getRolePosition().getX() * rect_width, role.getRolePosition().getY() * rect_width,
-                                    (role.getRolePosition().getX() + 1) * rect_width, (role.getRolePosition().getY() + 1) * rect_width);
-                            canvas.drawRect(rect, paint_slime);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-    }
 
     private void getJewel(ObstacleJewel jewel) {
         switch (jewel.getJewelType()) {
