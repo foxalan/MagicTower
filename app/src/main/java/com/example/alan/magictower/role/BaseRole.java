@@ -11,7 +11,7 @@ import com.example.alan.magictower.info.RolePosition;
  * Whether Solve :
  */
 
-public abstract class Role {
+public abstract class BaseRole {
 
     private int mId;
     private String mName;
@@ -35,7 +35,7 @@ public abstract class Role {
 
     private RolePosition rolePosition;
 
-    public Role(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed,RoleType type) {
+    public BaseRole(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
         this.mId = mId;
         this.mName = mName;
         this.mDes = mDes;
@@ -49,7 +49,7 @@ public abstract class Role {
         this.type = type;
     }
 
-    public Role(boolean alive, int mAttack, int mDefense, int life,RolePosition position,RoleType type) {
+    public BaseRole(boolean alive, int mAttack, int mDefense, int life, RolePosition position, RoleType type) {
         this.rolePosition = position;
         this.alive = alive;
         this.mAttack = mAttack;
@@ -90,19 +90,19 @@ public abstract class Role {
         this.alive = alive;
     }
 
-    public int getmAttack() {
+    public int getAttack() {
         return mAttack;
     }
 
-    public void setmAttack(int mAttack) {
+    public void setAttack(int mAttack) {
         this.mAttack = mAttack;
     }
 
-    public int getmDefense() {
+    public int getDefense() {
         return mDefense;
     }
 
-    public void setmDefense(int mDefense) {
+    public void setDefense(int mDefense) {
         this.mDefense = mDefense;
     }
 
@@ -130,11 +130,11 @@ public abstract class Role {
         this.y = y;
     }
 
-    public int getmSpeed() {
+    public int getSpeed() {
         return mSpeed;
     }
 
-    public void setmSpeed(int mSpeed) {
+    public void setSpeed(int mSpeed) {
         this.mSpeed = mSpeed;
     }
 

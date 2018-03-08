@@ -1,7 +1,7 @@
 package com.example.alan.magictower.skill;
 
-import com.example.alan.magictower.role.Role;
-import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.BaseRole;
+import com.example.alan.magictower.role.BaseRoleHero;
 
 /**
  * Function :
@@ -19,5 +19,5 @@ public interface ISkill {
      * @param role
      * @param enemy
      */
-    boolean attack(RoleHero role, Role enemy);
+    boolean attack(BaseRoleHero role, BaseRole enemy);
 }

@@ -13,7 +13,7 @@ import com.example.alan.magictower.callback.IDuelOverCallBack;
 import com.example.alan.magictower.duel.HeroAttackThread;
 import com.example.alan.magictower.duel.MonsterAttackThread;
 import com.example.alan.magictower.duel.RolesDuel;
-import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.BaseRole;
 import com.example.alan.magictower.util.DimenUtil;
 
 /**
@@ -95,16 +95,16 @@ public class MagicLoader {
         }
     }
 
-    public void showDialogDuel(Role hero, Role monster) {
+    public void showDialogDuel(BaseRole hero, BaseRole monster) {
         if (dialogDuel != null) {
 
             tv_hero_life.setText("Life:" + hero.getLife());
-            tv_hero_attack.setText("Attack:" + hero.getmAttack());
-            tv_hero_defense.setText("Defense:" + hero.getmDefense());
+            tv_hero_attack.setText("Attack:" + hero.getAttack());
+            tv_hero_defense.setText("Defense:" + hero.getDefense());
 
             tv_monster_life.setText("Life:" + monster.getLife());
-            tv_monster_attack.setText("Attack:" + monster.getmAttack());
-            tv_monster_defense.setText("Defense:" + monster.getmDefense());
+            tv_monster_attack.setText("Attack:" + monster.getAttack());
+            tv_monster_defense.setText("Defense:" + monster.getDefense());
 
             RolesDuel duel = new RolesDuel();
             new HeroAttackThread(duel, hero, monster, tv_monster_life).start();

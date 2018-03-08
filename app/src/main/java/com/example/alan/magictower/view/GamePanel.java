@@ -18,8 +18,8 @@ import com.example.alan.magictower.obstacle.Obstacle;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.floor.ObstacleFloor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
-import com.example.alan.magictower.role.Role;
-import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.BaseRole;
+import com.example.alan.magictower.role.BaseRoleHero;
 import com.example.alan.magictower.util.BudgeUtil;
 import com.example.alan.magictower.util.MoveType;
 
@@ -39,12 +39,12 @@ import java.util.List;
 public class GamePanel extends View {
 
     private int round;
-    private RoleHero roleHero;
+    private BaseRoleHero roleHero;
 
     private HashMap<Integer, List<Obstacle>> listHashMap;
-    private HashMap<Integer, List<Role>> roleHashMap;
+    private HashMap<Integer, List<BaseRole>> roleHashMap;
 
-    public void setRoleHashMap(HashMap<Integer, List<Role>> roleHashMap) {
+    public void setRoleHashMap(HashMap<Integer, List<BaseRole>> roleHashMap) {
         this.roleHashMap = roleHashMap;
     }
 
@@ -53,7 +53,7 @@ public class GamePanel extends View {
     }
 
     private List<Obstacle> currentObstacle;
-    private List<Role> currentRole;
+    private List<BaseRole> currentBaseRole;
 
     public int getRound() {
         return round;
@@ -62,7 +62,7 @@ public class GamePanel extends View {
     public void setRound(int round) {
         this.round = round;
         currentObstacle = listHashMap.get(round);
-        currentRole = roleHashMap.get(round);
+        currentBaseRole = roleHashMap.get(round);
     }
 
     private IHeroPowerChangeCallBack iHeroPowerChangeCallBack;
@@ -71,7 +71,7 @@ public class GamePanel extends View {
         this.iHeroPowerChangeCallBack = iHeroPowerChangeCallBack;
     }
 
-    public void setRole(RoleHero role) {
+    public void setRole(BaseRoleHero role) {
         this.roleHero = role;
     }
 
@@ -244,14 +244,14 @@ public class GamePanel extends View {
     }
 
     private void drawMonster(Canvas canvas) {
-        if (currentRole != null) {
-            for (Role role : currentRole) {
-                if (role.isAlive()) {
-                    switch (role.getType()) {
+        if (currentBaseRole != null) {
+            for (BaseRole baseRole : currentBaseRole) {
+                if (baseRole.isAlive()) {
+                    switch (baseRole.getType()) {
                         case SLIME:
                             Rect rect = new Rect();
-                            rect.set(role.getRolePosition().getX() * rectWidth, role.getRolePosition().getY() * rectWidth,
-                                    (role.getRolePosition().getX() + 1) * rectWidth, (role.getRolePosition().getY() + 1) * rectWidth);
+                            rect.set(baseRole.getRolePosition().getX() * rectWidth, baseRole.getRolePosition().getY() * rectWidth,
+                                    (baseRole.getRolePosition().getX() + 1) * rectWidth, (baseRole.getRolePosition().getY() + 1) * rectWidth);
                             canvas.drawBitmap(bitmapRoleSlime, null, rect, paint);
                             break;
                         default:
@@ -321,7 +321,7 @@ public class GamePanel extends View {
                 }
             }
             if (BudgeUtil.canMoveLeftWithDoor(roleHero, currentObstacle, moveType)) {
-                if (BudgeUtil.canAttackMonster(roleHero, currentRole, moveType)) {
+                if (BudgeUtil.canAttackMonster(roleHero, currentBaseRole, moveType)) {
                     roleHero.move(moveType);
                 }
             }

@@ -3,7 +3,7 @@ package com.example.alan.magictower.duel;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.BaseRole;
 import com.example.alan.magictower.view.MagicLoader;
 
 /**
@@ -18,7 +18,7 @@ public class RolesDuel {
     public RolesDuel() {
     }
 
-    public synchronized void heroAttack(Role monster, int loseLife) {
+    public synchronized void heroAttack(BaseRole monster, int loseLife) {
 
         if (flag) {
             Log.e(TAG, "heroAttack: " + "====");
@@ -47,7 +47,7 @@ public class RolesDuel {
 
     }
 
-    public synchronized void monsterAttack(Role hero, int loseLife) {
+    public synchronized void monsterAttack(BaseRole hero, int loseLife) {
 
         if (!flag) {
             if (loseLife > 0) {

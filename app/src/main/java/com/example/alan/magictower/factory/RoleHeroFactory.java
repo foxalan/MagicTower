@@ -1,6 +1,6 @@
 package com.example.alan.magictower.factory;
 
-import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.BaseRoleHero;
 import com.example.alan.magictower.role.RoleType;
 
 /**
@@ -14,14 +14,14 @@ import com.example.alan.magictower.role.RoleType;
 
 public class RoleHeroFactory implements IRoleFactory {
 
-    private RoleHero roleHero;
+    private BaseRoleHero roleHero;
 
     public RoleHeroFactory(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
-        roleHero = new RoleHero(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed,type);
+        roleHero = new BaseRoleHero(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed,type);
     }
 
     @Override
-    public RoleHero createRole() {
+    public BaseRoleHero createRole() {
         return roleHero;
     }
 

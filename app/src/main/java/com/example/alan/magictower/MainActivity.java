@@ -13,8 +13,8 @@ import com.example.alan.magictower.factory.ObstacleFactory;
 import com.example.alan.magictower.factory.RoleFactory;
 import com.example.alan.magictower.factory.RoleHeroFactory;
 import com.example.alan.magictower.obstacle.Obstacle;
-import com.example.alan.magictower.role.Role;
-import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.BaseRole;
+import com.example.alan.magictower.role.BaseRoleHero;
 import com.example.alan.magictower.role.RoleType;
 import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.view.GamePanel;
@@ -59,12 +59,12 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private int currentFloor = 1;
 
     private RoleHeroFactory roleHeroFactory;
-    private RoleHero hero;
+    private BaseRoleHero hero;
 
-    private List<Role> roleList = new ArrayList<>();
+    private List<BaseRole> baseRoleList = new ArrayList<>();
 
     private HashMap<Integer, List<Obstacle>> obstacleMap = new HashMap<>();
-    private HashMap<Integer, List<Role>> roleMap = new HashMap<>();
+    private HashMap<Integer, List<BaseRole>> roleMap = new HashMap<>();
 
     public Handler mHandler = new Handler() {
         @Override
@@ -163,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
      * 更新数值
      */
     private void updateHero() {
-        tv_hero_defense.setText("DEFENSE:" + hero.getmDefense());
-        tv_hero_attack.setText("ATTACK:" + hero.getmAttack());
+        tv_hero_defense.setText("DEFENSE:" + hero.getDefense());
+        tv_hero_attack.setText("ATTACK:" + hero.getAttack());
         tv_hero_life.setText("LIFE:" + hero.getLife());
         tv_hero_yellow_key.setText("YELLOW KEY:" + hero.getYellowKey());
         tv_hero_blue_key.setText("BLUE KEY:" + hero.getBlueKey());

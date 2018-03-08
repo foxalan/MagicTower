@@ -3,7 +3,7 @@ package com.example.alan.magictower.duel;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 
-import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.BaseRole;
 
 /**
  * @author Alan
@@ -12,14 +12,14 @@ import com.example.alan.magictower.role.Role;
 public class MonsterAttackThread extends Thread {
 
     private static final String TAG = "MonsterAttackThread";
-    private Role hero;
-    private Role monster;
+    private BaseRole hero;
+    private BaseRole monster;
     private RolesDuel rolesDuel;
     private int count;
     private AppCompatTextView tv_hero_life;
     private int loseLife;
 
-    public MonsterAttackThread(RolesDuel rolesDuel, Role hero, Role monster,AppCompatTextView tv_hero_life) {
+    public MonsterAttackThread(RolesDuel rolesDuel, BaseRole hero, BaseRole monster, AppCompatTextView tv_hero_life) {
         this.rolesDuel = rolesDuel;
         this.hero = hero;
         this.monster = monster;
@@ -31,9 +31,9 @@ public class MonsterAttackThread extends Thread {
         // TODO Auto-generated method stub
         super.run();
 
-        count = (monster.getLife() / (hero.getmAttack() - monster.getmDefense()))+100;
+        count = (monster.getLife() / (hero.getAttack() - monster.getDefense()))+100;
         Log.d(TAG, "run: "+ count);
-        loseLife = monster.getmAttack() - hero.getmDefense();
+        loseLife = monster.getAttack() - hero.getDefense();
         for (int i = 0; i < count; i++) {
             if (monster.getLife() == 0){
                 break;

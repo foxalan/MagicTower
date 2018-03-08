@@ -3,7 +3,7 @@ package com.example.alan.magictower.duel;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 
-import com.example.alan.magictower.role.Role;
+import com.example.alan.magictower.role.BaseRole;
 import com.example.alan.magictower.view.MagicLoader;
 
 /**
@@ -13,14 +13,14 @@ import com.example.alan.magictower.view.MagicLoader;
 public class HeroAttackThread extends Thread {
     private static final String TAG = "HeroAttackThread";
 
-    private Role hero;
-    private Role monster;
+    private BaseRole hero;
+    private BaseRole monster;
     private RolesDuel rolesDuel;
     private int count;
     private AppCompatTextView tv_monster_life;
     private int loseLife;
 
-    public HeroAttackThread(RolesDuel rolesDuel, Role hero, Role monster, AppCompatTextView tv_monster_life) {
+    public HeroAttackThread(RolesDuel rolesDuel, BaseRole hero, BaseRole monster, AppCompatTextView tv_monster_life) {
         this.rolesDuel = rolesDuel;
         this.hero = hero;
         this.monster = monster;
@@ -31,9 +31,9 @@ public class HeroAttackThread extends Thread {
     public void run() {
         // TODO Auto-generated method stub
         super.run();
-        count = (monster.getLife() / (hero.getmAttack() - monster.getmDefense())) + 100;
+        count = (monster.getLife() / (hero.getAttack() - monster.getDefense())) + 100;
         Log.d(TAG, "run: " + count);
-        loseLife = hero.getmAttack() - monster.getmDefense();
+        loseLife = hero.getAttack() - monster.getDefense();
         for (int i = 0; i < count; i++) {
 
             if (monster.getLife() == 0) {

@@ -5,8 +5,8 @@ import android.util.Log;
 import com.example.alan.magictower.config.ConfigPositionCreator;
 import com.example.alan.magictower.config.ConfigRole;
 import com.example.alan.magictower.info.RolePosition;
-import com.example.alan.magictower.role.Role;
-import com.example.alan.magictower.role.RoleSlime;
+import com.example.alan.magictower.role.BaseRole;
+import com.example.alan.magictower.role.BaseRoleSlime;
 import com.example.alan.magictower.role.RoleType;
 
 import java.util.ArrayList;
@@ -38,10 +38,10 @@ public class RoleFactory {
         return RoleHolder.INSTANCE;
     }
 
-    public List<Role> getRole(int round) {
+    public List<BaseRole> getRole(int round) {
 
-        List<Role> roleList = new ArrayList<>();
-        roleList.clear();
+        List<BaseRole> baseRoleList = new ArrayList<>();
+        baseRoleList.clear();
 
         HashMap<RoleType, List<RolePosition>> typeListHashMap = ConfigPositionCreator.getInstance().getRoleMap().get(round);
 
@@ -56,8 +56,8 @@ public class RoleFactory {
                 case SLIME:
                     for (RolePosition position : typeListHashMap.get(type)) {
                         RoleSlimeFactory roleFactory = new RoleSlimeFactory(true, ConfigRole.SLIME_ATTACK,ConfigRole.SLIME_DEFENSE,ConfigRole.SLIME_LIFE ,position, RoleType.SLIME);
-                        RoleSlime slime = roleFactory.createRole();
-                        roleList.add(slime);
+                        BaseRoleSlime slime = roleFactory.createRole();
+                        baseRoleList.add(slime);
                     }
                     break;
                     default:
@@ -65,7 +65,7 @@ public class RoleFactory {
             }
         }
 
-        return roleList;
+        return baseRoleList;
     }
 
 }

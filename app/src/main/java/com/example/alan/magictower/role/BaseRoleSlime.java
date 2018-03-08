@@ -10,12 +10,12 @@ import com.example.alan.magictower.info.RolePosition;
  * Whether Solve :
  */
 
-public class RoleSlime extends Role {
-    public RoleSlime(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
+public class BaseRoleSlime extends BaseRole {
+    public BaseRoleSlime(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
         super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed, type);
     }
 
-    public RoleSlime(boolean alive, int mAttack, int mDefense, int life, RolePosition position, RoleType type) {
+    public BaseRoleSlime(boolean alive, int mAttack, int mDefense, int life, RolePosition position, RoleType type) {
         super(alive, mAttack, mDefense, life, position, type);
     }
 }

@@ -2,8 +2,8 @@ package com.example.alan.magictower.skill;
 
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
 import com.example.alan.magictower.obstacle.jewel.ObstacleJewel;
-import com.example.alan.magictower.role.Role;
-import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.BaseRole;
+import com.example.alan.magictower.role.BaseRoleHero;
 import com.example.alan.magictower.view.MagicLoader;
 
 /**
@@ -17,14 +17,14 @@ import com.example.alan.magictower.view.MagicLoader;
 public class SkillHeroFactory implements ISillFactory, ISkillHero {
 
     @Override
-    public boolean attack(RoleHero role, Role enemy) {
+    public boolean attack(BaseRoleHero role, BaseRole enemy) {
 
-        if (role.getmAttack() < enemy.getmDefense()) {
+        if (role.getAttack() < enemy.getDefense()) {
             return false;
         }
 
-        int countKill = enemy.getLife() / role.getmAttack() - enemy.getmDefense();
-        int countByKill = role.getLife() / enemy.getmAttack() - role.getmDefense();
+        int countKill = enemy.getLife() / role.getAttack() - enemy.getDefense();
+        int countByKill = role.getLife() / enemy.getAttack() - role.getDefense();
         if (countByKill > countKill) {
             MagicLoader.getInstance().showDialogDuel(role,enemy);
             enemy.setAlive(false);
@@ -48,23 +48,23 @@ public class SkillHeroFactory implements ISillFactory, ISkillHero {
     }
 
     @Override
-    public void restore(Role role, int life) {
+    public void restore(BaseRole baseRole, int life) {
     }
 
     @Override
-    public void addAttack(Role role, int attack, ObstacleJewel jewel) {
-        role.setmAttack(role.getmAttack() + attack);
+    public void addAttack(BaseRole baseRole, int attack, ObstacleJewel jewel) {
+        baseRole.setAttack(baseRole.getAttack() + attack);
         jewel.setExist(false);
     }
 
     @Override
-    public void addDefense(Role role, int defense, ObstacleJewel jewel) {
-        role.setmDefense(role.getmDefense() + defense);
+    public void addDefense(BaseRole baseRole, int defense, ObstacleJewel jewel) {
+        baseRole.setDefense(baseRole.getDefense() + defense);
         jewel.setExist(false);
     }
 
     @Override
-    public void openDoor(RoleHero role, ObstacleDoor door) {
+    public void openDoor(BaseRoleHero role, ObstacleDoor door) {
         switch (door.getDoorType()) {
             case REDDOOR:
                 role.setRedKey(role.getRedKey() - 1);

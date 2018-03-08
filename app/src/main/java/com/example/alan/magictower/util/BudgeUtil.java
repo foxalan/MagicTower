@@ -4,8 +4,8 @@ import com.example.alan.magictower.obstacle.Obstacle;
 import com.example.alan.magictower.obstacle.ObstacleType;
 import com.example.alan.magictower.obstacle.door.DoorType;
 import com.example.alan.magictower.obstacle.door.ObstacleDoor;
-import com.example.alan.magictower.role.Role;
-import com.example.alan.magictower.role.RoleHero;
+import com.example.alan.magictower.role.BaseRole;
+import com.example.alan.magictower.role.BaseRoleHero;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class BudgeUtil {
 
-    public static boolean canMoveLeftWithWood(RoleHero hero, List<Obstacle> obstacle, MoveType type) {
+    public static boolean canMoveLeftWithWood(BaseRoleHero hero, List<Obstacle> obstacle, MoveType type) {
 
         for (Obstacle wood : obstacle) {
             if (wood.getObstacleType() == ObstacleType.WOOD){
@@ -74,7 +74,7 @@ public class BudgeUtil {
         return true;
     }
 
-    public static Obstacle canMoveLeftWithJewel(RoleHero hero, List<Obstacle> obstacleJewels, MoveType type) {
+    public static Obstacle canMoveLeftWithJewel(BaseRoleHero hero, List<Obstacle> obstacleJewels, MoveType type) {
 
         for (Obstacle jewel : obstacleJewels) {
 
@@ -124,7 +124,7 @@ public class BudgeUtil {
         return null;
     }
 
-    public static boolean canMoveLeftWithDoor(RoleHero hero, List<Obstacle> obstacleDoors, MoveType type) {
+    public static boolean canMoveLeftWithDoor(BaseRoleHero hero, List<Obstacle> obstacleDoors, MoveType type) {
 
         for (Obstacle door : obstacleDoors) {
             if (door.isExist()) {
@@ -194,7 +194,7 @@ public class BudgeUtil {
         return true;
     }
 
-    private static boolean haveKey(DoorType doorType, RoleHero hero) {
+    private static boolean haveKey(DoorType doorType, BaseRoleHero hero) {
         switch (doorType) {
             case BLUEDOOR:
                 if (hero.getBlueKey() != 0) {
@@ -218,15 +218,15 @@ public class BudgeUtil {
         return false;
     }
 
-    public static boolean canAttackMonster(RoleHero hero, List<Role> roleListMonster, MoveType type) {
+    public static boolean canAttackMonster(BaseRoleHero hero, List<BaseRole> baseRoleListMonster, MoveType type) {
 
-        for (Role role : roleListMonster) {
-            if (role.isAlive()) {
+        for (BaseRole baseRole : baseRoleListMonster) {
+            if (baseRole.isAlive()) {
                 switch (type) {
                     case UP:
-                        if (role.getRolePosition().getX() == hero.getX()) {
-                            if ((hero.getY() - role.getRolePosition().getY()) == 1) {
-                                if (hero.attack(role)) {
+                        if (baseRole.getRolePosition().getX() == hero.getX()) {
+                            if ((hero.getY() - baseRole.getRolePosition().getY()) == 1) {
+                                if (hero.attack(baseRole)) {
                                     return true;
                                 } else {
                                     return false;
@@ -236,9 +236,9 @@ public class BudgeUtil {
                         break;
                     case DOWN:
 
-                        if (role.getRolePosition().getX() == hero.getX()) {
-                            if ((hero.getY() - role.getRolePosition().getY()) == -1) {
-                                if (hero.attack(role)) {
+                        if (baseRole.getRolePosition().getX() == hero.getX()) {
+                            if ((hero.getY() - baseRole.getRolePosition().getY()) == -1) {
+                                if (hero.attack(baseRole)) {
                                     return true;
                                 } else {
                                     return false;
@@ -248,9 +248,9 @@ public class BudgeUtil {
                         break;
                     case LEFT:
 
-                        if (role.getRolePosition().getY() == hero.getY()) {
-                            if ((hero.getX() - role.getRolePosition().getX()) == 1) {
-                                if (hero.attack(role)) {
+                        if (baseRole.getRolePosition().getY() == hero.getY()) {
+                            if ((hero.getX() - baseRole.getRolePosition().getX()) == 1) {
+                                if (hero.attack(baseRole)) {
                                     return true;
                                 } else {
                                     return false;
@@ -260,9 +260,9 @@ public class BudgeUtil {
                         break;
                     case RIGHT:
 
-                        if (role.getRolePosition().getY() == hero.getY()) {
-                            if ((hero.getX() - role.getRolePosition().getX()) == -1) {
-                                if (hero.attack(role)) {
+                        if (baseRole.getRolePosition().getY() == hero.getY()) {
+                            if ((hero.getX() - baseRole.getRolePosition().getX()) == -1) {
+                                if (hero.attack(baseRole)) {
                                     return true;
                                 } else {
                                     return false;

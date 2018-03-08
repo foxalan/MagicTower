@@ -15,9 +15,9 @@ import com.example.alan.magictower.util.MoveType;
  * Whether Solve :
  */
 
-public class RoleHero extends Role {
+public class BaseRoleHero extends BaseRole {
 
-    private static final String TAG = "RoleHero";
+    private static final String TAG = "BaseRoleHero";
     /**
      * 技能接口
      */
@@ -30,7 +30,7 @@ public class RoleHero extends Role {
     private int blueKey;
     private int redKey;
 
-    public RoleHero(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
+    public BaseRoleHero(int mId, String mName, String mDes, boolean alive, int mAttack, int mDefense, int life, int x, int y, int mSpeed, RoleType type) {
         super(mId, mName, mDes, alive, mAttack, mDefense, life, x, y, mSpeed, type);
     }
 
@@ -67,7 +67,7 @@ public class RoleHero extends Role {
      *
      * @param enemy
      */
-    public boolean attack(Role enemy) {
+    public boolean attack(BaseRole enemy) {
 
         return skillHeroFactory.attack(this, enemy);
     }
@@ -75,10 +75,10 @@ public class RoleHero extends Role {
     /**
      * 回复生命
      *
-     * @param role
+     * @param baseRole
      * @param life
      */
-    public void restore(Role role, int life) {
+    public void restore(BaseRole baseRole, int life) {
         skillHeroFactory.restore(this, life);
     }
 
