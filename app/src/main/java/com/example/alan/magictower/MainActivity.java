@@ -20,7 +20,7 @@ import com.example.alan.magictower.skill.SkillHeroFactory;
 import com.example.alan.magictower.view.GamePanel;
 import com.example.alan.magictower.view.MagicLoader;
 
-import java.util.ArrayList;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,41 +47,51 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
 
     private static final String TAG = "MainActivity";
     private GamePanel gamePanel;
-    private AppCompatTextView tv_hero_life;
-    private AppCompatTextView tv_hero_attack;
-    private AppCompatTextView tv_hero_defense;
+    private AppCompatTextView mHeroLife;
+    private AppCompatTextView mHeroAttack;
+    private AppCompatTextView mHeroDefense;
 
-    private AppCompatTextView tv_hero_yellow_key;
-    private AppCompatTextView tv_hero_blue_key;
-    private AppCompatTextView tv_hero_red_key;
+    private AppCompatTextView mYellowKey;
+    private AppCompatTextView mBlueKey;
+    private AppCompatTextView mRedKey;
 
-    private AppCompatTextView tv_round;
+    private AppCompatTextView mRound;
     private int currentFloor = 1;
 
-    private RoleHeroFactory roleHeroFactory;
+    private RoleHeroFactory mRoleHeroFactory;
     private BaseRoleHero hero;
-
-    private List<BaseRole> baseRoleList = new ArrayList<>();
 
     private HashMap<Integer, List<Obstacle>> obstacleMap = new HashMap<>();
     private HashMap<Integer, List<BaseRole>> roleMap = new HashMap<>();
 
-    public Handler mHandler = new Handler() {
+    public  Handler mHandler = new MyHandler(this);
+
+    private static class MyHandler extends Handler{
+
+        WeakReference<MainActivity> mainActivityWeakReference;
+
+        private MyHandler(MainActivity mainActivity){
+            mainActivityWeakReference = new WeakReference<>(mainActivity);
+        }
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what) {
-                case 0x111:
-                    updateHero();
-                    break;
-                case 0x120:
-                    tv_hero_life.setText("LIFE:" + hero.getLife());
-                    break;
-                default:
-                    break;
+            MainActivity mainActivity = mainActivityWeakReference.get();
+            if (mainActivity!=null){
+                switch (msg.what) {
+                    case 0x111:
+                        mainActivity.updateHero();
+                        break;
+                    case 0x120:
+                        mainActivity.mHeroLife.setText(String.valueOf("LIFE:" + mainActivity.hero.getLife()));
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-    };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,35 +131,34 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
     private void initViews() {
 
         gamePanel = findViewById(R.id.gamePanel);
-        tv_hero_life = findViewById(R.id.tv_hero_life);
-        tv_hero_attack = findViewById(R.id.tv_hero_attack);
-        tv_hero_defense = findViewById(R.id.tv_hero_defense);
-        tv_hero_yellow_key = findViewById(R.id.tv_hero_key_yellow);
-        tv_hero_blue_key = findViewById(R.id.tv_hero_key_blue);
-        tv_hero_red_key = findViewById(R.id.tv_hero_key_red);
-        tv_round = findViewById(R.id.tv_round);
+        mHeroLife = findViewById(R.id.tv_hero_life);
+        mHeroAttack = findViewById(R.id.tv_hero_attack);
+        mHeroDefense = findViewById(R.id.tv_hero_defense);
+        mYellowKey = findViewById(R.id.tv_hero_key_yellow);
+        mBlueKey = findViewById(R.id.tv_hero_key_blue);
+        mRedKey = findViewById(R.id.tv_hero_key_red);
+        mRound = findViewById(R.id.tv_round);
     }
 
     private void initRole() {
-        roleHeroFactory = new RoleHeroFactory(HEAR_ID, HERO_NAME, HERO_DES, ALIVE,
+        mRoleHeroFactory = new RoleHeroFactory(HEAR_ID, HERO_NAME, HERO_DES, ALIVE,
                 HER0_ATTACK, HERO_DEFENCE, HERO_LIFE, HERO_X, HERO_Y, HERO_SPEED, RoleType.HERO);
-        hero = roleHeroFactory.createRole();
+        hero = mRoleHeroFactory.createRole();
         hero.setYellowKey(KEY_YELLOW);
         hero.setBlueKey(KEY_BLUE);
         hero.setRedKey(KEY_RED);
     }
 
     private void initEvent() {
+
         gamePanel.setRole(hero);
         gamePanel.setListHashMap(obstacleMap);
         gamePanel.setRoleHashMap(roleMap);
         gamePanel.setRound(currentFloor);
-
         gamePanel.setHeroPowerChangeCallBack(this);
 
         hero.setSkillHeroFactory(SkillHeroFactory.getInstance());
         MagicLoader.getInstance().setiDuelOverCallBack(this);
-
         updateHero();
     }
 
@@ -163,13 +172,13 @@ public class MainActivity extends AppCompatActivity implements IHeroPowerChangeC
      * 更新数值
      */
     private void updateHero() {
-        tv_hero_defense.setText("DEFENSE:" + hero.getDefense());
-        tv_hero_attack.setText("ATTACK:" + hero.getAttack());
-        tv_hero_life.setText("LIFE:" + hero.getLife());
-        tv_hero_yellow_key.setText("YELLOW KEY:" + hero.getYellowKey());
-        tv_hero_blue_key.setText("BLUE KEY:" + hero.getBlueKey());
-        tv_hero_red_key.setText("RED KEY:" + hero.getRedKey());
-        tv_round.setText("Floor:" + gamePanel.getRound());
+        mHeroDefense.setText(String.valueOf("DEFENSE:" + hero.getDefense()));
+        mHeroAttack.setText(String.valueOf("ATTACK:" + hero.getAttack()));
+        mHeroLife.setText(String.valueOf("LIFE:" + hero.getLife()));
+        mYellowKey.setText(String.valueOf("YELLOW KEY:" + hero.getYellowKey()));
+        mBlueKey.setText(String.valueOf("BLUE KEY:" + hero.getBlueKey()));
+        mRedKey.setText(String.valueOf("RED KEY:" + hero.getRedKey()));
+        mRound.setText(String.valueOf("Floor:" + gamePanel.getRound()));
     }
 
 
